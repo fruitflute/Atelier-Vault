@@ -85,3 +85,58 @@ test('failed login clears password and allows retry', async ({ page }) => {
   await expect(page.locator('#loginSubmit')).toBeEnabled();
   await expect(page.locator('#connectionBadge')).toContainText('デモモード');
 });
+
+async function archivedFixture(page, mode) {
+  await page.addInitScript(value => { window.megaFixture=value; }, mode);
+  await mockMega(page); await page.goto('/'); await login(page);
+  await expect(page.locator('#connectionBadge')).toContainText('MEGA接続中');
+  await expect(page.locator('#busyOverlay')).toBeHidden();
+}
+test('archived records in a second same-name root are discovered', async ({ page }) => {
+  await archivedFixture(page,'duplicate');
+  await expect(page.locator('.work-card')).toHaveCount(1);
+  await expect(page.locator('.work-card')).toContainText('Archived fixture');
+  await expect(page.locator('#syncNotice')).toContainText('保存先 2件');
+  await expect(page.locator('#syncNotice')).toContainText('表示 1件');
+});
+test('unreadable stored metadata is an error, never a successful empty gallery', async ({ page }) => {
+  await archivedFixture(page,'unreadable');
+  await expect(page.locator('#syncNotice')).toContainText('JSON取得失敗 1件');
+  await expect(page.locator('#syncNotice')).toHaveClass(/error/);
+  await expect(page.locator('#toast')).toContainText('作品の同期に失敗');
+  await expect(page.locator('#emptyTitle')).toHaveText('作品をまだ表示できません');
+});
+test('partial sync distinguishes incomplete uploads from failed reads', async ({ page }) => {
+  await archivedFixture(page,'partial');
+  await expect(page.locator('.work-card')).toHaveCount(1);
+  await expect(page.locator('#syncNotice')).toContainText('JSONなし 1件');
+  await expect(page.locator('#syncNotice')).toContainText('JSON取得失敗 1件');
+  await expect(page.locator('#syncNotice')).toHaveClass(/warning/);
+});
+test('failed refresh retains previously displayed records', async ({ page }) => {
+  await archivedFixture(page,'normal');
+  await expect(page.locator('.work-card')).toHaveCount(1);
+  await page.evaluate(() => { window.failReads=true; });
+  await page.locator('#refreshBtn').click();
+  await expect(page.locator('#syncNotice')).toHaveClass(/error/);
+  await expect(page.locator('.work-card')).toHaveCount(1);
+  await expect(page.locator('.work-card img')).toBeVisible();
+});
+test('legacy image entry without MIME type uses its extension', async ({ page }) => {
+  await archivedFixture(page,'legacy');
+  await expect(page.locator('.work-card')).toContainText('▧ 1');
+  await page.locator('.work-card').click();
+  await expect(page.locator('#detailImageHolder img')).toBeVisible();
+});
+test('unavailable thumbnail falls back to the original image', async ({ page }) => {
+  await page.addInitScript(() => { window.failThumbs=true; });
+  await archivedFixture(page,'normal');
+  await expect(page.locator('.work-card img')).toBeVisible();
+  await expect.poll(() => page.locator('.work-card img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
+  expect(await page.evaluate(()=>window.mockStats.downloads)).toContain('image-01-fixture.png');
+});
+test('invalid metadata has a distinct persistent diagnostic', async ({ page }) => {
+  await archivedFixture(page,'invalid');
+  await expect(page.locator('#syncNotice')).toContainText('JSON形式不一致 1件');
+  await expect(page.locator('#emptyTitle')).toHaveText('作品をまだ表示できません');
+});

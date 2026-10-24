@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="referrer" content="no-referrer" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self' https://*.mega.co.nz https://*.mega.nz https://*.userstorage.mega.co.nz https://*.userstorage.mega.nz; object-src 'none'; base-uri 'none'; form-action 'none'" />
-  <meta name="theme-color" content="#111319" />
+  <meta name="theme-color" content="#FFF6F8" />
   <meta name="description" content="プロンプトと生成作品を、あなたのMEGAに保存するプライベートギャラリー。" />
   <title>Atelier Vault — Prompt Gallery</title>
   <link rel="stylesheet" href="./styles.css" />
@@ -13,33 +13,24 @@
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand"><span class="brand-mark">✦</span><span class="brand-name">Atelier <em>Vault</em></span></div>
-      <div class="nav-section-label">WORKSPACE</div>
-      <nav class="side-nav" aria-label="メインナビゲーション">
-        <button type="button" class="nav-item active" data-view="gallery"><span class="nav-icon">▦</span>ギャラリー<span id="galleryCount" class="nav-count">0</span></button>
-        <button type="button" class="nav-item" data-view="create"><span class="nav-icon">✧</span>プロンプト＆登録</button>
-        <button type="button" class="nav-item" data-view="about"><span class="nav-icon">ⓘ</span>使い方・安全性</button>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="privacy-card"><span class="privacy-icon">◇</span><div><b>Private by design</b><small>作品を一般公開しません</small></div></div>
-        <div class="tiny-copyright">Atelier Vault · v0.2</div>
-      </div>
-    </aside>
+    <header class="mast">
+      <div class="brand"><svg class="brand-mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M24 23C15 5 3 13 9 21c3 4 9 4 15 2Zm0 0c9-18 21-10 15-2-3 4-9 4-15 2ZM23 24 14 40l-1-9-8 2 15-11m5 2 9 16 1-9 8 2-15-11"/><circle cx="24" cy="23" r="3"/></svg><div><span class="brand-name">Atelier <em>Vault</em></span><span class="brand-sub">YOUR PRIVATE CREATIVE NOTEBOOK</span></div></div>
+      <div class="topbar-actions"><span id="connectionBadge" class="connection-badge"><span class="live-dot"></span>未接続</span><button id="connectBtn" type="button" class="button button-soft">MEGAに接続</button></div>
+    </header>
+    <div class="page-heading"><div><span class="eyebrow">THE ATELIER</span><h1 id="pageTitle">My gallery</h1></div><span class="heading-flower" aria-hidden="true">✧</span></div>
+    <nav class="side-nav" aria-label="メインナビゲーション">
+      <button type="button" class="nav-item active" data-view="gallery"><span class="nav-icon">♡</span>ギャラリー<span id="galleryCount" class="nav-count">0</span></button>
+      <button type="button" class="nav-item" data-view="create"><span class="nav-icon">✧</span>プロンプト＆登録</button>
+      <button type="button" class="nav-item" data-view="about"><span class="nav-icon">◇</span>使い方</button>
+    </nav>
     <div class="main-column">
-      <header class="topbar">
-        <div class="topbar-title"><span class="topbar-eyebrow">PERSONAL CREATIVE ARCHIVE</span><b id="pageTitle">My gallery</b></div>
-        <div class="topbar-actions">
-          <span id="connectionBadge" class="connection-badge"><span class="live-dot"></span>未接続</span>
-          <button id="connectBtn" type="button" class="button button-soft">MEGAに接続</button>
-        </div>
-      </header>
       <main id="mainContent" class="content">
         <section id="view-gallery" class="view active-view">
-          <div class="hero"><div><div class="eyebrow">THE COLLECTION</div><h1>作品と、その着想を。<br><span>ひとつの場所に。</span></h1><p>生成画像も、プロンプトも。あとから見返し、次の創作に繋げるためのプライベートアーカイブ。</p><div class="hero-actions"><button class="button button-accent" type="button" data-go="create">＋ 作品を登録</button><button class="button button-outline" type="button" id="refreshBtn">↻ 最新の状態に更新</button></div></div><div class="hero-decoration" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="hero-glyph">AV</div></div></div>
-          <div class="section-head"><div><h2>My collection <span id="totalLabel" class="count-label">0 items</span></h2><p id="gallerySubline" class="section-caption">MEGAと同期すると、どの端末からでも作品を確認できます。</p></div><div class="toolbar"><label class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="タイトル・プロンプト・タグで検索" autocomplete="off"></label><select id="sortSelect" aria-label="並び順"><option value="newest">新しい順</option><option value="oldest">古い順</option><option value="name">タイトル順</option></select></div></div>
+          <div class="hero"><div><div class="eyebrow">THE COLLECTION</div><h1>作品と、その着想を。<br><span>ひとつの場所に。</span></h1><p>生成画像も、プロンプトも。あとから見返し、次の創作に繋げるためのプライベートアーカイブ。</p><div class="hero-actions"><button class="button button-accent" type="button" data-go="create">＋ 作品を登録</button><button class="button button-outline" type="button" id="refreshBtn">↻ 最新の状態に更新</button></div></div><div class="hero-decoration" aria-hidden="true"><span>with love,</span><div class="hero-glyph">Atelier Vault</div><span>♡</span></div></div>
+          <div class="section-head"><div><h2>My collection <span id="totalLabel" class="count-label">0 items</span></h2><p id="gallerySubline" class="section-caption">MEGAと同期すると、どの端末からでも作品を確認できます。</p></div><div class="toolbar"><label class="search-wrap"><span>⌕</span><input id="searchInput" type="search" aria-label="作品を検索" placeholder="タイトル・プロンプト・タグで検索" autocomplete="off"></label><select id="sortSelect" aria-label="並び順"><option value="newest">新しい順</option><option value="oldest">古い順</option><option value="name">タイトル順</option></select></div></div>
+          <div id="syncNotice" class="sync-notice" role="status" hidden></div>
           <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
-          <div id="emptyState" class="empty-state" hidden><div class="empty-symbol">✦</div><h3>最初の作品を登録しましょう</h3><p>画像とプロンプトをひと組にして保存。あなただけの作品庫がここから始まります。</p><button class="button button-accent" type="button" data-go="create">＋ 作品を登録</button></div>
+          <div id="emptyState" class="empty-state" hidden><div class="empty-symbol">✦</div><h3 id="emptyTitle">最初の作品を登録しましょう</h3><p id="emptyDescription">画像とプロンプトをひと組にして保存。あなただけの作品庫がここから始まります。</p><button class="button button-accent" type="button" data-go="create">＋ 作品を登録</button></div>
         </section>
         <section id="view-create" class="view">
           <div class="section-intro"><div class="eyebrow">CREATE & ARCHIVE</div><h1>プロンプトを育てる。</h1><p>テキストを組み立て、別の画像生成AIで作った作品を紐づけて記録します。</p></div>
@@ -62,6 +53,7 @@
         </section>
         <section id="view-about" class="view"><div class="section-intro"><div class="eyebrow">ABOUT ATELIER VAULT</div><h1>設計とプライバシー。</h1><p>最小限の仕組みで、生成記録を持ち運べるように。</p></div><div class="about-grid"><article class="about-card"><span class="about-icon">01</span><h3>MEGAに非公開保存</h3><p>専用の <code>PromptGallery/records</code> フォルダへ作品単位で保存。画像ファイル、縮小画像、プロンプトのJSONをひとまとめにします。</p></article><article class="about-card"><span class="about-icon">02</span><h3>ログイン情報は保存しない</h3><p>パスワードと2段階認証コードはブラウザのメモリ内でのみ使用。localStorage・Cookie・GitHubに保存しません。ページを更新すれば再ログインです。</p></article><article class="about-card"><span class="about-icon">03</span><h3>共有リンクは作らない</h3><p>ギャラリー閲覧やアップロードではMEGA共有リンクを発行しません。アプリのHTML自体は公開されても、作品データは認証なしには取得できません。</p></article><article class="about-card"><span class="about-icon">04</span><h3>まずは小規模に</h3><p>試作版は数十〜数百作品向け。大量保存時には検索インデックスやサムネイルのページング、同期競合制御を追加するのがおすすめです。</p></article></div><div class="disclaimer"><strong>重要な制約</strong><p>MEGAJSは非公式ライブラリです。ブラウザ環境・MEGA API仕様・利用規約によっては動作しない場合があります。MEGA本番接続はユーザーのアカウントでのみ検証できます。デモモードの内容はクラウドに同期されず、画面を閉じると消えます。画像は利用規約と適用法令の範囲内で取り扱ってください。</p></div></section>
       </main>
+      <footer class="footer"><span>Atelier Vault</span><small>Private creative notebook · v0.3</small><span aria-hidden="true">♡ · ✧ · ◇</span></footer>
     </div>
   </div>
   <nav class="mobile-nav" aria-label="モバイルナビゲーション"><button type="button" class="mobile-nav-item active" data-view="gallery"><span>▦</span>ギャラリー</button><button type="button" class="mobile-nav-item" data-view="create"><span>✧</span>登録する</button><button type="button" class="mobile-nav-item" data-view="about"><span>ⓘ</span>使い方</button></nav>

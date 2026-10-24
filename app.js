@@ -40,8 +40,8 @@ function demoSvg(title, colors, motif) {
   return URL.createObjectURL(new Blob([svg], {type:'image/svg+xml'}));
 }
 function makeDemoClient() {
-  const demo1 = demoSvg('LIGHT STUDY', ['#3f3a5a','#a16d91','#e3c3a4','#9bc1cb'], 'L');
-  const demo2 = demoSvg('CHROMATIC', ['#214852','#9c777b','#e8bca7','#9a92ca'], 'C');
+  const demo1 = demoSvg('LIGHT STUDY', ['#DFA8BA','#B89AC5','#FFF1DF','#E5B8CC'], 'L');
+  const demo2 = demoSvg('CHROMATIC', ['#B6AACF','#D8A7B9','#FFF0DD','#C0BEDF'], 'C');
   const records = [
     { id: 'sample-01', title: 'Light Study', model:'Seedream V5 Pro', tags:['portrait','cinematic'], prompt:'An atmospheric editorial portrait, gentle window light, nuanced color, thoughtful composition, fine detail.', negative:'oversaturated, low resolution',notes:'サンプル作品です。登録するとMEGAに実際の画像・プロンプトが保存されます。',createdAt:'2026-10-24T02:00:00Z',images:[{name:'light-study.svg', demoUrl:demo1}],demo:true},
     { id: 'sample-02', title: 'Chromatic Reverie', model:'Image model', tags:['art direction','mood'], prompt:'A poetic color study, expressive composition, muted dusty palette, delicate shadows, editorial mood.', negative:'',notes:'このサンプルは端末間同期されません。',createdAt:'2026-10-21T03:00:00Z',images:[{name:'chromatic.svg', demoUrl:demo2}],demo:true},
@@ -70,52 +70,76 @@ async function createMegaClient(email, password, secondFactorCode) {
   let storage;
   try { storage = new mod.Storage(opts); await storage.ready; }
   catch (e) { try { await storage?.close(); } catch {} throw new Error(`MEGAログインに失敗しました: ${e?.message || '認証・通信を確認してください'}`); }
-  let rootFolder = null;
-  let recordsFolder = null;
-  async function getFolder(create = true) {
-    rootFolder = storage.root.find(x => x.directory && x.name === ROOT_NAME);
-    if (!rootFolder && create) rootFolder = await storage.root.mkdir(ROOT_NAME);
-    if (!rootFolder) return null;
-    recordsFolder = rootFolder.find(x => x.directory && x.name === 'records');
-    if (!recordsFolder && create) recordsFolder = await rootFolder.mkdir('records');
-    return recordsFolder;
+  let syncReport = null;
+  const directFolders = (parent, name) => (parent?.children || []).filter(x => x.directory && x.name === name);
+  async function getFolder() {
+    // MEGA allows duplicate names. Prefer an existing records directory for writes.
+    const roots = directFolders(storage.root, ROOT_NAME);
+    for (const root of roots) {
+      const records = directFolders(root, 'records');
+      if (records.length) return records[0];
+    }
+    const root = roots[0] || await storage.root.mkdir(ROOT_NAME);
+    return await root.mkdir('records');
   }
-  async function refreshTree() { await storage.reload(); return await getFolder(false); }
   async function uploadBytes(folder, name, data) {
     const bytes = typeof data === 'string' ? encoder.encode(data) : new Uint8Array(data);
-    return await folder.upload({name, size: bytes.byteLength}, bytes).complete;
+    return await folder.upload({name, size: bytes.byteLength, forceHttps: true}, bytes).complete;
   }
+  const download = node => node.downloadBuffer({forceHttps:true});
+  const imageType = (info) => IMAGE_TYPES.has(info.type) ? info.type : ({png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',gif:'image/gif'})[String(info.file).split('.').pop().toLowerCase()];
   return {
+    getSyncReport() { return syncReport; },
     async list(onProgress) {
-      const parent = await refreshTree();
-      if (!parent) return [];
-      const folders = (parent.children || []).filter(x => x.directory);
-      const items = [];
-      let next = 0;
-      const runners = Array.from({length:Math.min(4, folders.length)}, async () => {
-        while (next < folders.length) {
-          const folder = folders[next++];
-          const metaFile = folder.children?.find(x => !x.directory && x.name === 'record.json');
-          if (!metaFile) continue; // incomplete uploads are deliberately invisible
-          try {
-            const raw = JSON.parse(bytesToString(await metaFile.downloadBuffer()));
-            if (!raw || typeof raw.title !== 'string' || typeof raw.prompt !== 'string' || !Array.isArray(raw.images) || raw.images.length > MAX_IMAGES) continue;
-            const imgs = raw.images.map((info) => {
-              if (!info || typeof info.file !== 'string' || !IMAGE_TYPES.has(info.type)) return null;
-              const file = folder.children?.find(x => !x.directory && x.name === info.file);
-              const thumbFile = folder.children?.find(x => !x.directory && x.name === info.thumb);
-              return file ? {name:info.name || info.file, file, thumbFile, type:info.type || 'image/jpeg'} : null;
-            }).filter(Boolean);
-            items.push({...raw,id:folder.nodeId,folder,images:imgs,model:typeof raw.model === 'string' ? raw.model : '',negative:typeof raw.negative === 'string' ? raw.negative : '',notes:typeof raw.notes === 'string' ? raw.notes : '',tags:Array.isArray(raw.tags) ? raw.tags.filter(t => typeof t === 'string').slice(0,20) : []});
-          } catch (e) { console.warn('Skipping unreadable record', folder?.name, e?.message); }
-          onProgress?.(Math.round(next / Math.max(1, folders.length) * 100));
+      syncReport = {rootFolders:0,recordFolders:0,folders:0,loaded:0,missingMetadata:0,invalidMetadata:0,unreadableMetadata:0,missingImages:0,failed:false};
+      try {
+        await storage.reload();
+        const roots = directFolders(storage.root, ROOT_NAME);
+        const parents = roots.flatMap(root => directFolders(root, 'records'));
+        const folders = [...new Map(parents.flatMap(parent => (parent.children || []).filter(x => x.directory)).map(folder => [folder.nodeId, folder])).values()];
+        Object.assign(syncReport,{rootFolders:roots.length,recordFolders:parents.length,folders:folders.length});
+        const items = [];
+        let next = 0, completed = 0;
+        const runners = Array.from({length:Math.min(4, folders.length)}, async () => {
+          while (next < folders.length) {
+            const folder = folders[next++];
+            try {
+              const metaFile = folder.children?.find(x => !x.directory && x.name === 'record.json');
+              if (!metaFile) { syncReport.missingMetadata++; continue; }
+              let text;
+              try { text = bytesToString(await download(metaFile)); }
+              catch { syncReport.unreadableMetadata++; continue; }
+              let raw;
+              try { raw = JSON.parse(text.replace(/^\uFEFF/, '')); }
+              catch { syncReport.invalidMetadata++; continue; }
+              if (!raw || typeof raw.title !== 'string' || typeof raw.prompt !== 'string' || !Array.isArray(raw.images)) {
+                syncReport.invalidMetadata++; continue;
+              }
+              const imgs = raw.images.map(info => {
+                if (!info || typeof info.file !== 'string') { syncReport.missingImages++; return null; }
+                const type = imageType(info);
+                const file = folder.children?.find(x => !x.directory && x.name === info.file);
+                const thumbFile = folder.children?.find(x => !x.directory && x.name === info.thumb);
+                if (!file || !type) { syncReport.missingImages++; return null; }
+                return {name:info.name || info.file,file,thumbFile,type};
+              }).filter(Boolean);
+              items.push({...raw,id:folder.nodeId,folder,images:imgs,model:typeof raw.model === 'string' ? raw.model : '',negative:typeof raw.negative === 'string' ? raw.negative : '',notes:typeof raw.notes === 'string' ? raw.notes : '',tags:Array.isArray(raw.tags) ? raw.tags.filter(t => typeof t === 'string').slice(0,20) : []});
+            } finally {
+              completed++;
+              onProgress?.(Math.round(completed / Math.max(1, folders.length) * 100));
+            }
+          }
+        });
+        await Promise.all(runners);
+        syncReport.loaded = items.length;
+        if (!items.length && (syncReport.unreadableMetadata || syncReport.invalidMetadata)) {
+          throw new Error('保存済み作品の情報を読み込めませんでした。同期状況を確認し、時間をおいて更新してください。');
         }
-      });
-      await Promise.all(runners);
-      return items;
+        return items;
+      } catch (error) { syncReport.failed = true; throw error; }
     },
     async save(meta, files, onProgress) {
-      const parent = await getFolder(true);
+      const parent = await getFolder();
       const name = `work-${Date.now()}-${newId().slice(0,8)}`;
       const folder = await parent.mkdir(name);
       try {
@@ -146,8 +170,15 @@ async function createMegaClient(email, password, secondFactorCode) {
         throw err;
       }
     },
-    async thumb(img) { const node = img.thumbFile || img.file; if (!node) return null; const data = await node.downloadBuffer(); return URL.createObjectURL(new Blob([data], {type:img.thumbFile?'image/jpeg':img.type})); },
-    async image(img) { if (!img.file) return null; const data=await img.file.downloadBuffer(); return URL.createObjectURL(new Blob([data],{type:img.type})); },
+    async thumb(img) {
+      if (img.thumbFile) {
+        try { return URL.createObjectURL(new Blob([await download(img.thumbFile)],{type:'image/jpeg'})); }
+        catch { /* Fall back to the original image when the thumbnail is unavailable. */ }
+      }
+      if (!img.file) return null;
+      return URL.createObjectURL(new Blob([await download(img.file)],{type:img.type}));
+    },
+    async image(img) { if (!img.file) return null; const data=await download(img.file); return URL.createObjectURL(new Blob([data],{type:img.type})); },
     async remove(record) { await record.folder.delete(false); },
     async close() { try { await storage.close(); } catch {} },
   };
@@ -189,21 +220,56 @@ async function switchClient(client, mode) {
   state.mode = mode;
   state.records = [];
   setConnection();
-  await refresh();
+  $('searchInput').value='';
+  $('syncNotice').hidden=true;
+  renderGallery();
+  return await refresh();
 }
 function resetUrlCache() {
   for (const url of [...state.objectUrls.values(), ...state.imageUrls.values()]) { try { URL.revokeObjectURL(url); } catch {} }
   state.objectUrls.clear(); state.imageUrls.clear();
 }
+function showSyncReport(report, failed = false) {
+  const box = $('syncNotice'); box.replaceChildren();
+  if (state.mode !== 'mega') { box.hidden = true; return; }
+  box.hidden = false;
+  const hasIssues = report && (report.missingMetadata || report.invalidMetadata || report.unreadableMetadata || report.missingImages);
+  box.className = `sync-notice${failed ? ' error' : hasIssues ? ' warning' : ''}`;
+  const title = document.createElement('strong');
+  title.textContent = failed ? '同期が完了していません' : hasIssues ? '一部の作品を読み込めませんでした' : `同期完了 · ${report?.loaded || 0}作品`;
+  box.append(title);
+  const message = document.createElement('p');
+  message.textContent = failed ? '表示できていた作品は保持しています。接続・MEGAの転送制限を確認し、更新をお試しください。' :
+    !report?.rootFolders ? 'MEGA直下に PromptGallery フォルダが見つかりません。同じアカウントと保存場所かをご確認ください。' :
+    !report.recordFolders ? 'PromptGallery 内に records フォルダが見つかりません。' :
+    hasIssues ? '作品データは変更していません。下の同期状況で読み込めない段階を確認できます。' : '保存済み作品を読み込みました。別端末での変更は「更新」で反映できます。';
+  box.append(message);
+  if (report) {
+    const details = document.createElement('details'); details.open = failed || !!hasIssues || !report.loaded;
+    const summary = document.createElement('summary'); summary.textContent = '同期状況';
+    const counts = document.createElement('p');
+    counts.textContent = `保存先 ${report.rootFolders}件 / records ${report.recordFolders}件 / 作品フォルダ ${report.folders}件 / 表示 ${report.loaded}件 / JSONなし ${report.missingMetadata}件 / JSON取得失敗 ${report.unreadableMetadata}件 / JSON形式不一致 ${report.invalidMetadata}件 / 画像未検出 ${report.missingImages}件`;
+    details.append(summary,counts);box.append(details);
+  }
+}
 async function refresh() {
-  if (!state.client || state.busy) return;
+  if (!state.client || state.busy) return false;
   busy(state.mode==='mega'?'MEGAから同期中':'ギャラリーを準備中','作品情報を読み込んでいます',5);
   try {
+    const records = await state.client.list(p => { $('progressFill').style.width = `${p}%`; });
+    state.generation += 1;
     resetUrlCache();
-    state.records = await state.client.list(p => { $('progressFill').style.width = `${p}%`; });
+    state.records = records;
     renderGallery();
-  } catch (e) { toast(`更新に失敗しました: ${e.message}`,true); }
-  finally { unbusy(); }
+    showSyncReport(state.client.getSyncReport?.());
+    return true;
+  } catch (e) {
+    showSyncReport(state.client.getSyncReport?.(), true);
+    $('emptyTitle').textContent = '作品をまだ表示できません';
+    $('emptyDescription').textContent = '保存済みの作品がないとは限りません。上の同期状況をご確認ください。';
+    toast(`更新に失敗しました: ${e.message}`,true);
+    return false;
+  } finally { unbusy(); }
 }
 function renderGallery() {
   const query = $('searchInput').value.trim().toLocaleLowerCase();
@@ -214,6 +280,8 @@ function renderGallery() {
   $('totalLabel').textContent = `${list.length} items`;
   $('galleryCount').textContent = state.records.length;
   $('emptyState').hidden = list.length !== 0;
+  $('emptyTitle').textContent = query ? '検索に一致する作品がありません' : state.mode === 'mega' ? '表示できる作品がありません' : '最初の作品を登録しましょう';
+  $('emptyDescription').textContent = query ? '検索条件を変えてお試しください。' : state.mode === 'mega' ? '同期状況と、MEGAの保存場所をご確認ください。' : '画像とプロンプトをひと組にして保存できます。';
   for(const record of list) {
     const card = document.createElement('button');card.type='button';card.className='work-card';card.dataset.id=record.id;
     const thumb = document.createElement('div');thumb.className='work-thumb';
@@ -226,7 +294,10 @@ function renderGallery() {
     for(const t of record.tags.slice(0,3)) {const el=document.createElement('span');el.className='tag';el.textContent=t;tags.append(el);}
     body.append(h3,meta,tags);card.append(thumb,body);grid.append(card);
     card.addEventListener('click',()=>openDetail(record.id));
-    if(record.images[0]) { const image = document.createElement('img');image.alt=record.title;image.loading='lazy'; thumb.insertBefore(image,mark);loadThumb(record.images[0]).then(url=>{if(url&&image.isConnected){image.src=url; mark.remove();}}).catch(()=>{}); }
+    if(record.images[0]) { const image = document.createElement('img');image.alt=record.title;image.loading='lazy'; thumb.insertBefore(image,mark);const failed = () => { if(image.isConnected){image.remove();mark.classList.add('image-error');mark.textContent='画像を読み込めません。詳細から再確認できます。';} };
+      image.addEventListener('error', failed, {once:true});
+      image.addEventListener('load', () => mark.remove(), {once:true});
+      loadThumb(record.images[0]).then(url=>{if(url&&image.isConnected)image.src=url;else failed();}).catch(failed); }
   }
 }
 async function loadThumb(img) {
@@ -278,8 +349,8 @@ async function saveRecord(event) {
     await state.client.save(meta,state.selection.map(x=>x.file),(value,description)=>{ $('progressFill').style.width=`${value}%`; $('busyDescription').textContent=description; });
     $('recordForm').reset();clearSelection();
     unbusy();
-    await refresh();
-    goto('gallery');toast(state.mode==='mega'?'MEGAへの保存が完了しました':'デモに保存しました（端末間同期はされません）');
+    const synced = await refresh();
+    goto('gallery');toast(state.mode==='mega' ? (synced ? 'MEGAへの保存が完了しました' : '保存は完了しましたが、一覧の再取得に失敗しました。同期状況をご確認ください。') : 'デモに保存しました（端末間同期はされません）', !synced);
   }catch(e){toast(`保存できませんでした: ${e.message}`,true);}
   finally{unbusy();}
 }
@@ -317,7 +388,7 @@ async function selectDetailImage(record,index) {
   try{
     const url=await loadImage(record.images[index]);
     if(state.detailToken!==token || state.activeRecord!==record || !$('detailDialog').open)return;
-    if(url){const img=document.createElement('img');img.src=url;img.alt=`${record.title} (${index+1})`;holder.replaceChildren(img);}else holder.textContent='画像を読み込めません';
+    if(url){const img=document.createElement('img');img.src=url;img.alt=`${record.title} (${index+1})`;img.addEventListener('error',()=>{if(state.detailToken===token){holder.replaceChildren();const msg=document.createElement('p');msg.className='image-error';msg.textContent='画像を表示できません。元ファイルや通信状態をご確認ください。';holder.append(msg);}});holder.replaceChildren(img);}else holder.textContent='画像を読み込めません';
   }catch(e){if(state.detailToken===token)holder.textContent=`画像を読み込めません: ${e.message}`;}
 }
 async function copyText(text) {
@@ -342,7 +413,7 @@ async function connect(event) {
     const client=await createMegaClient(email,pass,code);
     $('loginPassword').value='';$('login2fa').value='';$('loginEmail').value='';
     $('connectDialog').close();unbusy();
-    await switchClient(client,'mega');toast('MEGAに接続しました');
+    const synced = await switchClient(client,'mega');toast(synced ? 'MEGAに接続しました' : 'MEGAには接続しましたが、作品の同期に失敗しました。', !synced);
   } catch(e){toast(e.message,true);}finally{
     $('loginPassword').value='';$('login2fa').value='';
     $('loginSubmit').disabled = false;unbusy();

@@ -1,0 +1,22 @@
+{
+  "name": "atelier-vault",
+  "version": "0.2.0",
+  "description": "GitHub Pagesなどの静的Webサーバー上で動く、画像生成プロンプトと生成作品のプライベート管理アプリです。",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "playwright test",
+    "check": "node --check app.js && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "type": "module",
+  "dependencies": {
+    "megajs": "1.3.10"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  },
+  "private": true
+}

@@ -12,7 +12,7 @@ createServer(async (req, res) => {
     const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
     const path = resolve(root, relative);
     if (!path.startsWith(root.endsWith(sep) ? root : root + sep) ||
-        !['index.html', 'app.js', 'styles.css', 'vendor/megajs-1.3.10.mjs', 'vendor/MEGAJS-LICENSE', 'studio/catalog.js', 'studio/core.js', 'studio/library.js', 'studio/ui.js', 'studio/studio.css', 'packs/example.json', 'packs/FORMAT.md', 'packs/AI-REQUEST.md', 'packs/schema.json'].includes(relative)) {
+        !['index.html', 'app.js', 'viewer.js', 'styles.css', 'vendor/megajs-1.3.10.mjs', 'vendor/MEGAJS-LICENSE', 'studio/catalog.js', 'studio/core.js', 'studio/library.js', 'studio/ui.js', 'studio/studio.css', 'packs/example.json', 'packs/FORMAT.md', 'packs/AI-REQUEST.md', 'packs/schema.json'].includes(relative)) {
       res.writeHead(404).end(); return;
     }
     if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405).end(); return; }

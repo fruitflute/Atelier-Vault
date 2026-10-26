@@ -47,18 +47,18 @@ export function mountStudio({onUse,copy,notify}) {
   }
   function renderGroups(){const target=$('axisGroups');target.replaceChildren();
     for(const group of AXES){if(group.tier==='advanced'&&axes.mode!=='advanced')continue;
-      const box=element('details',undefined,'form-panel axis-group');box.open=!group.collapsed;const summary=element('summary',group.label);box.append(summary);
+      const box=element('details',undefined,'form-panel axis-group');box.open=!group.collapsed;const summary=element('summary',group.label);const controls=element('div',undefined,'axis-controls');box.append(summary,controls);
       for(const c of group.controls){if(c.id==='bankPick')continue;
         if(c.kind==='multi'){
           const set=element('fieldset',undefined,'axis-multi');set.append(element('legend',c.label));
-          for(const o of c.options){const label=element('label',undefined,'axis-chip');const input=element('input');input.type='checkbox';input.value=o.value;input.checked=axes[c.id].includes(o.value);input.id=`studio-${c.id}-${o.value}`;input.onchange=()=>{checkpoint();axes[c.id]=[...set.querySelectorAll('input:checked')].map(x=>x.value);renderOutput();};label.append(input,element('span',o.label));set.append(label);}box.append(set);continue;
+          for(const o of c.options){const label=element('label',undefined,'axis-chip');const input=element('input');input.type='checkbox';input.value=o.value;input.checked=axes[c.id].includes(o.value);input.id=`studio-${c.id}-${o.value}`;input.onchange=()=>{checkpoint();axes[c.id]=[...set.querySelectorAll('input:checked')].map(x=>x.value);renderOutput();};label.append(input,element('span',o.label));set.append(label);}controls.append(set);continue;
         }
         const label=element('label',undefined,'field');label.append(element('span',c.label));let input;
         if(c.options){input=element('select');options(input,c.options.map(o=>[o.value,o.label]),axes[c.id]);}
         else if(c.kind==='textarea'){input=element('textarea');input.rows=3;input.maxLength=10000;input.value=axes[c.id];input.placeholder=c.placeholder||'';}
         else {input=element('input');input.type=c.kind==='toggle'?'checkbox':'text';if(c.kind==='toggle')input.checked=axes[c.id];else{input.value=axes[c.id];input.maxLength=10000;input.placeholder=c.placeholder||'';}}
         input.id=`studio-${c.id}`;
-        input.addEventListener(c.kind==='textarea'||c.kind==='text'?'input':'change',()=>{checkpoint();axes[c.id]=c.kind==='toggle'?input.checked:input.value;renderOutput();});label.append(input);box.append(label);
+        input.addEventListener(c.kind==='textarea'||c.kind==='text'?'input':'change',()=>{checkpoint();axes[c.id]=c.kind==='toggle'?input.checked:input.value;renderOutput();});label.append(input);controls.append(label);
       }target.append(box);
     }
     $('studioFinish').value=axes.finish;$('studioMode').value=axes.mode;$('studioVerbosity').value=axes.verbosity;renderOutput();

@@ -1,5 +1,6 @@
 import {mountStudio} from './studio/ui.js';
-let studio;
+import {createViewer} from './viewer.js';
+let studio,viewer;
 /* Atelier Vault: client-only MEGA prototype. Credentials are never persisted. Explicit studio packs/presets are stored locally. */
 const $ = (id) => document.getElementById(id);
 const SDK_URL = './vendor/megajs-1.3.10.mjs';
@@ -214,6 +215,7 @@ function setConnection() {
 }
 async function switchClient(client, mode) {
   state.generation += 1;
+  viewer?.close();
   $('detailDialog').close();
   $('recordForm').reset();
   state.draftStudio=null; studio?.reset(); $('draftStudioNotice').hidden=true;
@@ -277,10 +279,16 @@ async function refresh() {
     return false;
   } finally { unbusy(); }
 }
-function renderGallery() {
+function visibleRecords() {
   const query = $('searchInput').value.trim().toLocaleLowerCase();
   const list = state.records.filter(r => [r.title,r.model,r.prompt,...(r.tags || [])].join(' ').toLocaleLowerCase().includes(query));
   list.sort((a,b) => {if($('sortSelect').value==='name')return a.title.localeCompare(b.title,'ja');const order = new Date(b.createdAt)-new Date(a.createdAt);return $('sortSelect').value==='oldest'?-order:order;});
+  return list;
+}
+function renderGallery() {
+  const query=$('searchInput').value.trim();
+  const list=visibleRecords();
+  $('galleryViewBtn').disabled=!list.some(r=>r.images.length);
   const grid = $('galleryGrid');
   grid.replaceChildren();
   $('totalLabel').textContent = `${list.length} items`;
@@ -303,7 +311,7 @@ function renderGallery() {
     card.addEventListener('click',()=>openDetail(record.id));
     if(record.images[0]) { const image = document.createElement('img');image.alt=record.title;image.loading='lazy'; thumb.insertBefore(image,mark);const failed = () => { if(image.isConnected){image.remove();mark.classList.add('image-error');mark.textContent='画像を読み込めません。詳細から再確認できます。';} };
       image.addEventListener('error', failed, {once:true});
-      image.addEventListener('load', () => mark.remove(), {once:true});
+      image.addEventListener('load', () => {mark.remove();thumb.classList.add('ready');}, {once:true});
       loadThumb(record.images[0]).then(url=>{if(url&&image.isConnected)image.src=url;else failed();}).catch(failed); }
   }
 }
@@ -375,7 +383,8 @@ async function saveRecord(event) {
 }
 async function openDetail(id) {
   const record=state.records.find(r=>r.id===id);if(!record)return;
-  state.activeRecord=record;
+  state.activeRecord=record;state.detailImageIndex=0;
+  $('detailViewBtn').disabled=!record.images.length;
   $('restoreStudioBtn').hidden=!record.studioSettings;
   $('detailTitle').textContent=record.title;
   $('detailModel').textContent=record.model||'未指定';
@@ -400,6 +409,7 @@ async function openDetail(id) {
   if(record.images.length)selectDetailImage(record,0);
 }
 async function selectDetailImage(record,index) {
+  state.detailImageIndex=index;
   if(state.activeRecord!==record || !$('detailDialog').open)return;
   [...$('detailThumbs').children].forEach((el,i)=>el.classList.toggle('selected',i===index));
   const holder=$('detailImageHolder');holder.replaceChildren();
@@ -446,6 +456,9 @@ async function disconnect() {
 }
 async function initDemo(){state.client=makeDemoClient();state.mode='demo';setConnection();await refresh();}
 function setup(){
+  viewer=createViewer({loadImage});
+  $('galleryViewBtn').addEventListener('click',()=>viewer.open(visibleRecords()));
+  $('detailViewBtn').addEventListener('click',()=>{if(state.activeRecord)viewer.open([state.activeRecord],state.activeRecord.id,state.detailImageIndex||0);});
   studio=mountStudio({copy:copyText,notify:toast,onUse:(prompt,snapshot)=>{
     if($('recordPrompt').value.trim() && $('recordPrompt').value!==prompt && !confirm('登録欄のプロンプトを、今の制作プロンプトに置き換えますか？画像と他の入力は残します。'))return;
     $('recordPrompt').value=prompt;state.draftStudio=snapshot;$('draftStudioNotice').hidden=false;goto('create');renderDraft();toast('プロンプトと制作設定を登録欄へ引き継ぎました。');

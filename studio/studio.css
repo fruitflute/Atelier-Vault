@@ -27,3 +27,8 @@
 @media(max-width:720px){.mobile-nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:2px}.mobile-nav-item{padding-inline:2px}.studio-tools{gap:10px}.wardrobe-filters,.wardrobe-results{grid-template-columns:1fr}.wardrobe-dialog{padding:18px}.outfit-card{padding:14px}.field select{font-size:16px}.studio-dock{position:fixed;bottom:calc(77px + env(safe-area-inset-bottom));left:0;right:0;z-index:39;display:flex;gap:10px;padding:10px 20px;background:var(--cream);border-top:1px solid var(--line)}.studio-dock button{flex:1}body:has(#view-studio.active-view) .footer{padding-bottom:180px}#studioPreview{scroll-margin-block:20px 180px}#studioOutput{max-height:45dvh}}
 
 .finish-hint{margin:-8px 0 22px;max-width:720px}
+@media(min-width:721px){
+.axis-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:start}
+.axis-controls>.axis-multi,.axis-controls>.field{grid-column:1/-1}
+.axis-controls>.field:has(select){grid-column:auto;min-width:0}
+}

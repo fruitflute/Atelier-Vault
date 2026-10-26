@@ -132,3 +132,24 @@ button:active{transform:translateY(1px)}
 body:has(#view-create.active-view) .footer{padding-bottom:180px}
 #draftPreview{scroll-margin-block:20px 180px}
 }
+
+/* Keep breathing room around art, reclaim space from repeated headings and forms. */
+.mast{min-height:90px}.page-heading{padding:22px 0 18px}.page-heading .eyebrow{display:none}
+.side-nav{margin-bottom:22px}.section-head{margin:22px 0 18px;padding-bottom:14px}.section-intro{margin-bottom:20px}
+body:has(#view-studio.active-view) .page-heading,body:has(#view-create.active-view) .page-heading,body:has(#view-about.active-view) .page-heading{display:none}
+body:has(#view-studio.active-view) .side-nav,body:has(#view-create.active-view) .side-nav,body:has(#view-about.active-view) .side-nav{margin-top:22px}
+.field{gap:7px;margin-bottom:18px}.form-panel-head{margin-bottom:18px;padding-bottom:14px}.subpanel-head{margin-top:24px}
+.toolbar{flex-wrap:wrap}.search-wrap{flex:1}.hero.has-works h1{display:none}.hero.has-works>div:first-child{justify-content:flex-end}
+.artwork-viewer{position:fixed;inset:0;width:100%;height:100dvh;max-width:none;max-height:none;margin:0;border:0;border-radius:0;padding:0;background:#211b23;color:#fff7fa;overflow:hidden}
+.artwork-viewer[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}.artwork-viewer::backdrop{background:#211b23}
+.viewer-bar{display:flex;align-items:center;gap:12px;padding:12px max(20px,env(safe-area-inset-right)) 12px max(20px,env(safe-area-inset-left));padding-top:max(12px,env(safe-area-inset-top));border-bottom:1px solid #fff2}
+.viewer-heading{flex:1;min-width:0}.viewer-heading h2{font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.viewer-heading span{font-size:11px;color:#d5c5cf}
+.artwork-viewer button{border:1px solid #bda6b5;border-radius:99px;background:#382b36;color:#fff7fa;min-height:44px;padding:8px 16px;font-size:13px}.artwork-viewer button:disabled{opacity:.4;cursor:default}.artwork-viewer button:focus-visible{outline-color:#f9b9d3}
+.viewer-bar button{padding:0;min-width:44px;font-size:24px}.viewer-stage{min-height:0;min-width:0;display:grid;place-items:center;padding:12px;overflow:hidden}.viewer-stage img{display:block;width:100%;height:100%;min-height:0;object-fit:contain}
+.viewer-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px max(20px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));border-top:1px solid #fff2}.viewer-controls p{font-size:12px;text-align:center;color:#d5c5cf}
+@media(max-width:720px){
+.mast{padding-block:12px;min-height:82px;gap:8px}.brand-sub{display:none}.page-heading{padding:16px 0}.page-heading h1{font-size:25px}.section-head{margin-top:18px}.hero.has-works{padding:12px 16px}.hero.has-works .hero-actions{margin:0}
+body:has(#view-studio.active-view) .content,body:has(#view-create.active-view) .content,body:has(#view-about.active-view) .content{padding-top:20px}
+.work-thumb.ready{aspect-ratio:auto;min-height:0}.work-thumb.ready img{position:static;width:100%;height:auto;max-height:65dvh;object-fit:contain}.work-content{padding-top:12px}.gallery-grid{gap:18px}.toolbar #galleryViewBtn{width:100%}
+.viewer-bar{gap:8px;padding-inline:12px}.viewer-controls{padding-inline:12px;gap:8px}.viewer-controls button{flex-shrink:0;padding-inline:12px}.viewer-stage{padding:6px}
+}

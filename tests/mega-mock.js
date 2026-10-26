@@ -5,8 +5,9 @@ class Node {
     Object.assign(this, { name, directory, parent, data, children: [], nodeId: crypto.randomUUID() });
   }
   find(predicate) { return this.children.find(predicate); }
-  async mkdir(name) { const node = new Node(name, true, this); this.children.push(node); return node; }
+  async mkdir(name) { if(this.remote)return this.remote.mkdir(name); const node = new Node(name, true, this); this.children.push(node); return node; }
   upload({ name }, bytes) {
+    if(this.remote)return this.remote.upload({name},bytes);
     stats.uploads.push(name);
     if (window.failUpload && name === 'record.json') return { complete: Promise.reject(new Error('Simulated interruption')) };
     const node = new Node(name, false, this, bytes);
@@ -14,6 +15,7 @@ class Node {
     return { complete: Promise.resolve(node) };
   }
   async downloadBuffer(options) {
+    if(this.remote)return this.remote.downloadBuffer(options);
     if (!options?.forceHttps) throw new Error('HTTPS required');
     stats.downloads.push(this.name);
     if (this.transientFailures > 0) { this.transientFailures--; throw new Error('Temporary metadata failure'); }
@@ -21,12 +23,15 @@ class Node {
     return this.data;
   }
   async delete(permanent) {
+    if(this.remote)return this.remote.delete(permanent);
     if (permanent !== false) throw new Error('Trash must be explicit');
     stats.deletions.push(permanent);
+    if(window.delayTrash)return;
     this.parent.children = this.parent.children.filter(node => node !== this);
+    this.parent=trash;trash.children.push(this);
   }
 }
-const root = new Node('root');
+const root = new Node('root'), trash=new Node('trash');
 let seeded = false;
 function seedFixture(mode) {
   const child = (parent,name,directory=true,data=null) => { const node=new Node(name,directory,parent,data);parent.children.push(node);return node; };
@@ -52,10 +57,33 @@ function seedFixture(mode) {
 export class Storage {
   constructor(options) {
     if (!seeded && window.megaFixture) { seedFixture(window.megaFixture); seeded=true; }
-    this.root = root;
-    this.ready = options.password === 'fail' ? Promise.reject(new Error('Invalid credentials')) : Promise.resolve();
+    this.files={};
+    const listeners=[];
+    this.api={listeners:()=>[...listeners],removeListener:(_name,fn)=>{const i=listeners.indexOf(fn);if(i>=0)listeners.splice(i,1);},on:(_name,fn)=>listeners.push(fn)};
+    this.ready = options.password === 'fail' ? Promise.reject(new Error('Invalid credentials')) : this.reload();
     window.mockStats = stats;
+    window.mockTrashWork=async()=>{const work=root.children.flatMap(h=>h.children).flatMap(r=>r.children)[0];await work.delete(false);};
+    window.mockAddWork=()=>seedFixture('new');
   }
-  async reload() { if(window.hideSavedWork) for(const home of root.children) for(const records of home.children) records.children=records.children.filter(work=>!work.children.some(file=>file.name==='record.json' && stats.uploads.length)); }
+  _importFile(raw){
+    if(!this.files[raw.h]){
+      const remote=raw.remote,node=new Node(remote.name,remote.directory);node.nodeId=raw.h;node.remote=remote;
+      this.files[raw.h]=node;
+      if(raw.t===2)this.root=node;
+      if(raw.t===4)this.trash=node;
+      const parent=this.files[raw.p];if(parent){node.parent=parent;parent.children.push(node);}
+    }
+    return this.files[raw.h];
+  }
+  async reload() {
+    if(window.failTree)throw new Error('Tree offline');
+    if(window.hideSavedWork) for(const home of root.children) for(const records of home.children) records.children=records.children.filter(work=>!work.children.some(file=>file.name==='record.json' && stats.uploads.length));
+    const rows=[];
+    const visit=(node,t)=>{rows.push({h:node.nodeId,p:node.parent?.nodeId,t,remote:node});for(const child of node.children)visit(child,child.directory?1:0);};
+    visit(root,2);visit(trash,4);
+    if(window.unorderedTree)rows.reverse();
+    for(const row of rows)this._importFile(row);
+    this.api.on('sc',()=>{});
+  }
   async close() { stats.closed++; }
 }

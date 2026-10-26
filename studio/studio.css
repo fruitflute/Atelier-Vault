@@ -42,3 +42,13 @@ body:has(#view-studio.active-view) .footer{padding-bottom:110px}
 }
 @media(max-width:1023px){.studio-settings :is(input,select,textarea,button){scroll-margin-block:24px 180px}}
 @media(max-width:720px){.studio-dock{padding-inline:12px;gap:8px}.studio-dock button{font-size:12px;padding-inline:10px}}
+
+/* Begin with clothes; keep editor management between the choice and details. */
+.studio-settings>.studio-tools{margin:18px 0 0;padding:12px 0;border-block:1px dashed var(--line);gap:10px 16px}
+.studio-settings>.studio-tools .text-button{font-size:11px}
+.finish-choice{margin-bottom:14px}.finish-choice label{display:block;font-size:12px;color:var(--berry)}
+.finish-choice select{width:100%;margin-top:8px;min-height:44px;padding:10px 12px;border:1px solid var(--control-line);border-radius:12px;background:var(--cream);color:var(--ink);font:inherit}
+.finish-choice p{margin-top:8px;line-height:1.7}
+@media(max-width:720px){.finish-choice select{font-size:16px}}
+
+.axis-controls>.field:has(#studio-AX-01),.axis-controls>.field:has(#studio-AX-09){grid-column:1/-1}

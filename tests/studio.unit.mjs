@@ -8,8 +8,14 @@ test('419 original entries and every option retain original text and order',()=>
  assert.equal(catalog.length,419);const groups={};for(const c of catalog)(groups[c.category]??=[]).push([c.name,c.palettes,c.details]);
  assert.equal(hash(JSON.stringify(groups)),fixture.catalogSha256);assert.equal(hash(JSON.stringify(AXES)),fixture.axesSha256);
 });
-test('original compiler outputs match every option across all three verbosity levels',()=>{
- for(const c of fixture.cases)assert.equal(hash(compile({...defaults(),verbosity:c.verbosity,...c.patch})),c.sha256,JSON.stringify(c.patch));
+test('original outputs remain intact except the explicit hand-physics revision',()=>{
+ const physics='【手と接触】\n見える手は誰の手かが明確で、腕・手首・指先が自然につながる。手指の本数と関節は自然な人体に沿い、物を持つ指は接触と握り方に合わせる。同じ手に同時に無理な役割を持たせない。隠れた部分を無理に見せず、ポーズや指の形は場面に合わせて自由にする。鏡に映る手は同じ手の反射として整合させる。';
+ for(const c of fixture.cases){
+  const result=compile({...defaults(),verbosity:c.verbosity,...c.patch});
+  assert.ok(result.includes(physics));
+  const legacy=result.replace(physics+'\n\n','').replace('美肌加工・CG感・過剰な対称性を避ける。','美肌加工・CG感・過剰な対称性を避ける。手指は「自然にリラックスした指」として肯定形で描く。');
+  assert.equal(hash(legacy),c.sha256,JSON.stringify(c.patch));
+ }
 });
 test('emotion text is emitted and the compiler uses the supplied verbosity',()=>{
  const state={...defaults(),'AX-05':'静かな春の朝'};assert.ok(compile(state).includes('情緒：静かな春の朝'));
@@ -43,4 +49,16 @@ test('professional finish replaces default imperfections, preserves explicit cho
  assert.ok(output.includes('プロフェッショナルな写真作品'));assert.ok(!output.includes('実際のスマホ写真らしい不完全さ'));assert.ok(output.includes('本人が撮影するセルフィーの視点'));assert.ok(output.includes('フィルム粒子'));assert.ok(output.includes('許容する不完全さ：手ブレ'));
  }
  const legacy=defaults();delete legacy.finish;assert.equal(validateSnapshot({schemaVersion:1,axes:legacy}).axes.finish,'selfie');assert.equal(validateSnapshot({schemaVersion:1,axes:{...defaults(),finish:'professional'}}).axes.finish,'professional');assert.throws(()=>validateSnapshot({schemaVersion:1,axes:{finish:'bad'}}));
+});
+
+test('hand guidance applies to both finishes without forcing all fingers into view',()=>{
+ for(const finish of ['selfie','professional'])for(const verbosity of ['light','standard','full']){
+  const output=compile({...defaults(),finish,verbosity,'AX-18':'mirror'});
+  assert.ok(output.includes('【手と接触】'));
+  assert.ok(output.includes('接触と握り方'));
+  assert.ok(output.includes('隠れた部分を無理に見せず'));
+  assert.ok(output.includes('鏡に映る手は同じ手の反射'));
+  assert.ok(!output.includes('自然にリラックスした指'));
+  assert.ok(output.includes('撮影方法：鏡越し'));
+ }
 });

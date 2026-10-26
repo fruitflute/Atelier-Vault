@@ -1,3 +1,4 @@
+import {reloadTree} from './mega-tree.js';
 import {mountStudio} from './studio/ui.js';
 import {createViewer} from './viewer.js';
 let studio,viewer;
@@ -108,7 +109,7 @@ async function createMegaClient(email, password, secondFactorCode) {
     async list(onProgress) {
       syncReport = {rootFolders:0,recordFolders:0,folders:0,loaded:0,missingMetadata:0,invalidMetadata:0,unreadableMetadata:0,missingImages:0,failed:false};
       try {
-        await storage.reload();
+        await reloadTree(storage);
         const roots = directFolders(storage.root, ROOT_NAME);
         const parents = roots.flatMap(root => directFolders(root, 'records'));
         const folders = [...new Map(parents.flatMap(parent => (parent.children || []).filter(x => x.directory)).map(folder => [folder.nodeId, folder])).values()];
@@ -450,7 +451,16 @@ async function deleteRecord() {
   const rec=state.activeRecord;if(!rec)return;
   if(!confirm(`「${rec.title}」を${state.mode==='mega'?'MEGAのごみ箱へ移動':'デモから削除'}しますか？`))return;
   $('detailDialog').close();busy('削除しています','作品を処理中',20);
-  try {await state.client.remove(rec);unbusy();await refresh();toast('作品を削除しました');}
+  try {
+    await state.client.remove(rec);unbusy();
+    const synced=await refresh();
+    if(!synced || state.records.some(record=>record.id===rec.id)) {
+      const notice=$('syncNotice');notice.hidden=false;notice.classList.add('warning');
+      const heading=notice.querySelector('strong');if(heading)heading.textContent='ごみ箱移動の反映は未確認です';
+      const message=document.createElement('p');message.textContent='移動の要求は受け付けられましたが、最新の一覧から消えたことを確認できませんでした。時間をおいて「更新」をお試しください。';notice.append(message);
+      toast('一覧への反映を確認できていません。同期状況をご確認ください。',true);
+    } else toast(state.mode==='mega'?'作品をごみ箱へ移動しました':'作品を削除しました');
+  }
   catch(e){toast(`削除できませんでした: ${e.message}`,true);}
   finally{unbusy();}
 }

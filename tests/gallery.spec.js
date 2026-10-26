@@ -191,3 +191,40 @@ test('successful upload missing from refreshed list is not reported as verified 
  await expect(page.locator('#syncNotice')).toHaveClass(/warning/);
  expect(await page.evaluate(()=>window.mockStats.uploads.at(-1))).toBe('record.json');
 });
+
+test('fresh snapshots discover child-first works and reflect remote trash moves',async({page})=>{
+ await page.addInitScript(()=>{window.unorderedTree=true;});
+ await archivedFixture(page,'duplicate');
+ await expect(page.locator('.work-card')).toHaveCount(1);
+ await page.evaluate(()=>window.mockAddWork());await page.locator('#refreshBtn').click();
+ await expect(page.locator('.work-card')).toHaveCount(2);
+ await page.evaluate(()=>window.mockTrashWork());await page.locator('#refreshBtn').click();
+ await expect(page.locator('.work-card')).toHaveCount(1);
+ await page.locator('#refreshBtn').click();await expect(page.locator('.work-card')).toHaveCount(1);
+ await page.evaluate(()=>{window.failTree=true;});await page.locator('#refreshBtn').click();
+ await expect(page.locator('#syncNotice')).toHaveClass(/error/);
+ await expect(page.locator('.work-card')).toHaveCount(1);
+});
+test('vendored browser SDK rebuilds moved nodes and child-first hierarchy',async({page})=>{
+ await page.goto('/');
+ const result=await page.evaluate(async()=>{
+  const {Storage}=await import('/vendor/megajs-1.3.10.mjs');
+  const {reloadTree}=await import('/mega-tree.js');
+  const storage=new Storage({autologin:false,keepalive:false});await storage.ready;
+  let nodes=[{h:'root',t:2},{h:'trash',t:4},{h:'work',p:'root',t:1}];
+  storage.api.request=(_cmd,cb)=>queueMicrotask(()=>cb(null,{ok:[],f:structuredClone(nodes)}));
+  await storage.reload();
+  nodes=[{h:'child',p:'parent',t:1},{h:'parent',p:'root',t:1},{h:'work',p:'trash',t:1},{h:'trash',t:4},{h:'root',t:2}];
+  await reloadTree(storage);await reloadTree(storage);
+  return {parent:storage.files.child.parent.nodeId,workParent:storage.files.work.parent.nodeId,listeners:storage.api.listenerCount('sc'),root:storage.root.children.map(n=>n.nodeId)};
+ });
+ expect(result).toEqual({parent:'parent',workParent:'trash',listeners:1,root:['parent']});
+});
+
+test('trash acknowledgment without reflected move shows an explicit warning',async({page})=>{
+ await archivedFixture(page,'duplicate');await page.evaluate(()=>{window.delayTrash=true;});
+ await page.locator('.work-card').click();page.once('dialog',dialog=>dialog.accept());
+ await page.locator('#deleteBtn').click();
+ await expect(page.locator('#syncNotice')).toContainText('ごみ箱移動の反映は未確認です');
+ await expect(page.locator('.work-card')).toHaveCount(1);
+});

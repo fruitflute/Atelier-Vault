@@ -65,3 +65,15 @@ test('copy remains within reach on portrait tablet and narrow desktop',async({pa
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  }
 });
+
+test('clothing begins before management and detail order follows scene before camera',async({page})=>{
+ await studio(page);
+ expect(await page.locator('#openWardrobe').evaluate(el=>Boolean(el.compareDocumentPosition(document.querySelector('#studioMode')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+ const controls=await page.locator('#axisGroups .axis-group').first().locator('select,textarea,fieldset').evaluateAll(els=>els.map(el=>el.id||el.querySelector('input')?.id));
+ expect(controls.indexOf('studio-AX-11')).toBeLessThan(controls.indexOf('studio-AX-09'));
+ await page.locator('#studioMode').selectOption('advanced');
+ const summaries=await page.locator('#axisGroups>.axis-group>summary').allTextContents();
+ expect(summaries.indexOf('場所・時')).toBeLessThan(summaries.indexOf('構図・撮影'));
+ await page.locator('#studioFinish').selectOption('professional');
+ await expect(page.locator('#studioOutput')).toContainText('【手と接触】');
+});

@@ -1,0 +1,37 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';
+import {catalog} from '../studio/catalog.js';import {AXES,defaults,compile} from '../studio/core.js';
+import {validatePack,validateSnapshot,allEntries,searchEntries,suggestions} from '../studio/library.js';
+const fixture=JSON.parse(fs.readFileSync(new URL('./studio-original-fixture.json',import.meta.url)));
+const pack=JSON.parse(fs.readFileSync(new URL('../packs/example.json',import.meta.url)));
+const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
+test('419 original entries and every option retain original text and order',()=>{
+ assert.equal(catalog.length,419);const groups={};for(const c of catalog)(groups[c.category]??=[]).push([c.name,c.palettes,c.details]);
+ assert.equal(hash(JSON.stringify(groups)),fixture.catalogSha256);assert.equal(hash(JSON.stringify(AXES)),fixture.axesSha256);
+});
+test('original compiler outputs match every option across all three verbosity levels',()=>{
+ for(const c of fixture.cases)assert.equal(hash(compile({...defaults(),verbosity:c.verbosity,...c.patch})),c.sha256,JSON.stringify(c.patch));
+});
+test('emotion text is emitted and the compiler uses the supplied verbosity',()=>{
+ const state={...defaults(),'AX-05':'静かな春の朝'};assert.ok(compile(state).includes('情緒：静かな春の朝'));
+ assert.notEqual(compile({...state,verbosity:'light'}),compile({...state,verbosity:'full'}));
+});
+test('pack validation rejects malformed, duplicate and oversized values without coercion',()=>{
+ assert.equal(validatePack(pack).items.length,1);
+ for(const change of [p=>p.id=23,p=>p.schemaVersion=2,p=>p.items.push(p.items[0]),p=>p.items[0].category='Z',p=>p.items[0].palettes=[],p=>p.items[0].details=['x'.repeat(2001)],p=>p.items[0].tags=[null]]){const p=structuredClone(pack);change(p);assert.throws(()=>validatePack(p));}
+});
+test('pack namespaces and keyword, category, favorites and mood filters compose',()=>{
+ const p=validatePack(pack), entries=allEntries([p]);assert.equal(entries.length,420);
+ const result=searchEntries(entries,{query:'リボンワンピース',category:'C',mood:'ラベンダー'});assert.equal(result.length,1);
+ assert.equal(searchEntries(entries,{favoriteOnly:true,favorites:[result[0].id]}).length,1);
+ assert.equal(searchEntries(entries,{query:'存在しない名前'}).length,0);
+});
+test('suggestions are non-mutating, honor locks and never revive excluded entries',()=>{
+ const e=catalog[0],current={id:e.id,name:e.name,category:e.category,palette:e.palettes[0],detail:e.details[0]};const before=structuredClone(current);
+ const ideas=suggestions(catalog,current,{motif:true,detail:true},[],()=>0.3);assert.ok(ideas.length);for(const idea of ideas){assert.equal(idea.outfit.id,current.id);assert.equal(idea.outfit.detail,current.detail);}assert.deepEqual(current,before);
+ assert.deepEqual(suggestions(catalog,current,{},catalog.map(x=>x.id)),[]);
+ assert.deepEqual(suggestions(catalog,current,{motif:true,palette:true,detail:true},[]),[]);
+});
+test('snapshots validate independently of installed packs and preserve all axis values',()=>{
+ const p=pack.items[0];const snapshot={schemaVersion:1,axes:{...defaults(),'AX-05':'メモ'},outfit:{id:'pack:removed:item',name:p.name,category:p.category,palette:p.palettes[0],detail:p.details[0]}};
+ assert.deepEqual(validateSnapshot(snapshot),snapshot);assert.throws(()=>validateSnapshot({...snapshot,axes:{...snapshot.axes,'AX-23':'bad'}}));assert.throws(()=>validateSnapshot({...snapshot,schemaVersion:99}));
+});

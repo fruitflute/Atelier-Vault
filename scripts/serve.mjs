@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { resolve, extname, sep } from 'node:path';
 const built = process.argv.includes('--dist');
 const root = fileURLToPath(new URL(built ? '../dist/' : '../', import.meta.url));
-const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8' };
+const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json':'application/json; charset=utf-8', '.md':'text/plain; charset=utf-8' };
 const port = Number(process.env.PORT || 8000);
 createServer(async (req, res) => {
   try {
@@ -12,7 +12,7 @@ createServer(async (req, res) => {
     const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
     const path = resolve(root, relative);
     if (!path.startsWith(root.endsWith(sep) ? root : root + sep) ||
-        !['index.html', 'app.js', 'styles.css', 'vendor/megajs-1.3.10.mjs', 'vendor/MEGAJS-LICENSE'].includes(relative)) {
+        !['index.html', 'app.js', 'styles.css', 'vendor/megajs-1.3.10.mjs', 'vendor/MEGAJS-LICENSE', 'studio/catalog.js', 'studio/core.js', 'studio/library.js', 'studio/ui.js', 'studio/studio.css', 'packs/example.json', 'packs/FORMAT.md', 'packs/AI-REQUEST.md', 'packs/schema.json'].includes(relative)) {
       res.writeHead(404).end(); return;
     }
     if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405).end(); return; }

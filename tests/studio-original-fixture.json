@@ -1,0 +1,4725 @@
+{
+  "axesSha256": "3fdafe43d62743660ef9dcb770b7c0bf9f117ccd2f3dad10f69111d3a54b0319",
+  "catalogSha256": "9f7bd2a4216ecb913c1527232cb3a74390f90fceb16c88854b1243c5fe14bf11",
+  "cases": [
+    {
+      "verbosity": "light",
+      "patch": {},
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-01": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-01": "A"
+      },
+      "sha256": "7e93a47977253d02efcf337162b32973ad0f514a14bcb5616c48f13dd28535ad"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-01": "B"
+      },
+      "sha256": "8ab44f852c5a5767209095cc9da8c5bd6c48f64b1ab929203a410e0c8856d8e0"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-01": "C"
+      },
+      "sha256": "64ad729ff75f553f363e2ac666e7bfaaf36995f5d0ea375acb1d4d797dda5d48"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-02": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-02": "1"
+      },
+      "sha256": "bc832887dd656ee55fc5f177c169b11bcd0b55a3b00b90ac183c57d058f9f465"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-02": "2"
+      },
+      "sha256": "24579cdcb38d5276bea7aa0530105dbb5057296f014be25c4f730855e38eb692"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-02": "3"
+      },
+      "sha256": "f23962cc7c85828c01321a2c70f69bb4f4c1b432edf4485f5c9b642e1442b971"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "tutuanna"
+      },
+      "sha256": "ff9d1548ada98bb03daadb21ac69d6afcf9762aae7d7ac1c0531da859e415800"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "une nana cool"
+      },
+      "sha256": "0e0079e749775d627b6869be8255e682e0dbdee85a8a003b73a9f0de1f95f358"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "Risa Magli"
+      },
+      "sha256": "5ae56ef6df5af7d0665b232a4214bcbf3bad24116f9e1d87a2189337cfb960e0"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "AMPHI"
+      },
+      "sha256": "7f2e3d8cf0d56ad9ebed0265893e878b31cd27b07fa0b1c5339ddad3b0bd2bc7"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "PEACH JOHN"
+      },
+      "sha256": "11550180272d38f30fbbaf99b88b8c1845e47a91a37fa3d5923ef930dbdb5d3c"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "aimerfeel"
+      },
+      "sha256": "aae5ab0741d09686c13ede594f9fecd2e3391f98de92c8fb6b4a1b4e3da47080"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "salute"
+      },
+      "sha256": "80e2165efb0d5c13d42fea7255683fc80d8791578b4b47138d675d04c1c8911f"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "wing"
+      },
+      "sha256": "90ee4cc95ba4e945cd84f12f8db34d2fcd4adf79ab96cc6273a2e6b1e1480ebf"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "YOJOY"
+      },
+      "sha256": "6676ba5b2e30a9e82076be2f0950626a3f0c11be563f6000f73504b77e69bd2b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "Yue"
+      },
+      "sha256": "6f8201d86cf8dff3bea19344b684c8953e52593cde68c93ab89a5fb7ed061f75"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "parfage"
+      },
+      "sha256": "35fd6ead467e082d0b99e0866bf7226489dd73c69c559b883de58078da7375dc"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "raze"
+      },
+      "sha256": "91fd3e0ee7b7193b4dbd2426e220e602a0ddf20d3722395e6df29d6e41c72d82"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-09": "triumph"
+      },
+      "sha256": "a7c574d7ba42f4bd8e524c33b5ab3daf69d5fa504bc85da935b356c1c3f41082"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-17": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-17": "normal"
+      },
+      "sha256": "dde834cbc39432a4a33e77117c914e3af5780c07f94a85efab64ba40bace7954"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-17": "trying"
+      },
+      "sha256": "3fc468138e45616f4b0207c273655b538213b19c31f6891331b8d79724b971bc"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-17": "adjusting"
+      },
+      "sha256": "9df8c00d8ca3f11b6de61d7fa6d13388c20e2abab10544089ba1edb90808c7d9"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-23": [
+          "lace"
+        ]
+      },
+      "sha256": "5b5f79ae218da8a8ecf54f02e0382d31205a2aaa7dbaabcb6570239039e45869"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-23": [
+          "satin"
+        ]
+      },
+      "sha256": "38ba9259c9cff6243f97fe95a25014807fac40b7bda13975b69ab33dc96d067c"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-23": [
+          "tulle"
+        ]
+      },
+      "sha256": "df2fbcab0b6e01ce157735c0797fef8643925d43969ad824cdbc30e1df9abc03"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-23": [
+          "modal"
+        ]
+      },
+      "sha256": "bc3cb58b761de493f991da04313536ba9d49ea6b43e21192dca19c1a5385322c"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-23": [
+          "velvet"
+        ]
+      },
+      "sha256": "322480d8cda96210ae131c1e6781dd6bd3f5c5a862523246a54b5a9fe88898a2"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-23": [
+          "cotton"
+        ]
+      },
+      "sha256": "05187668fc8a4a828f512e5c6fc47fee707b794300e47e93840723f0f3c7e104"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-23": [
+          "embroidery"
+        ]
+      },
+      "sha256": "34de66c65d9835396a8fd434971bfd740d488ff25f2a9f29110a4b6b58e6e108"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-23": [
+          "mesh"
+        ]
+      },
+      "sha256": "2ad63f88dc038c3bb7f2d47aad3fd6401c594fe10bb9b9ec7bcfa000c5963456"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-16": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-16": "clear"
+      },
+      "sha256": "e858c504ad8916b78bb051ec97cc06c83c27991eaed745aea473a7b0fab38cb7"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-16": "normal"
+      },
+      "sha256": "cdb4618a245b65853580e7110e32ed3c1d7ddc2fb00dbb1b62784c5691caf497"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-16": "bold"
+      },
+      "sha256": "b31495dbc4273ad0a72ead664b5a45bd5f7af7f1b439aadcae822cb1a9bf263e"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-16": "wild"
+      },
+      "sha256": "1dc524f3998a8a4b5cd72d1b4961f7cb3fcc950b1ef216d0598d61f0003deade"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-10": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-10": "explore"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-10": "blend"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-07": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-07": "self"
+      },
+      "sha256": "8d47b40ac274e79c20709a5ad50f326c1901d2505f8c5c1684e8102b379ff46c"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-07": "friends"
+      },
+      "sha256": "fdcc40f8ae057ca266cd2871c34be68e63ef169631a82fb6ab957a05ba3dd2a3"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-07": "crush"
+      },
+      "sha256": "e3a1abd2612d86f44ba235c2002bba25fc2b4d604049b09a0771e7c23cb8d372"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-07": "intimate"
+      },
+      "sha256": "19a20803be95f29367270226ff036ce1e7230e1d96bfb3f7b74f6ed68259e097"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-07": "custom"
+      },
+      "sha256": "9bd51cc9433e351b0f333fa7fcfc8fa05b6f3fd13d8e3ee04a91e9f0e97fa0cb"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-31": [
+          "hand"
+        ]
+      },
+      "sha256": "4de074c4279428c320935c228813147bee8bf359ff237b269408b143591d6393"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-31": [
+          "leg"
+        ]
+      },
+      "sha256": "f190ff999db3973c3acbe9acc757b866a45f4bb6a90794168a005e5ab52e7b46"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-31": [
+          "glasses"
+        ]
+      },
+      "sha256": "81b7f8344e1f2ba10fab3603f07b0c102a027432edb54547c6f74983baf64f3d"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-31": [
+          "blanket"
+        ]
+      },
+      "sha256": "0e067f6ba3ea8a9efeff7750d4137239b2bc660725672ff4a3d101b896571f45"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-31": [
+          "duo"
+        ]
+      },
+      "sha256": "53feefc9c11cf50ae19c368c9df76fdc603a65db880ebb5a2afca944c60226b4"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-18": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-18": "front"
+      },
+      "sha256": "4451aaa7518ea408a718e09b0152135c6cc6b9f503917d5a2a0f0929a31052c9"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-18": "mirror"
+      },
+      "sha256": "79e42e62ce026b98018d9b225d51efb46946b94561613cf18b33eff5904ded7b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-19": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-19": "face"
+      },
+      "sha256": "9b3a5f9a7533f7b827cc351229c95ce2c35a99c0cd1554396d7674e93909b7a5"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-19": "bust"
+      },
+      "sha256": "514b32b14d8ef8522d542b375a44f9f8f54460d854fd7641a0c499bf0e2ab0e9"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-19": "half"
+      },
+      "sha256": "5e7930c48b92b0eabe12eb17dd602636173f740dbe2012d3193d8ef3fb6794e6"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-19": "full"
+      },
+      "sha256": "3221fd17296ed3ba614181d77d218d637822eae5d320d34e7ac7a2504d7ee443"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-20": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-20": "tight"
+      },
+      "sha256": "8e5bd5e2d194299d2f22de43ec220c3c44ef51cf7865b712da1b71cfeb8ac1cc"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-20": "roomy"
+      },
+      "sha256": "310a1de8c4a6f16b04e910fdee74b4f4075cc95fa61f2f9fdc91726c7d99c34f"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-21": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-21": "natural"
+      },
+      "sha256": "a35b49da354b5862f55f0ba2d6fac1a7c849ecbae8c9cf41cbac9ef9d6c6f5e7"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-21": "close"
+      },
+      "sha256": "efec4a79e33c616e2b15d35d7e239209b834df1f6c7cc551b77f88ad985af7f3"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-21": "arm"
+      },
+      "sha256": "16f5949d699fcbcb9a866d30afd7712e0baf8f1b09d0f9360fba3ef070e87dde"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-21": "mirror"
+      },
+      "sha256": "d739ccb93fc92b9cec405a649e0577ec476acc84ff2c9c584ddba71ff529923e"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-21": "shallow"
+      },
+      "sha256": "53d7ebc4409a911e15f19319886414d6ac7728606b31f8ab395f4b8ff600a6f3"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-22": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-22": "window"
+      },
+      "sha256": "cbb691a714d94300bf7d876d3df1fa92da10b73dd3747820e51ad17da350086a"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-22": "cam-left"
+      },
+      "sha256": "e0e2aca7b3fcc6a90213870b2e6a35ed0abe26d43dc121704ce816a1fd8d3dbe"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-22": "upper-right"
+      },
+      "sha256": "5e1b0473b75bc93a3523f562d2328acac4d0f47e688cdf0235e3712ef768c819"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-22": "back"
+      },
+      "sha256": "0940b0225469729349d97b1d721b64f12d080a1597c8a66fae23fb0ad67a1248"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-26": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-26": "room"
+      },
+      "sha256": "ea331f979c745546089ebaf9729b079caeda8add06c5ed615af6e7e466efe86c"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-26": "bath"
+      },
+      "sha256": "8a0e0daef99a1f2957b96bc800add6c6bd0279e5fa099c546c2a52c227787a1b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-26": "hotel"
+      },
+      "sha256": "b88f22eb41a64000f21a50852bd363aec02c7b258d2d7804046b88d385eb4ab5"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-26": "fitting"
+      },
+      "sha256": "4612ba74893ed101d002d37438d92756ae7a71fe72c8b315eb10f19067842323"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-26": "balcony"
+      },
+      "sha256": "8a58ee6aa2c1d54a3b9a932703ed7b28e2c87280e0377fa4a8af160497204db8"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-26": "entry"
+      },
+      "sha256": "5dd1122dd020b228d8c8f0259cad7bc5ec92b5c64906edb787db8226c84860c9"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-27": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-27": "full"
+      },
+      "sha256": "44488cc12d2ec1b4e48bac3855e71e9246405af479efaf4abf1df0984b4bba3d"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-27": "basin"
+      },
+      "sha256": "eb5fb9f9cf7f0f293e83bd430273134850e38ea5bf97d6bab54eeba566a18f35"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-27": "steam"
+      },
+      "sha256": "4ef965acc7c9436ef9220ad3310109cb3e057f1c639a5ffd2b943d9e78caf177"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-28": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-28": "bedtime"
+      },
+      "sha256": "fa8546a6f6c073061269311ccd219fef3c8602addc6f5e49c6d2d3df627f80b4"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-28": "waking"
+      },
+      "sha256": "746c34164448b75db1f45ffab60450cdb897e4c1ba466bfe258c264654877130"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-28": "bath"
+      },
+      "sha256": "85a323c7c388a46644eaf4d21ccf4a7b8ecbf878fca2bec8c9838f1adcc26db2"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-28": "home"
+      },
+      "sha256": "e4cf0fb68bfe184961074f54f0650b3acad76d30187af5cba451ac6a2f75a155"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-29": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-29": "spring"
+      },
+      "sha256": "4a6458af196cddc9fbace908188c3454fdbb5e3d42c1bea48f1841eb4d2107ba"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-29": "summer"
+      },
+      "sha256": "0f657b080fdfc45e311dbfb25905a23baab7c74f813828c0009325415d9998da"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-29": "autumn"
+      },
+      "sha256": "e89d3e6d60f83f1b1c9ced3f23e58bfe14775f73e4a95cfb066c406d58b6f85c"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-29": "winter"
+      },
+      "sha256": "bf7ae61ec576947aaf29f6b121d95c561ca80d41b94a97bc9199e966a3e1b3f2"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-30": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-30": "clear"
+      },
+      "sha256": "f29c790ad367a23139008af24f709dadd3bbe5d45b643942f921845213ffb80b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-30": "cloudy"
+      },
+      "sha256": "b7b0539d1bcb4f4f262bf4b1f82086f01e31004a99330e388068695c8bb88006"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-30": "rain"
+      },
+      "sha256": "e23343b083149fa655ee145828c4b3f4e013e6de9633d161e07be1f3885b7b62"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-30": "snow"
+      },
+      "sha256": "26b5ded0b4d97382a0b38b498226c426485af22dbcdf6d16bb3b539cf590f022"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-32": [
+          "wet"
+        ]
+      },
+      "sha256": "fde49ead37b06ef5da38153b39dea5d1785d83dc9e6aab4aaff2e805cfd490d8"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-32": [
+          "steam"
+        ]
+      },
+      "sha256": "c6ac3481680b06522d17736dcbfb48bb9bc323fb3c1d19b1fefde0b0d429ec30"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-32": [
+          "dappled"
+        ]
+      },
+      "sha256": "bde40565c7eea6e19354b57fdf0af29369351075fd068fd98b17811c40a2a21d"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-32": [
+          "linen"
+        ]
+      },
+      "sha256": "a6dd9d3e36479d9af4cbb2fc6aa64ad66a45d5185397503eb7f98a79693b3975"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-24": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-24": "cheki"
+      },
+      "sha256": "5c0be03aaf51165f6f920378c636d8efe7217270327bca9bd8feda774ebe9697"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-24": "polaroid"
+      },
+      "sha256": "efbbafd09197a6a5f1cc3949864b15dacde1cd71de24f420677131309a3fd6e8"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-24": "film"
+      },
+      "sha256": "5fd4e5ecec2829f013950fe550d6674367f6ae1b1f0e81795b35ce37da0623dd"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-24": "oldphone"
+      },
+      "sha256": "642277875b04ec9c30f71c68cffb5cb8a42a50dc2f1d28015031f5def51ca63b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-24": "purikura"
+      },
+      "sha256": "31282f310bbfabf0c20bc5930c8c40e5dd438e64ba49efdb1b7fb9ed609ad218"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-25": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-25": "wide"
+      },
+      "sha256": "de129951a1aea12d74a847908ec1feff1b3e92c3214af56616495c85a0228ada"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-25": "grain"
+      },
+      "sha256": "562921e527308f4cdec46c443031bc8bea3a2b37baa01fc0774ec005a983a234"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-33": true
+      },
+      "sha256": "d346269cb673722472924f4af9c77329bff9f697e95dad16715e5093f817da3d"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-33B": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-33B": "d1"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-33B": "d2"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-38": [
+          "shake"
+        ]
+      },
+      "sha256": "ea6994d24cbec72ac6ac8b08f0e76eccb777a3b9883b13170461443223951286"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-38": [
+          "soft"
+        ]
+      },
+      "sha256": "7ba93f99181d674352091758b7bb1e52a15ec76acf99facbc2ded03074a5f2ea"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-38": [
+          "miss"
+        ]
+      },
+      "sha256": "736c4d26ae4c8f231b2f0e848d3a13d57c3a0f17ee89e73a6e5fe9c805185ee8"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-38": [
+          "dirt"
+        ]
+      },
+      "sha256": "be5647f02fe1db9b2584781c0b9f43749e8c4c3b688214637d952dc6d7de1489"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-38": [
+          "flare"
+        ]
+      },
+      "sha256": "44e76e10929c693bcda542ded73a4dcdee511a5a712b83700c4f4ba9ca3a4169"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-13": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-13": "slim"
+      },
+      "sha256": "be02f1370bfb700bb6fd4411a93fc44df48bc6c6f8c543d87fe6d707979da45e"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-13": "normal"
+      },
+      "sha256": "827153add57674a273175001c0d6a1355b4502b43a8854acd23d8b6e8bcaeb14"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-13": "soft"
+      },
+      "sha256": "1c8b4d4bdc21b4558f63a58109013733e731beaa36f8ae5c56221e46607a90ce"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-13": "healthy"
+      },
+      "sha256": "460677c692eb3247b97c96b5b577af77efba3a2847e7badcd1bee42aa507c8f2"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-14": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-14": "small"
+      },
+      "sha256": "69ede0f5f3b11f377dc90d9c3e2de1ed199c905fb15358c6548c147bc70d202a"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-14": "normal"
+      },
+      "sha256": "da2d4accb1f71e80075fde40681eab3baf234705c03b239e803eec8ba66b7791"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-14": "rich"
+      },
+      "sha256": "c55800188e071489e18b66f0f9275093bf4353fab3d71dcdc608ab23d766e371"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-14": "full"
+      },
+      "sha256": "898958851183d70528a3f38d8ececeab7fd9014125c05dd7605b0800ebd42c4e"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-15": "auto"
+      },
+      "sha256": "9a8366d30a2c6f582db8b04a27210e07c71dffce3ef6e6385a0075bbe1cd1eb6"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-15": "natural"
+      },
+      "sha256": "f436b8cf35c9e2ae8890a4275c4a0d5cb0cd3dae96fbe5995cba210eab5c299d"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-15": "trimmed"
+      },
+      "sha256": "979e384cbb1a877b164c0266679960c2005e4a836574af11926bb888eda33b3b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-15": "growing"
+      },
+      "sha256": "475da88ca87ac3c547092013ce3a939adb7c5bb47336d971db9a2e24c4977be8"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-15": "partial"
+      },
+      "sha256": "e3b43c41a198b9ae614d3b10052a39c5f29988e2e8d534f936a780de021fa522"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-15": "bald"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-47": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-47": "fair"
+      },
+      "sha256": "ed97e5a4b4cda6be0e0d6459714ba5dbfaa589617af093d9ecd8cc934136ac20"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-47": "normal"
+      },
+      "sha256": "8d2e051f315df7a9ed487cc7e11896b8fdc2cfe7a65383032a1c055607152cfe"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-47": "tan"
+      },
+      "sha256": "7cf902bef52ed27e2733da068e6d8f81c768755c8b385ea0fd3e8afe649cf9d5"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-47": "olive"
+      },
+      "sha256": "11c18523f7a1e2b5ed8f2a9c72f897395a7f65adc231913cfeeeb2c33a7de19f"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-34": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-34": "full"
+      },
+      "sha256": "34d51f57c5acea65013a5858e9b53de39a849fd4311964ae8d0d2f3559bc2c7d"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-34": "base"
+      },
+      "sha256": "f3be38e0de502eb1ce16713d9d791c7086b3a341a2be4590061723cffe18072a"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-34": "half"
+      },
+      "sha256": "05b27c77c6930e0f494ca29b783459ada9b18c849fcd53c8f62e9c00c8649b81"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-34": "upper"
+      },
+      "sha256": "9d38c1bd594236d7ebd3788f5d2d904de4b98174278aa09d828a5f6a7cbf60e9"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-34": "lower"
+      },
+      "sha256": "ceff0800884631241d0cf977a91e4da23c614b4c76a30fa44e0d62d1b79d5ba4"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-34": "none"
+      },
+      "sha256": "dfdee3ebd7c33568bc02ed89d0785ae71ae5deefaf3d2309cb3a23921388b914"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-34": "hand"
+      },
+      "sha256": "e6e6fde44156744d5703fafe58aec90adfb106e48b6668e6f915ac6c0a04f981"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-35": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-35": "opaque"
+      },
+      "sha256": "7a903afdb14febbb03d39a63c907f2c5e9e27a37e8784046baad37f16e668236"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-35": "lace"
+      },
+      "sha256": "24070469291e06921246e5e7c8b9bf6ad21ae1614cd1d66db7ece500f9618639"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-35": "outline"
+      },
+      "sha256": "6da6057366872155b3adcdb9c8bce35425652230cd58f866600e731f54833975"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-36": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-36": "pressed"
+      },
+      "sha256": "8373eeeff4f70ad4666565793ea84f6ef1d639bd54f66ec8e2ce89ae7960718c"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-36": "through"
+      },
+      "sha256": "b5108ead2d6518f244b7294b14ad81079f53b6ac90d03cbbeaae803b20f17823"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-36": "exposed"
+      },
+      "sha256": "0dd4d9bfb5d4b06b6124ebe897e9b4f3303d85a53721af7a90a14a82514ff71c"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-37": [
+          "flush"
+        ]
+      },
+      "sha256": "045d9753629e8a87ebc9476c67f104f7f3f57c175f9b11bc00ba15fb865765fb"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-37": [
+          "sweat"
+        ]
+      },
+      "sha256": "c4d1abdb5d9fa05bd8d64fd203a205a7d521608c95dacaf5c6c20e149f5ad706"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-37": [
+          "goose"
+        ]
+      },
+      "sha256": "7e6de10ffe8edf3ca5d9f9ab9b7eb88b706ec8e0b3c646affaff3e1891c9cc66"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-37": [
+          "before"
+        ]
+      },
+      "sha256": "e07b13d57f0f26d1d159dd84a8c3faa6e2c2e1e720143db26dd1e7cbc062a118"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-37": [
+          "during"
+        ]
+      },
+      "sha256": "ff33961ab7f1deeacdb80cd649f3176502ff1a6eb4a7697b1a285817099839e3"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-37": [
+          "after"
+        ]
+      },
+      "sha256": "a6874a5e681ea59275a3ef33e99407caa11123e53388b58091f10becf61624ba"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-37": [
+          "selftouch"
+        ]
+      },
+      "sha256": "ffb6f4c958653e5faf7cf4d703451c62a4a4a1142b6342031e30f14857e258e9"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-37": [
+          "halfremoved"
+        ]
+      },
+      "sha256": "7832c08587b8bb7bdc38138a23305763ebbc279e942ce484d9c5740130ffbb40"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-43": "auto"
+      },
+      "sha256": "589e651d6cc90b8456d8eb2a59f9d27a1afb7bb5ba933dbb9f7dc9c6e5f1764b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-43": "black"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-43": "darkbrown"
+      },
+      "sha256": "eea82aeca1f50a54969f31e59289ae0fec96ba049b22ab7cdf834d5f3200ed3e"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-43": "chestnut"
+      },
+      "sha256": "0f77c18c8b3393c62d0a04be184e08cbab93d255a7726f2ae8cde44320c10ffa"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-43": "lightbrown"
+      },
+      "sha256": "1619612996b01cf0261256936fd4cffd008abb027178c3d40c9eac571f379d18"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-43": "ash"
+      },
+      "sha256": "3289a2ca40e5ad50d1e7bbd8a6de75955b5bb510f71903586a1d773748053523"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "long"
+      },
+      "sha256": "d7634a4f1a451f5fdd84c4208c39351fd231c14e2fd6b5c48ca7e589a7e239fb"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "semilong"
+      },
+      "sha256": "92d4a073e85427563fd7e9288ac7aba71efaaad8c4358f32e51a027b1e1f078a"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "bob"
+      },
+      "sha256": "656f91b4e723f15aee14fd422546aafa0cd81c535666d260b4f198e733b55f55"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "short"
+      },
+      "sha256": "3089d8d8026dc71ee5566ed1840b1ef4fefe81484603d5ce66f6cb4be797b80a"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "pony"
+      },
+      "sha256": "275f1228b90f85a31934d15bd9e6ec5aa0d43ca29dc8dc3762013a6b91fef82a"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "halfup"
+      },
+      "sha256": "cd915774dade7662627eeedebc630e17cb5743f698f612e6900d96e7daac37fa"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "braid"
+      },
+      "sha256": "a701fc7dc72ce3d1f4ec2fd4f58e6eda73a5ce3ac982c3186712ec85b21b2fe4"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-44": "bun"
+      },
+      "sha256": "66f84830491322488e7bd3708e0eae49614d65bdf4115b9d091608c04ea82124"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-48": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-48": "straight"
+      },
+      "sha256": "d09ed4d29051398934d412c74bfce292566451b3736a10cfd6773d851bb8c7ba"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-48": "inward"
+      },
+      "sha256": "e91f5c7505baf55098cefdcbacbe849192c7482455ffe747873a335daa22bfeb"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-48": "outward"
+      },
+      "sha256": "f484751353ec5638faf7bd90a2281e265f8a8db04f83e847fe069e3fda78f9c3"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-48": "curly"
+      },
+      "sha256": "75b5e144a49d09ecd14f0bda6a7d484fb240f2c1686f6a4acff3df5ff725d2d1"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-48": "airy"
+      },
+      "sha256": "438c29f9ec6f6f5dccceb9b3bfc8df9dcfe3e1bf0ae5b3774d69db5bec1233fa"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-49": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-49": "bangs"
+      },
+      "sha256": "980ba2c6dcf7045bed3f90a4b0415e5d592a4f93f9d3903fc3c96708464c119f"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-49": "nobangs"
+      },
+      "sha256": "1071a1219ba7e68b4e4e7024f70ccf69dbb99c5a1008c871bd4544eb8a90179e"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-49": "blunt"
+      },
+      "sha256": "41af71d5820dc2d9e52db056a32e9ee4c12d83ee7440ced8bca3810700f4135b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-49": "swept"
+      },
+      "sha256": "2a904866618c1f333ca16fa04d90dea76a041f6bdb8004aba5e267c6abdce37b"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-49": "center"
+      },
+      "sha256": "4aa9b7d5e8a4ba8f2897a9eb627d10b204ab2e89baaa636cf46b47053d9644ba"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-45": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-45": "smile"
+      },
+      "sha256": "27489d2fd30c0b46e43716a5084f25bc2adb786fd78d87d3375207926058f762"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-45": "calm"
+      },
+      "sha256": "90685d209a52cdd61d9f350467cadffa184ebc1a90fdcd50bde8e5227ef7b7be"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-45": "shy"
+      },
+      "sha256": "cfa5f3c4c869353841cab3157636801fa51917ba652e7d6a8315ad3f2d14684a"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-45": "laugh"
+      },
+      "sha256": "11366cfa4481741049a3f89facf4232ec3d558d7c4c842ec6ddc04c709ce3ba5"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-45": "open"
+      },
+      "sha256": "6718fb4ba9bd070462c469d38cea296266f0ee0add43199716d82da932c570ba"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-45": "closed"
+      },
+      "sha256": "e0ac716c07a8f6a932c22c4210639e09a16d1de28f378fd25389c8318a86fec4"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-46": "auto"
+      },
+      "sha256": "d0837d2eb9f9ed942a02070aae890efecdfd9231eafd64582d9fa1dcb98cf8ed"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-46": "cam"
+      },
+      "sha256": "fd12d91030cdfdccd42baf6f0ea5bfd562e6c54f79f4b548268d3a2741be8ac8"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-46": "avert"
+      },
+      "sha256": "07945e2ac4a1f1035afeaec45bfe3de159b5ec33293ce300bbb0ec18b8ab6069"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-46": "down"
+      },
+      "sha256": "c4a5ef2b60ae9dc5c81a1df68b07c398f9b50e1fab6ba011de66e6cf95d997c1"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-46": "profile"
+      },
+      "sha256": "07f59fdfb1d967686220fdaf071f63f69a2339c87c8f87d7b37493ab71938a67"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-46": "lookback"
+      },
+      "sha256": "e06137ea47e1c63a6bbffd7dee73401f4571912e6102e7e2d6484398367822a0"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-46": "up"
+      },
+      "sha256": "83e50b1c39865d87c2a00d1893d4cb45d21e9446b7683e48d220214d8b7e1dc1"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-12": [
+          "pov"
+        ]
+      },
+      "sha256": "699a21569d796b866fc3993cad034bddec6af8d5b2052f2eb6e6f49fd63d57f0"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-12": [
+          "hand"
+        ]
+      },
+      "sha256": "0cf88da532d9006ef74393daddb608ffbdfc46dba5c04f8ee1f3d16d1a2c38a5"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-12": [
+          "tease"
+        ]
+      },
+      "sha256": "90861454ae026eace803a973b493c7a74acefb7f6fc0c4eec8b1158938c2324e"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-12": [
+          "after"
+        ]
+      },
+      "sha256": "0cebb30f81e0e076e2b1dbd6c4ba14339bf135e5c89b96f974af44108b64f21e"
+    },
+    {
+      "verbosity": "light",
+      "patch": {
+        "AX-12": [
+          "tousle"
+        ]
+      },
+      "sha256": "c907c80a66fda4708a2f8bd1eef308717245f31205bb99cccb82429532c718bc"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {},
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-01": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-01": "A"
+      },
+      "sha256": "bd736465eac9010492398c580e58c467b4f3488644a591d283acc32aaa324776"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-01": "B"
+      },
+      "sha256": "e3b56eaf4b41e4aad00d046f86eb6e2d9cdf718ac0c0d92f8992fe16c17ec8ad"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-01": "C"
+      },
+      "sha256": "3c0d85c2808988d266865729f2249041102afdcc82ad8e4ebddde7e280d803fa"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-02": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-02": "1"
+      },
+      "sha256": "fdfe442d240b3adacb73e5c562f0d17d2125e282aee87504972cc68b7ebd9516"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-02": "2"
+      },
+      "sha256": "d468800c89331a48380414575e88837e31bea9a8633a248f3ab1a620e94d0767"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-02": "3"
+      },
+      "sha256": "890532b2b5b20944c7052aee16a1ebd17941190c3853bf141eb178b82ff78b3c"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "tutuanna"
+      },
+      "sha256": "4b1a4192e9914974568fec51adba788f5a9550a0b68417abdcb1e5b2d5ece69d"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "une nana cool"
+      },
+      "sha256": "41f8308a69710db10ca0cbcc7d7ca7b7098c013604e9d350868acf750d9f2a99"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "Risa Magli"
+      },
+      "sha256": "971cbb9d7aa69a433613a9992f1c25e7ee6364b68ea69c178260697bd49eae30"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "AMPHI"
+      },
+      "sha256": "5d35c5bcb857ef3a14d079d656ba69c26394773525907d109f7fefa575a90098"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "PEACH JOHN"
+      },
+      "sha256": "18faf7dcf03c278b990e005e2b5e8933211ec326d2aa6f8583ca6b58ff32c31e"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "aimerfeel"
+      },
+      "sha256": "62a4861f850c15a9a31512e537590bd389de467cd50fe80e500c1a16b7e7b115"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "salute"
+      },
+      "sha256": "ffaceedd01fc58eae9af630d1e587534f310d840b7f8491ec691c5afe6c076b9"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "wing"
+      },
+      "sha256": "ad2a5cb6cd42c0c4dbe6417713d47f66630b3afd19a0e285f20fd25ea14cd809"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "YOJOY"
+      },
+      "sha256": "1f0afa080f7706f670a529e890558892645e099dc3a47067110c2a48b920adf5"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "Yue"
+      },
+      "sha256": "8fa76ce9f1ea27bdc0bf459a1fe26634005ea9868c259bf6cc1a9bb1aa4330a4"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "parfage"
+      },
+      "sha256": "8b6956a6840de7d62f7d57e9acf6b837b88b49ae021e195a8d65f2cad7a9ab30"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "raze"
+      },
+      "sha256": "00f09699f3d7829e96ff0e01ac3140db49dddb7dd8dbd2f5f880dd4f0dadef87"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-09": "triumph"
+      },
+      "sha256": "1ab7f8f9b52748cf11dedb3f4459e54b6cd7c6310b9482009191a81da2d90380"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-17": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-17": "normal"
+      },
+      "sha256": "ec6744bb467dea7eb3d2388d3f4757c7e416d6e7a488b5f0139b988493aa3d1c"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-17": "trying"
+      },
+      "sha256": "7d3563d508a06b186ef4f56cd976c19828f6d2da6fd41a0aa3a041ad844db503"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-17": "adjusting"
+      },
+      "sha256": "5cd6ab4b7f0d201e579993e31745eda89086dbdfa8f21b172cbbed38bb2b29c3"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-23": [
+          "lace"
+        ]
+      },
+      "sha256": "5a259006b111d207d35cf07990c2e7599dbbe66314d9aeeed3d16d304c9ffb1c"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-23": [
+          "satin"
+        ]
+      },
+      "sha256": "db1822fd9738326d375e1316b634233be4359dec9b928ca1d711c42e7c22f89f"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-23": [
+          "tulle"
+        ]
+      },
+      "sha256": "939c6d15144a588c1f9e9fa070444d38afecff356cb04f473da837322e421a0a"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-23": [
+          "modal"
+        ]
+      },
+      "sha256": "f1e2533fdfe1cd85f31177b26c025b756584ee2cf45618958fad5b7d514027ad"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-23": [
+          "velvet"
+        ]
+      },
+      "sha256": "c828d57037fe552460e98eeb08ad6f3c70f003d23f3d5c04b9f62069b124b5fd"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-23": [
+          "cotton"
+        ]
+      },
+      "sha256": "3ac150d47a35d45b2f75f493efb678f8cf6997b1db0e7d90d1596deb5c7241a2"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-23": [
+          "embroidery"
+        ]
+      },
+      "sha256": "6070c2eccb221ce92b66d945c883636f610435d09498dcb428019b864f4483d0"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-23": [
+          "mesh"
+        ]
+      },
+      "sha256": "76366c24fe617c06fe2e19f0f77d5d4c73a4b3891d5b87ea0c2266bdd461dde0"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-16": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-16": "clear"
+      },
+      "sha256": "f28655fcff9e81d675a7439029470c9cf69ac73606edcc3193035f316eaa16ca"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-16": "normal"
+      },
+      "sha256": "2de18f79c35573e2010ee5b2e9076735ace0241bd25d0ac6b483bbb5628d4a56"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-16": "bold"
+      },
+      "sha256": "56dca57aa173f1732e4d27c57e5336e18622900cbb4dc88f7c6dde512125d340"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-16": "wild"
+      },
+      "sha256": "a6e372cab9a3d1645834565ef7b96f4128d6c9186c88ef0f2a6de91c91cbdc59"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-10": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-10": "explore"
+      },
+      "sha256": "522481ca2ae46eb8aa9bd59390882fba9b674d8dc4f22593b00520910d196490"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-10": "blend"
+      },
+      "sha256": "482d6538c8665e2d38837fabfa1559e180697cc6dee79d96210ff58c0f6f63c1"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-07": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-07": "self"
+      },
+      "sha256": "e40fb537cdef373ae60b927c3e731e43ad5e8a014fcce0a46e55c42fe2004086"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-07": "friends"
+      },
+      "sha256": "8c1f3b4bdf1b7bcdf5c0ae9757cb8717e808882310c5b4e667ee2d2819d69238"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-07": "crush"
+      },
+      "sha256": "5a843fe7e3c6300cd686059dcce89999d8f7e5b2ab7542f6108df6b7ff821045"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-07": "intimate"
+      },
+      "sha256": "b4abbb6ae401aaf95e0533a3d9f4ef91506877ae720eb10515167b6c362b9383"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-07": "custom"
+      },
+      "sha256": "60d98332a479fcccc4bae7986208b0e4da780e8c88bc9b0595d87092d74eb848"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-31": [
+          "hand"
+        ]
+      },
+      "sha256": "8d3283b975fcbbf0d2ac07938c2f3f783bd4c202f1dc63fe92bbe8fd29bff8c9"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-31": [
+          "leg"
+        ]
+      },
+      "sha256": "8583a71633476d8f5a113577444eed3a21ed42a4ac7b99325567a86390dd053e"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-31": [
+          "glasses"
+        ]
+      },
+      "sha256": "f4f566c0f7f35504b084d63881d276dba587c803609eaf30d60ab72d62166ca7"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-31": [
+          "blanket"
+        ]
+      },
+      "sha256": "20c0dd21ae01330dc59b6a996e6effae7c74cceca0d05aabce8a36643c1efd54"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-31": [
+          "duo"
+        ]
+      },
+      "sha256": "7faa4baf48c8efef4d921901fbbcc897e07a52ea7ae0c7d2dae50fe9d741c872"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-18": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-18": "front"
+      },
+      "sha256": "709637fcaf592cf7dab9d0181f9d65a09f5faa910d30322874b40f670e41737b"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-18": "mirror"
+      },
+      "sha256": "f86d7904dec73e60cb528915b7f006bd7c396d167ab6cd43d3f89701338dd4fd"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-19": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-19": "face"
+      },
+      "sha256": "232a392c14dc609776f7bbb5595033c921f248ece21fc9d4b391bb104ec44abe"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-19": "bust"
+      },
+      "sha256": "e6a0ae83e872b9783486133c46239b81c0b02244e8b7063bb12aed976be52046"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-19": "half"
+      },
+      "sha256": "39ceb2b3636bf876b6a2e479d32abd620d4cb1ed95fa6e3f9ac728204d273f2c"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-19": "full"
+      },
+      "sha256": "62ccf55cce89e1aceb99636ca1813a854fbbe4405599f37d9c27683bcf0624a2"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-20": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-20": "tight"
+      },
+      "sha256": "2472dbe27e35af4de8c1dfc09f3df64eb3ad63704d6e78058b9cc395ddfad2a3"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-20": "roomy"
+      },
+      "sha256": "9eb476df378daa22f0756bc754165f5fb793a17819b0f0f884829ea67e71e08e"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-21": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-21": "natural"
+      },
+      "sha256": "dfea73cf1e92ab8497db62600868856442c7c8b98b356e407d997584c41cdfc7"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-21": "close"
+      },
+      "sha256": "69d4eab1e355357dc6f313ed3d3c27d5160054398ddc2410454d961610c622cd"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-21": "arm"
+      },
+      "sha256": "26b179f8f7c7b9e495249225d9076665443edc5fde455ae2b6bfedbc2bcb76c5"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-21": "mirror"
+      },
+      "sha256": "46b743dfa64dac2fb6b2ac60ca1e8b1260bb8f00f747f65aac53a2bd1a748afa"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-21": "shallow"
+      },
+      "sha256": "a2dbbfc29075ff6a3bf02e90e32aaf3e9846d7d4217d85bbe0236a32858c3490"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-22": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-22": "window"
+      },
+      "sha256": "845b98f848ad855a91cafeeefd70521a93420b4a8be028972fb340925c865fca"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-22": "cam-left"
+      },
+      "sha256": "4665ddc0cd827072419211e70666a88c282254014df404ed98b7ba6d80121384"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-22": "upper-right"
+      },
+      "sha256": "beefe9afd34ae8a46d9cdba065a50fa42c91a420b2d682766dd47156f05ceb27"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-22": "back"
+      },
+      "sha256": "7d9c7b09e7ca0bcb9d26ef7ebfc1350adeccbba6fdbd238002324d7d7751b005"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-26": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-26": "room"
+      },
+      "sha256": "5472ec753d79d0b447aafe5134073894d2e547dba705ca4e81ea1bb56af4264a"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-26": "bath"
+      },
+      "sha256": "cd528629cd7e63b1c1d01e2de14dd002047c8311cb6b1c2addf55193b9fc61e1"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-26": "hotel"
+      },
+      "sha256": "afd946c02b5888fbd4854b1f6e3b4eea68d3d76e6574d58af227aff5e598ed60"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-26": "fitting"
+      },
+      "sha256": "3912e4ec75b552756e7f05643dbca66966bf769201dbe749a6da51c29a316c78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-26": "balcony"
+      },
+      "sha256": "334413633fa5187cdfddd29f1117ad7b4e521f87159ba5ebf90967f327f21e7e"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-26": "entry"
+      },
+      "sha256": "b46e24c39f3255633535f57ac81ae5f1fd0e0c2e55b4650550a7a82b8aaac848"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-27": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-27": "full"
+      },
+      "sha256": "49872a2a6a96bad9f0623e8c1ab6ffa8f89df47a07f24678c16f88bcf4350603"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-27": "basin"
+      },
+      "sha256": "550291d3ce0db8e06f5258491654ee46b05e276e510105a94e2628f1f4dc55e4"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-27": "steam"
+      },
+      "sha256": "48fba82d3682351cafbb1c398bb1673693e291e8c2f4bfcaa5d414f1330d3390"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-28": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-28": "bedtime"
+      },
+      "sha256": "9038e4b121b43ea08d47484483b8f954a3132bf673adb7c6a69d9fbe748fe241"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-28": "waking"
+      },
+      "sha256": "366babaf3341d1352ae56926838290d80320b64d5a2a761228357687d120d27b"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-28": "bath"
+      },
+      "sha256": "93a9f76f28102ff6330bf2ef7338efd7c85bcae6545b35603345a196e3888ecd"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-28": "home"
+      },
+      "sha256": "6864f4530c3a85943566e7539c1408cc796356534315ab5dfb65eb0626bab75b"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-29": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-29": "spring"
+      },
+      "sha256": "829507a4904bfffb71f1e7aa3cefa8f809fd1c9203384857b3e3a8da1aff3896"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-29": "summer"
+      },
+      "sha256": "f98dba1ecbc73f9f1e3787e271d4aab124cda28cbd7263d5fe4f1b3c00034176"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-29": "autumn"
+      },
+      "sha256": "7126604af37a7255f16a281f15e887284c78081004f50b77f578584b87671574"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-29": "winter"
+      },
+      "sha256": "ad5bde85dbec52cd1c68db3b9307f88c48b020f3ca1867a844ff08dfd39e089f"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-30": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-30": "clear"
+      },
+      "sha256": "330096d9b2edfaf3dbb30b5acf1ed059f79fb7c22fd488f61cb0963eebf8de5b"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-30": "cloudy"
+      },
+      "sha256": "9b5b868b89f0656758afbdef71285781dc0c75d6a22d4c19d8999cd52db2fad8"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-30": "rain"
+      },
+      "sha256": "7491908fa37c448480be3a5985be68a78c69638fcf05f3e295736f4b4bf6a6b9"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-30": "snow"
+      },
+      "sha256": "96df67e42adc2c605d0f593b0c7999b69c2da9016e4a45009222a27a8bda33aa"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-32": [
+          "wet"
+        ]
+      },
+      "sha256": "72c0440cda0180ad23f264f36679e708484ac56a7e2b478141f57349d9e91ad6"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-32": [
+          "steam"
+        ]
+      },
+      "sha256": "3e613a890a630e1a598d629b283d7ec883ffe3d6ecec8048746d6c0eec694be5"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-32": [
+          "dappled"
+        ]
+      },
+      "sha256": "cbbd64fd78b405cd01aba006ac67c24c049cda1349f498824e46c88037d2cbce"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-32": [
+          "linen"
+        ]
+      },
+      "sha256": "7bd2cf7fe2be795c2a3d611dcadd8db9a1e9950fbaba020090a06916a001aff1"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-24": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-24": "cheki"
+      },
+      "sha256": "3c9d83f76fa6994c7c54932a7531d7436e0438856eafc784c9bde7ed383dd8c1"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-24": "polaroid"
+      },
+      "sha256": "0a525b86a9490ed720835f92ae2e46b1d57951fecc5f25aa9aa1b2a08f4f69be"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-24": "film"
+      },
+      "sha256": "5fc15f2e6d0add31aa967b21a18f1a1cc0430d3d350091ed307c862661cdeafc"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-24": "oldphone"
+      },
+      "sha256": "d41494f418f195e098447a0f1fa366616fabdec3f46d49d4f6ef475245a67d3d"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-24": "purikura"
+      },
+      "sha256": "0249e5313f7c6dc10d547640632f95faf064e9582dc9ae11d973d2235b0d9b5d"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-25": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-25": "wide"
+      },
+      "sha256": "0b91800c9f2074d819fbc967e4f21c30f16b25814ca6c261202eb2c7b8c705f4"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-25": "grain"
+      },
+      "sha256": "a942fe83ff03744a093368c64b396ba3d4b0df070ab6fcd29a153928c44df5c7"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-33": true
+      },
+      "sha256": "8cda0d77703fe598b2bfa75e3aee8fb9e6fa05a8b2ad8a066bbb00b5a796ea0e"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-33B": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-33B": "d1"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-33B": "d2"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-38": [
+          "shake"
+        ]
+      },
+      "sha256": "44d33747423b81b6fc6983e67118e55b07953780c870bb6815044ea057e7d327"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-38": [
+          "soft"
+        ]
+      },
+      "sha256": "6772235ca0c4fd953b201cf00c880f31657166d1caa8d2ac69f52e15462507db"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-38": [
+          "miss"
+        ]
+      },
+      "sha256": "76e452c314591a974c275bc1937ec04421e34b96b50fa300e961dab4604328d3"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-38": [
+          "dirt"
+        ]
+      },
+      "sha256": "74a4715977fcbf398f4be1de762a22a9bea07ed161a340ed3e6317dc3745441f"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-38": [
+          "flare"
+        ]
+      },
+      "sha256": "b84727d2139b0e9038d6d2b0ac356f5fc0d563be9b6c685363d9492f333cc428"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-13": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-13": "slim"
+      },
+      "sha256": "e0806a1b82ee095e235de1472cf4de06862c32d97f6601b7365ac4d3f31f0400"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-13": "normal"
+      },
+      "sha256": "4cf064157e29213bfb9e9db25630a5873de29d3abd20a6ec70d9a8515ace364b"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-13": "soft"
+      },
+      "sha256": "6b3dffe45ce30b36fd923e8663808637854421fb75d947f968a9d4df87b39ff4"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-13": "healthy"
+      },
+      "sha256": "e2869f17b2ab0a7891f7c2e5e207374de0449d24779b9b820cf16b6c182a7bd9"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-14": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-14": "small"
+      },
+      "sha256": "134b01b1869be4eaa373806c77b155f28b507cb388637c4a3cab6481fafda137"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-14": "normal"
+      },
+      "sha256": "763abb9965523e15323621f1cc56b3bdd7f9723cbd9b9739fc88df0e01c9b82c"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-14": "rich"
+      },
+      "sha256": "e939166b659f64fd8335b6acf265f0fb121e3a0c477012a87bd695cc3274b2ca"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-14": "full"
+      },
+      "sha256": "5bf606a8c88f657f8dd4dfda5c096139e34b55c816d6c89e87ac12e874389f40"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-15": "auto"
+      },
+      "sha256": "da4e500940296ea20c78490ccc4ab647f2b23bee816576d92c4456b63b65812b"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-15": "natural"
+      },
+      "sha256": "90d15db075b3b74daca19a3cf673a31ffcead1bca1714b8ca72abd2ca193ee0f"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-15": "trimmed"
+      },
+      "sha256": "55ea1da2bdd74c67c39141124ea1176f33f6686328e816ea3d719d46b500d8b4"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-15": "growing"
+      },
+      "sha256": "8acf5356d430adb08d8335a6508349565fddb96ad17d2926b71abeef76663cb9"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-15": "partial"
+      },
+      "sha256": "4574cde3d7adc7e84563174015ef1cd854928e8aa24c6a95154af779867fc2f9"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-15": "bald"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-47": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-47": "fair"
+      },
+      "sha256": "65b1fdb6e0291db6abf2ea31f520c99fbfd54198afb9dd6a78ac9e4977955331"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-47": "normal"
+      },
+      "sha256": "c6e7ef737d7c274add50e7d111d61071109e8ec1deb96fdd32fe627534db4536"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-47": "tan"
+      },
+      "sha256": "ecae80afaca03c2a42e6574db76f77f2207a2a983cb2c5008b8a48059a8e1999"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-47": "olive"
+      },
+      "sha256": "81b5d04f41e2ae7abddc83e683f01f53a7a2e5282d82f79a01aa62e4aa9d4e03"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-34": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-34": "full"
+      },
+      "sha256": "20edda79a51fcea0e7191e607a1aa60dde13b80b651ea2c54d794e2ee01b5845"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-34": "base"
+      },
+      "sha256": "fdacc7c8accf8381ddcda435fb1a735447db30896197dc496ff588a8a423faf8"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-34": "half"
+      },
+      "sha256": "43b2835412f69197d6be4cc8d20cf5263a52f2c476984df2e16e253fbd8589d5"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-34": "upper"
+      },
+      "sha256": "243d1a5628a3dcdaa7e6c3274ede83246270a031525e8dbb5decd007defd4fb6"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-34": "lower"
+      },
+      "sha256": "a2cbf94c7c187b57dc98b539b821eed47d33601e3f3c7334d2712f2d66180516"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-34": "none"
+      },
+      "sha256": "96e41f0942120a9eb80f8dc71d9fc04185a79c5a2a8b5314e17e911a2266b4ff"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-34": "hand"
+      },
+      "sha256": "265724a77eb6255470e22b8b430a5101fd77ca8d27a5773ea5339cc2c1031bbf"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-35": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-35": "opaque"
+      },
+      "sha256": "88dadf3fdeda52c73be478c5462954518f2b5bc4cc7645603dc60f13f299fd47"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-35": "lace"
+      },
+      "sha256": "00b827d2ba569bce8eb93371bea96e49dd4b3ccef59e19e933fb6ce121e8393d"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-35": "outline"
+      },
+      "sha256": "2af69277e0921d7344a246677f3777213b09fd007b2f2b1c95086e42580718ad"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-36": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-36": "pressed"
+      },
+      "sha256": "c0da438b9fa1d4b931bd9ff033368386160743e63d38f96964dbe296e29fd5b5"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-36": "through"
+      },
+      "sha256": "aed1d58e00878bd8b1a624a0767aa6791463655dd005325da5f886dbe828c635"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-36": "exposed"
+      },
+      "sha256": "ec0c1f7ca3c069989577d84277a81333165445cebf4968ec13824237cdba7b33"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-37": [
+          "flush"
+        ]
+      },
+      "sha256": "aa26650d5eb3ce61185763044090cff9163f3a7c676ca149adcda783dec33b58"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-37": [
+          "sweat"
+        ]
+      },
+      "sha256": "51b9b3b565cc34f569b8203f7f3bb3a1221b82eb5853c918c0c3f8eb3fe438f5"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-37": [
+          "goose"
+        ]
+      },
+      "sha256": "518d2d671e0415408c7312a367feaf0126f97e28ce7e5a4b23365ce9605e47da"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-37": [
+          "before"
+        ]
+      },
+      "sha256": "b97d0fc2d7a81f3106ab5a98a4191b75bc66e083082fad74d0b6164cef866b74"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-37": [
+          "during"
+        ]
+      },
+      "sha256": "41726df52402f76350d23ffd7abe35e09c6555865fc731afb7032da8f5b40183"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-37": [
+          "after"
+        ]
+      },
+      "sha256": "f1b810efb185b05d14e9ff0b0242e1c73210fe69747b52cd4aae56e4d934f295"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-37": [
+          "selftouch"
+        ]
+      },
+      "sha256": "51e3c50a98771e5466e21011608022d02f945c6ccde5be4febfb70c43d9d6264"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-37": [
+          "halfremoved"
+        ]
+      },
+      "sha256": "3a16b1e4705d48c9f7984f01d63c3de5202e0a1c3cf2ee0b58620650a7a318bb"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-43": "auto"
+      },
+      "sha256": "215beed0b58a60dbec6d9d6191f3a546bd8cd92a27de204ce0c9a3af7b7d1ab2"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-43": "black"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-43": "darkbrown"
+      },
+      "sha256": "8adff39b6ce2abe75bba3e100826c37c1a1c3188a826c08cc7a1decaa73cfb2f"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-43": "chestnut"
+      },
+      "sha256": "ad8162c1907b5a303c4b2c1994448c2c7bba301bdc38df023412130727dbe859"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-43": "lightbrown"
+      },
+      "sha256": "5b38a6af7f10a84440e33e2311324a14966e76c218d1d87fa2e97a32e70b963a"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-43": "ash"
+      },
+      "sha256": "defdbcfba1ecc4e6798419bb3c7003cccf0914af923265b9be49010ee9a7e4a7"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "long"
+      },
+      "sha256": "98a67d56264c3ab1560d1755830fe756781b6d32886eaf4b74a0c035193d03d2"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "semilong"
+      },
+      "sha256": "f0c96f3761a7724b60685e8c5842a317cab98b2ba12c47b8a40b3258afabd2d1"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "bob"
+      },
+      "sha256": "446a69b68687413e2dcad0cacd24b5009ca6f23adbd50fcc75291214d396be3f"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "short"
+      },
+      "sha256": "444550abaed696d5f32150922e905fd5561c214bb5accd88b9cdb7639875d7f6"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "pony"
+      },
+      "sha256": "568de4841f75f85c2b0a4a753d2a0e853e362be47b43e1407291551782e21a80"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "halfup"
+      },
+      "sha256": "5c7615fa5a87a0c94f9d4f00ba67a621eaea51d7283f11688ba3b6e575574895"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "braid"
+      },
+      "sha256": "6e5b8734091fba1fbdbb9798a1e46947ba10b5436bd98c554eacc07db3fa3aa2"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-44": "bun"
+      },
+      "sha256": "14ec8d47a2ddc6e63c877ad57d86b92de62c274e0d30909018318149d42dd407"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-48": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-48": "straight"
+      },
+      "sha256": "cde34c820525bc166eca03b4abf1c839ed4b93f6f90c6b0cdbc7d3b9869c9f21"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-48": "inward"
+      },
+      "sha256": "72c0a5afffe165a0bcf9cbf3129831b741891e10a49cdd69ffc2fdda0c717602"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-48": "outward"
+      },
+      "sha256": "8bcb07ebf9bbee9b8609385b36b340e9d694892d9c10d717175c87079077d590"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-48": "curly"
+      },
+      "sha256": "56aa8547c5e0bd2085b313cadaf83421af4d7b24bee1aadf61050b8fff95c82c"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-48": "airy"
+      },
+      "sha256": "cd5a953b6ab278a162cdb15ad17d470c199199761599997afde0427fa0afefbe"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-49": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-49": "bangs"
+      },
+      "sha256": "e0fc2117a43ac53f4268ea7dc60617f00228d2f0c1a8a9f4c38ee21f56e42800"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-49": "nobangs"
+      },
+      "sha256": "610ba71b15a0edcb02d7d73728f8bd7a3035d8dcc313c9f973117d5a69efbfec"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-49": "blunt"
+      },
+      "sha256": "3b0acd46123384ecc1a02a03ccf693589114ebd0d224bbfea9a63df760148325"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-49": "swept"
+      },
+      "sha256": "299f2f7d1da343be8890ab3d48a9da4bf10397365abc7130a1a0fc842c468797"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-49": "center"
+      },
+      "sha256": "1ce9759f7eeee73cf35c9eab785745300af59f5d517ebaff757b22885abcef4e"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-45": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-45": "smile"
+      },
+      "sha256": "1533e41cc6ba1ebff74ded1c6bb416cf905b3d6a913d67f4ceabe8bc311b0dd9"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-45": "calm"
+      },
+      "sha256": "df196635792449fcec298c92562accbb6119463617b96005fc2bd81c8f704a0f"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-45": "shy"
+      },
+      "sha256": "91942a8e340ce386f1592c1003688f3f6f0490200d4c28fcf29f2ed63825c619"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-45": "laugh"
+      },
+      "sha256": "abe0e229ad1d90feb1a959d499c80561a9eb3acf3bd8907d65fc068dd1b87868"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-45": "open"
+      },
+      "sha256": "d888c3833e636f2d4901413977709324dcd18ddd1e34a81c7f92a83fda4cc9e6"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-45": "closed"
+      },
+      "sha256": "83e27e75d6efe3df95639bbc02839509627400a96e5ee51bb48f6e55c0c55708"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-46": "auto"
+      },
+      "sha256": "42a48fcda2cf4bac4169ab898de8843a18166722d6e572aef5ae7bd9db633b78"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-46": "cam"
+      },
+      "sha256": "d6a0a28f81181d7e6c01e4b284854410a14b7f30ec8e8a4b6eff225534287d3f"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-46": "avert"
+      },
+      "sha256": "b0980ab62525bc74389ebbe684ce5b40335ae4e2afe036a7e6992e6281fe2bb7"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-46": "down"
+      },
+      "sha256": "4da438d85f01490ce70bc0023f54eed5c29efb6e2d9e27cd7d03b216e069c524"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-46": "profile"
+      },
+      "sha256": "e738d384b2ba94730745e84f5eccf272680c09c4112d8e618f84fd6e4cdef71e"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-46": "lookback"
+      },
+      "sha256": "3f831e09a300122550528515a1b2062aaab1720be556e2d3ee4040012322895e"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-46": "up"
+      },
+      "sha256": "a135ad1139f869beb22d4ec124a38e66b57cd2455e148548b8334a2c17f4f444"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-12": [
+          "pov"
+        ]
+      },
+      "sha256": "2f3efca55cd2e82b0ac7a5121ccd897960260a1f179bb2748b691f9b5dbb91ca"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-12": [
+          "hand"
+        ]
+      },
+      "sha256": "3f6cce7d0864c009c59d772c280bc108da29e498f95654b9228042be1a09ceea"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-12": [
+          "tease"
+        ]
+      },
+      "sha256": "ac4fe675e20d923b4bced7c2083830e4b70c5c9f6b9011a3cfc639be8b30c05d"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-12": [
+          "after"
+        ]
+      },
+      "sha256": "1b69878184fce36f3d50d5eee58923b0f9086a5b39aafc21d32c2786b4fe8794"
+    },
+    {
+      "verbosity": "standard",
+      "patch": {
+        "AX-12": [
+          "tousle"
+        ]
+      },
+      "sha256": "d5be7dc31dacbc7fe4f71cff3301beb0973e8ebf01ed34d65db6c366f80bf044"
+    },
+    {
+      "verbosity": "full",
+      "patch": {},
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-01": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-01": "A"
+      },
+      "sha256": "587b04f03a98473188c9fa54db11bb8184fa5b1bb5cfaf02e32e8e12b7134010"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-01": "B"
+      },
+      "sha256": "9d544b3a9f59289d6a1b6f42f916daa4366c0d059f7eb212b05648ef5c99489a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-01": "C"
+      },
+      "sha256": "ed3eb93b23b7b4eb8deb200130b46e50d88dc5537722336aede4e913a48eb5ec"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-02": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-02": "1"
+      },
+      "sha256": "26740783479c717c4f5e7264e4b6e39d9d29fc3ad8f042fcea65c80bcdf2a4af"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-02": "2"
+      },
+      "sha256": "ee5a3b1c90c273a50e5fa917beef27209ec217ed4a5b39103273623c8dfb463b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-02": "3"
+      },
+      "sha256": "aa9c9143ab4fd99599b1d2182752c0b59f4b63bf7367bdfd30fd54284ffbd0b1"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "tutuanna"
+      },
+      "sha256": "02d359e0b676cafeac1445cf2634ae10390d5767248aa3862dc1b1c63a729b8e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "une nana cool"
+      },
+      "sha256": "4302f81adcf8bea9ffe7b2da45fedaff3970e8fbacf77358aed0436058ff305c"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "Risa Magli"
+      },
+      "sha256": "a2c4fab568a319b6ed838b1e3da4989b5188b85d539eb940441d9a74cb9dab47"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "AMPHI"
+      },
+      "sha256": "6bb0a1fed515abe0f22f3c4edccb1d8ba150160a64b7bddad9841ee4766bd48b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "PEACH JOHN"
+      },
+      "sha256": "58372a767da3920aadc566166c0227969ee4714f85476022737e67a077d784fe"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "aimerfeel"
+      },
+      "sha256": "09f7e161682e46493c231defc56a13d9fcc72fc1aa26b93bc45a6a0aef4aa18b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "salute"
+      },
+      "sha256": "2ff637357cb0fb2c2f2a1addd42a3532c4d4a1f8e9e0d80f7a89686b5cc79456"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "wing"
+      },
+      "sha256": "22b786747d4569ddaed5acfd9826510e0ad0ed0c73ba33b5605e4b7b0f33595f"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "YOJOY"
+      },
+      "sha256": "90171e9e552064680289356e039ba9b3a63dc245b8e6b0de02dd3b312a5f6c24"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "Yue"
+      },
+      "sha256": "2690bacb96d7831eec698c0c2f420dcabcc69ef03409337f4251bdcbaacea4b7"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "parfage"
+      },
+      "sha256": "02862d583cdd7d81c1bca38df6cea8c4e3525079d30731a55c442d4f968a3ffb"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "raze"
+      },
+      "sha256": "2ec6f24fed5c44db1ef16cc2289bb5db7db8ce95d0cb5bd116920707621e3539"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-09": "triumph"
+      },
+      "sha256": "d7fffc41c5492d94d256977bc00bf4bbbfcb95e1bf9bd1452f1e368bdcf22b11"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-17": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-17": "normal"
+      },
+      "sha256": "80e80b5416f098bf1918744d3c423cf1fd7ba590c85260b1e1e6f5ef29d5b0d7"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-17": "trying"
+      },
+      "sha256": "5d3c18b8eab9c0217bc4563266e63fcc312c4799a6111a433da6c730fd4afc3e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-17": "adjusting"
+      },
+      "sha256": "03b200dee36cbd44c600e6493f3570fe1de5adaa1287922408af63360520fcda"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-23": [
+          "lace"
+        ]
+      },
+      "sha256": "6d47df6f25dedb3508bbc45ca02a89ffd211538e06af7e84462404c035c3242a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-23": [
+          "satin"
+        ]
+      },
+      "sha256": "678c25312e7aa74c20386df596135f7d141b2afc3e82af1a09dabd0afb18bcdc"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-23": [
+          "tulle"
+        ]
+      },
+      "sha256": "f808ec6e62f91ba6f9f3be2b3886a57dfd26ba04c088d232f23d22efdb43320a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-23": [
+          "modal"
+        ]
+      },
+      "sha256": "5f7acc64b8888ec4f3ee50fa47981f2d05dd9bdb23beddc1a1eccff1d2f2b55b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-23": [
+          "velvet"
+        ]
+      },
+      "sha256": "19808223174339ce948256d7163e4b8002700f8e346d3bfe3738394a5a60a87f"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-23": [
+          "cotton"
+        ]
+      },
+      "sha256": "b55f9db985ddec74f4c8e161dce918313edab26fb0f2d4c86d83fec2d42cbb4c"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-23": [
+          "embroidery"
+        ]
+      },
+      "sha256": "d95e9422caf4cde24874d62bfab52f2fb05b368534f9c6802db988b0967736f1"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-23": [
+          "mesh"
+        ]
+      },
+      "sha256": "4d4a391e49a3695c1a9f0f5125d3f03b44bcf8b236657a5c5cec315cc38861c5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-16": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-16": "clear"
+      },
+      "sha256": "ae74b6c9f09b8f8980f8c221a3ffd2973eccc55973ee739de238b5ebe275084a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-16": "normal"
+      },
+      "sha256": "6c3634b63863e49f6ae2e899eea5cd39f4218533786edb0d80d9cebf731343e4"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-16": "bold"
+      },
+      "sha256": "de81afb2076f6e1904c1b8c5f26cfcb74372f1581a2e805afee9908a8233a71b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-16": "wild"
+      },
+      "sha256": "7563158d51184555f6e3c1a4629e9d68d08b73cde5a36d70563a4693bdf953a6"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-10": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-10": "explore"
+      },
+      "sha256": "481effed14fe4b1c529ced8a00409d03bcb5e5a7e469611229f64e05ceeb8559"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-10": "blend"
+      },
+      "sha256": "ca0c0397f24eead5d62c6b5003499b7b0334ddd61dabf10284dd106518dde38e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-07": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-07": "self"
+      },
+      "sha256": "48442f1a7b9b57671791bfae399c80b7d90b2071a6702f62a75653550f02f551"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-07": "friends"
+      },
+      "sha256": "d8356f8d14d9da7c64fa4ee3fe0970bd694737a37265af4db42b85edca06f599"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-07": "crush"
+      },
+      "sha256": "7687731fdea360cbda2222c7a261c1830789a4055411da2e3c51824f4daa9623"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-07": "intimate"
+      },
+      "sha256": "25a41cd649d25d93e1a369579feb45f48c8367de25feabb98923c1e402c58892"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-07": "custom"
+      },
+      "sha256": "af8631a88f6cf30137418728ffc529cdce3e2917c2eac98e1747079958460337"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-31": [
+          "hand"
+        ]
+      },
+      "sha256": "0a4bad879fbeaa8fada69cfd88fd7c6fae0b0237f02632829034d5309d555452"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-31": [
+          "leg"
+        ]
+      },
+      "sha256": "c740c4a664e0b9cd5590f9b8bb0bf1565c1da87658706713751b3d9d36f86ad5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-31": [
+          "glasses"
+        ]
+      },
+      "sha256": "2766faf6b0046bbcfa4ffa61292bbaefec73160a50b966fdf3a9d59d14a58645"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-31": [
+          "blanket"
+        ]
+      },
+      "sha256": "5ba6af15d294762a70f5d4cb2983064fc00adae624729622988a3cbcfb72d1a2"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-31": [
+          "duo"
+        ]
+      },
+      "sha256": "09157af1b8c22f244bad06536bd558b0f33b8938f399a6be6ddaef4c26cf9b51"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-18": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-18": "front"
+      },
+      "sha256": "f7a01412ba34db63bf5b300bcdd5453a1780eab7a8f6972cdea1b073548dc846"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-18": "mirror"
+      },
+      "sha256": "6cbcfe7ad46af174cf23aa7978a7339a35ca455e4196e7656ec6c8acc08e0435"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-19": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-19": "face"
+      },
+      "sha256": "c005b03be86b3e8397f17fdf0d7439e85387c13e856723b0d83c51a5a1416d6e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-19": "bust"
+      },
+      "sha256": "38938b9f96bcd170f873e87de70f0481bbde737d60fa7514e15a066292b202da"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-19": "half"
+      },
+      "sha256": "230c8c29054c3c27a56b1d9841868a31af649ad4ef87a58daadd8ef3118cbbea"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-19": "full"
+      },
+      "sha256": "2fc86a5249e4fc340c7ac786aaf7cf5af7adf6d1aff26d69c395557a7b86ce77"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-20": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-20": "tight"
+      },
+      "sha256": "1c5d90f0c8aa1d9e46cabca0df6732e615e18f95e3eb8d6947589b794cdfb167"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-20": "roomy"
+      },
+      "sha256": "91561f0ad2648e6638c20519bcb42662353da89f3e038a0281216ccbe70ef103"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-21": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-21": "natural"
+      },
+      "sha256": "9cf7fb9908a97e6c4e88f09e448d575e9857abb1015dc9f92c51aa5d771fff8b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-21": "close"
+      },
+      "sha256": "edb992baeb178d6c7c4c7364785dfec4a1c7edc606ff24ba7ff3e6e351327b51"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-21": "arm"
+      },
+      "sha256": "7a5947461fdc74291c3bb7ab2d4915c6d72fa4526422cc25b740a8d986862a59"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-21": "mirror"
+      },
+      "sha256": "6cb46c78d4e36df433bfb8c317ce42a6e730db126dc35ced8b7bd1cf52221ef2"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-21": "shallow"
+      },
+      "sha256": "e6ffa0e25d3bc3d353d75af382a6c4755d42023bd7324189876263b5bed4c66d"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-22": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-22": "window"
+      },
+      "sha256": "88680d1f7d2e204b530d98d81177e42dd1a448aca20d51e3c076447595699573"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-22": "cam-left"
+      },
+      "sha256": "8ccc6976fce07a8db07d6edf92b36872bbde328b9422b4eb22a94cbdf2c9a1c5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-22": "upper-right"
+      },
+      "sha256": "51720081f84b090c7bbddd96b1bebe90314c12cd77861f7abd6a047ff181bb4b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-22": "back"
+      },
+      "sha256": "0c42be928d2f7b14815ad1dfb07a5867801b8be5de65cadc3b49c22c8edc9a69"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-26": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-26": "room"
+      },
+      "sha256": "2e84e23671bade82c908dd4a595d07305e73c6c0f09fcca5f6724e3599382400"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-26": "bath"
+      },
+      "sha256": "3c05ea0a97979b2e734cac1d789453d63455a0104df26b7ed6bd6ba0e76405e3"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-26": "hotel"
+      },
+      "sha256": "5de26173cb566d9965b24b112ff4e20d25ea5b87e85a33b745da3be965769837"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-26": "fitting"
+      },
+      "sha256": "9fbc666c4c9c4799f3894a6b1bdfa9368092b4332dc5119648e7662471278498"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-26": "balcony"
+      },
+      "sha256": "eba17799b5e407423820b0a9dad1f5693809e8a497a71f4a8d4de0b46896c1a7"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-26": "entry"
+      },
+      "sha256": "79830f61351c76269eac6c9a5f980061074d2dd1ef5732f1efd8c2d13d5f28bc"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-27": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-27": "full"
+      },
+      "sha256": "bd7eb101c6c51f1dfccec3ef7514f8bf7384bfa6b2af5bde1e9084c1082b16cf"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-27": "basin"
+      },
+      "sha256": "71d26aab43901e208f50ff38b61f41909fd3ac849e7262d5ca0d6564cf097bc1"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-27": "steam"
+      },
+      "sha256": "cf395bcf1ebb910983fe23217318d56ff142cbb24309aeb11ec6cc46ce0c9de5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-28": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-28": "bedtime"
+      },
+      "sha256": "792a4c3c35cebed6a399ae684b3b7abee30546d4920891edd88e6160a5bb5fee"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-28": "waking"
+      },
+      "sha256": "e43a1561747c4637dae46ce15cbeba097e856444ebce21a16660e5d03309ac23"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-28": "bath"
+      },
+      "sha256": "23e707888a34da069172887c92f042b1402680bb5ff1525dfe7b01c794f8bbc6"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-28": "home"
+      },
+      "sha256": "4a0d8beb56533d1230fb0ad23a0c9dd062a08c606128f5e1cb9141b84ee1ae0e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-29": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-29": "spring"
+      },
+      "sha256": "5a5f1d62fb2383c1946a275d1a8f28291e89c161db9ce8247d537f6fed945267"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-29": "summer"
+      },
+      "sha256": "93b37f4622ecb2020f6c719b613875922432fbb095b9e24839a8df674ebc2f4a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-29": "autumn"
+      },
+      "sha256": "07f75f4a0417da0d3d9279ee369691cb939071988fbf0e35634fb23faeff6eba"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-29": "winter"
+      },
+      "sha256": "71b31b6c2df923a6ae72aac543a0059f7f313f39e610a5997a5747d895b429a5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-30": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-30": "clear"
+      },
+      "sha256": "ca7d740ed6862184223fa9c16c466ff6c286897a163b13d1f049d175ab2cd0d8"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-30": "cloudy"
+      },
+      "sha256": "3dd24c0c30941325cae589a712f40bfc2cbf924c5720a51c43c00b4cbecd1784"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-30": "rain"
+      },
+      "sha256": "3a26a7a3814f873b1ea70ef2e80cf5e8e54d2133e7bb51943982a5d804a82286"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-30": "snow"
+      },
+      "sha256": "1e9de04921388741668d82f434a756562c091f378dc7997d23f8d439b034ba9e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-32": [
+          "wet"
+        ]
+      },
+      "sha256": "8dc7cb7fe99d8d066ae462c1dd0c11f67ab508cf82c622739d15a158f4cece95"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-32": [
+          "steam"
+        ]
+      },
+      "sha256": "dfd5a60cfa39ef046861f82155a7321ba4d71317cf8bb7a5553dc91e1ed98a0f"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-32": [
+          "dappled"
+        ]
+      },
+      "sha256": "ff1021af204db0e6ff17c91a2e28a584494f0b8b813587f9380c8f8f39324ccc"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-32": [
+          "linen"
+        ]
+      },
+      "sha256": "96859eaa4ab1cb657f1def558acbb996d661824e7eac2f7aa32d28ab3ba1e3fa"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-24": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-24": "cheki"
+      },
+      "sha256": "70c2aaedecd67a153b594777da4837594e7fe6fa74acbb59ce70f81f53be045e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-24": "polaroid"
+      },
+      "sha256": "779d096f53a9eee592ec02f06052a66df8ce54defd979547d295488b3a5bdd08"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-24": "film"
+      },
+      "sha256": "bdf5c2c8d3ad27646e15c14db3fc7765566b9c81fdb313ad1ccb25fa36da0dfe"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-24": "oldphone"
+      },
+      "sha256": "9b08e164091083e88fb9ba3e807d6cabee997f2e59f24d47d8be7aafec18870a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-24": "purikura"
+      },
+      "sha256": "5c5f97d7159d73846919a474670ece8ed94902d714f54f0dde8c42e509053f6e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-25": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-25": "wide"
+      },
+      "sha256": "58c55918324c0903fe81668fc47f67c512a31f8e2221b97911683a1628bca92e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-25": "grain"
+      },
+      "sha256": "21518d616df1d157caa93a4ba97da7c7529ba5e8e1d67d2e7d2872d642eb3a11"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-33": true
+      },
+      "sha256": "6b33bc0bc8de20ad1e22721158e5b0700748701bc5aa6b8086328896354145ce"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-33B": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-33B": "d1"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-33B": "d2"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-38": [
+          "shake"
+        ]
+      },
+      "sha256": "d8d496f672df67d845316966dcbc6b1e02fc2c8ad6c21068b9b36918cd882662"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-38": [
+          "soft"
+        ]
+      },
+      "sha256": "eca7e1585d7077037c5b975bf155428ac413f02768042744aa6b806eca2beb67"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-38": [
+          "miss"
+        ]
+      },
+      "sha256": "40a27664fada4f9c635eb4214c58ea5af87747f6480166551462ac4579c290ee"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-38": [
+          "dirt"
+        ]
+      },
+      "sha256": "339fa0d0a1e709209fd79d32dbb1c0536c9518c63d94c1bca1bdbeb49a66eea2"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-38": [
+          "flare"
+        ]
+      },
+      "sha256": "d4614d0cc92799d5d707dcf4e5338559ac8abfa510bda5f0a00e4ab9999adea5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-13": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-13": "slim"
+      },
+      "sha256": "20766b55fc4c3a4b92e3c3e5720bd425a461f414edfdc62a943e3d405acb9992"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-13": "normal"
+      },
+      "sha256": "cae42a864ff6bfab93c8a461968be22d81d96314fbca419d08e51ba9ee7c0ae2"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-13": "soft"
+      },
+      "sha256": "f58085b6e72492309332bd3a7c1174e171f30e27e8a8b4a289780b5a8ae1db96"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-13": "healthy"
+      },
+      "sha256": "ffe0df8b90d9d21b941e42cf25d9a196d418764cbbffc13dc59cf9f417d41671"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-14": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-14": "small"
+      },
+      "sha256": "48568f86f8411ae729097e87c5ee016e3e000b40fb74aed1331e8f9e70aeda5e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-14": "normal"
+      },
+      "sha256": "687a46fad41b29a3f188cee6b773e7e421bc0300146f58a6271442141bd56659"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-14": "rich"
+      },
+      "sha256": "b8cf431f22b6cb826172172a31f42d6faa17903774d533a3894aa347f2435b96"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-14": "full"
+      },
+      "sha256": "faa6b9d277d43a2617e862271b1feddf08642fff1e35bf33b8a8ad75cef1464d"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-15": "auto"
+      },
+      "sha256": "88c2951a2aa635758c4003d8f1ca2f17ede2e21a743ae4dcf35af52f1acbeb40"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-15": "natural"
+      },
+      "sha256": "1b11634b330593c9cea774082e166d34ce913551d8428e96c57ca605616c2b3f"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-15": "trimmed"
+      },
+      "sha256": "7fa5cd0b9523e36775faca5d1382dbd0fc25ba5a805d5a2e3e5efb8bad36953f"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-15": "growing"
+      },
+      "sha256": "fe58f60665ca62f045f6c6167d465b067252888160578c172b5cad0702101d74"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-15": "partial"
+      },
+      "sha256": "db1f05bd6c6e19bf435178ed755fb5766cd7ac5bd4c6815cbe63ca52fc6f099b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-15": "bald"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-47": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-47": "fair"
+      },
+      "sha256": "9197266e4d875b65b0d36d9806074d34b76c8232a494fb3e36db22a1e523169c"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-47": "normal"
+      },
+      "sha256": "92e6655d98277253532b56062192c8f5941488ebe625c74e9807ceadefca0629"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-47": "tan"
+      },
+      "sha256": "c546d5b43c984ea1b06458293c02d495cf14337cf6a9d7e2caee34679d0fa756"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-47": "olive"
+      },
+      "sha256": "7748b635956099a9829efdd9115a11175d3868e1bd8346b90f195a7ba96c21d3"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-34": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-34": "full"
+      },
+      "sha256": "359d635b306e404c5c3b82113e04186a132aeb08bbac3e2d286a9d9fa33ee49a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-34": "base"
+      },
+      "sha256": "6a94407ba021edaabf90798a262c61866ff6d4efd9733a62a690a559efe69ea6"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-34": "half"
+      },
+      "sha256": "6234009ce3a4ddb71d0bbba89803348731b9c5b666bace8a7f7d535eedfd3898"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-34": "upper"
+      },
+      "sha256": "d8183eca9771e47d793ef0ec48a6814a24a92ff471e6a7490f3631b4dc6ac85c"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-34": "lower"
+      },
+      "sha256": "00eace95708a1e8d988b3ef445c2fb919cf93d97556b1fa3691248d98f530e13"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-34": "none"
+      },
+      "sha256": "328e32abf5ccb23fb96cce4afe4f019a19dcc85247541ebf76d3a97f090ee16a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-34": "hand"
+      },
+      "sha256": "73be21e347f02b4e39a39fa86caa1bc3d8b2f54a3f27656b3f419ae5036f7f71"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-35": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-35": "opaque"
+      },
+      "sha256": "024052706f4d6747376d7f3d4e8a6ce64498e414db7b679317a1e5065fe3083a"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-35": "lace"
+      },
+      "sha256": "92bef26d3a3fe7c7a5b7ecbfc5e6a59410603dd98f49a5a900f337ecd0a2e7f0"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-35": "outline"
+      },
+      "sha256": "adf3c1092832a7244b032d1cd02b9c093e4b17ecf7959786b584ce6d4c61ec2e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-36": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-36": "pressed"
+      },
+      "sha256": "05af6ff72d1d9c0a3aa027b4583865f2870daae35f4e1106ab9fc4732a5b20ef"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-36": "through"
+      },
+      "sha256": "dd302c286e3a43c480a98db333fe0be831584c22d33d709b3182c608e2c80a2c"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-36": "exposed"
+      },
+      "sha256": "767629269243ff3a70ab3c51126ec9fd96cb095d4ce501c72e8b73bc4c620d00"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-37": [
+          "flush"
+        ]
+      },
+      "sha256": "f18e8fcc5cf60b7613bd565a67b8afd1d8eaba7d239148f6ba81b7f0e690c8ef"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-37": [
+          "sweat"
+        ]
+      },
+      "sha256": "0d544a6ad5762f201dfef60eccf05b3c358047174ba7f71ad97eac60fed6bfe7"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-37": [
+          "goose"
+        ]
+      },
+      "sha256": "488047176e07a3ef46fe1ffba4904ee3cadb3b3c27c6320fb07f66d14f4e1556"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-37": [
+          "before"
+        ]
+      },
+      "sha256": "387a6aadd89eb5f8dbcf8fb91e347c130df404cee133ee3de848f1eb9ea58c7d"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-37": [
+          "during"
+        ]
+      },
+      "sha256": "23367ce7aad977de9a401a19596b692d28bbb61366e40f8a2bf9c3f864acfb25"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-37": [
+          "after"
+        ]
+      },
+      "sha256": "2c10feb4d4734bc91fd64e1858222c48b9bca783d575c3b43d0888941803de02"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-37": [
+          "selftouch"
+        ]
+      },
+      "sha256": "a09d7d1be57d40e457a4feaad6d96daf5f1474388da6312e1dc1307753321a2b"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-37": [
+          "halfremoved"
+        ]
+      },
+      "sha256": "1d543fde5fee5ce9452d28fb2495bfbe753812b7d908425786ded4cade8fc69d"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-43": "auto"
+      },
+      "sha256": "82e205b78628c91f991e1854523fc65730fed9c6133f02963040a59fbba36a85"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-43": "black"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-43": "darkbrown"
+      },
+      "sha256": "3f7d881ad7d0791f00b073d858e77c7f5a7655a38d1871e08e1827033f8356e9"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-43": "chestnut"
+      },
+      "sha256": "8c4ed93a0ca47349ef59cfd4f6a112e64f649345fc56d738871558dc8aed5f8d"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-43": "lightbrown"
+      },
+      "sha256": "a2af27099861080f0fb410d7b76f857a8a1241b1eecfd5118438137070afbe92"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-43": "ash"
+      },
+      "sha256": "f0f35a07fc7cfe0bcc0a4e7e9425fc8f425bd53426edd8bdf7fcfc2d470bb3c5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "long"
+      },
+      "sha256": "cf88bf16828240b96f5161d334a4add34dab231254e2aca800c5c949c2ab8b6e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "semilong"
+      },
+      "sha256": "b104b6a14697197e8cf1a369478cf49767167f575783f03e076540710a208e28"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "bob"
+      },
+      "sha256": "56f9839cf4536189599a0e9edfc51ad47ee3cc4081a1519f12fd05135345275f"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "short"
+      },
+      "sha256": "bf7c25fc29146a4d019c9f7d5e6cf4a079b5ead5cba075eef4c4ee0a0483a32e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "pony"
+      },
+      "sha256": "03373a2e49eb30badcdeca2f5095e7211cfeaefa83b8c9d0d38948b5b7a1e8fb"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "halfup"
+      },
+      "sha256": "ee81d562aa4e3e37cfd8ae82ba8f2a5298a614de7bc46ec054fe5eead8e1fa62"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "braid"
+      },
+      "sha256": "5ba77625f201b99bdfda9cbfdd141261dddce8b0b29be0a57df9720198f9e09f"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-44": "bun"
+      },
+      "sha256": "9a8566ce211ea8e7c439c63938dd35d378bd698cdfa2838dd3ef56185f2b43a0"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-48": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-48": "straight"
+      },
+      "sha256": "b92b5ec1b6b7720d5b3fc2e65b2940b2646563da8856f187fd70a87ca501cf55"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-48": "inward"
+      },
+      "sha256": "1a4e7b56c6c104a43328a852b2e5c73a451563142689d3dfe84a4c6ba0d54819"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-48": "outward"
+      },
+      "sha256": "307bc7352de6649a8c13b9f13d2e8996f3ae05ede0a08f914a3f8fbec287dd39"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-48": "curly"
+      },
+      "sha256": "ff701ce1a8fb80feff85168c5775e7f375ab4f4f65d545c3a7e91dcdf1678a37"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-48": "airy"
+      },
+      "sha256": "55dfb4687c5d23fe986fef84f0fa754a6e12f1a3772bb56f2e6370a3b18c65be"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-49": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-49": "bangs"
+      },
+      "sha256": "f307c17e34a13c28049ce25fcc259f694175eaeab69a4799333938fe1f6172be"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-49": "nobangs"
+      },
+      "sha256": "2e4d5c38a82d145e0f9154466833bd3bd796226ef418cf5c09d56b87be849ef1"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-49": "blunt"
+      },
+      "sha256": "04bb17bb11b1e9b07c8181fb992dc87326313eab32ba011bca4cd3457db2c5e3"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-49": "swept"
+      },
+      "sha256": "3e01d34976d4062a69f9b90a235ba91ef8a2738a89d866d770e21e399563d089"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-49": "center"
+      },
+      "sha256": "6aa32439270d6e387e516f1ac9308550b5d5b7e417905c9f9cb1ed6b5f6e0bd5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-45": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-45": "smile"
+      },
+      "sha256": "12a1e844ff76443c2d9b5c2fa396a67d1eb822d292e26dfff1cf401dd630ee5e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-45": "calm"
+      },
+      "sha256": "8009c7a483035d4e2c891cf3626bc1ce23d91ebf67cd38a3ca8ac9908bfa5f29"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-45": "shy"
+      },
+      "sha256": "2d8e39e9dbb08d8fe4b71211f1b48de5a30136591f3a65b7f35245b1c1a76ce6"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-45": "laugh"
+      },
+      "sha256": "916c63a9d0da31e72524b8fd321c0373b0035a4aa970515384817265f333e427"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-45": "open"
+      },
+      "sha256": "e2c68b78f26f8019a701083eb8de34051ad56b84fb71f38675de8eb65ae673df"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-45": "closed"
+      },
+      "sha256": "698d6a9271cb0130daf89b7f3b5fa42b42cb5ac250b3e080585c57fafd2a85d6"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-46": "auto"
+      },
+      "sha256": "c7c6b6904f4770bf397e4e80391323286b73d23c0b375b10080172fe430804e5"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-46": "cam"
+      },
+      "sha256": "0473da0edcf4c17c7a334ad7c5c669c99cc16f91ff58c36fee05299f9c5db548"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-46": "avert"
+      },
+      "sha256": "200c9b5cdf5b179ff01efd04393daf9740021e5d50bdea68c1af51458e1a37df"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-46": "down"
+      },
+      "sha256": "5e2e0f11cf96665818eb29e05427319dee5bca88d9e6617c23c317d1a7bdd12f"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-46": "profile"
+      },
+      "sha256": "48b2ee1c2caaa820fb95cf3b19772a21ef7b044b51dfb8166c4ede29ccb80f8d"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-46": "lookback"
+      },
+      "sha256": "e6e280b46f6565909940ebf2e6fc6e84833ef3bf8a7cc3d6226b459829d5a50e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-46": "up"
+      },
+      "sha256": "8d33f02e37a2a82fab16a50894d5c93f1b3480ba6eed09e65abc0fb56c2e7e8e"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-12": [
+          "pov"
+        ]
+      },
+      "sha256": "e47b067320d8ee97ae9ca67797c8ddccadf092a2c5c5da1431782d9214f8a169"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-12": [
+          "hand"
+        ]
+      },
+      "sha256": "ded8291353ea24540974151d3ef4b5299d89a22526cac9f20f438a74843b4750"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-12": [
+          "tease"
+        ]
+      },
+      "sha256": "1e0c03085d100b0e8eb7f9c2b3ee6d32500ed51c8db74dd30219f27d270a8570"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-12": [
+          "after"
+        ]
+      },
+      "sha256": "912829a125cb0714f1621e6d6767c6ed7dba2b2270f2151660f295eb498815e7"
+    },
+    {
+      "verbosity": "full",
+      "patch": {
+        "AX-12": [
+          "tousle"
+        ]
+      },
+      "sha256": "2bb2543e158a85f4c74830af7e517e056f62410591ff5df20ffa723fc217ae3a"
+    }
+  ]
+}

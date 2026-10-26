@@ -1,4 +1,6 @@
-/* Atelier Vault: client-only MEGA prototype. No credentials or personal content are persisted in the app origin. */
+import {mountStudio} from './studio/ui.js';
+let studio;
+/* Atelier Vault: client-only MEGA prototype. Credentials are never persisted. Explicit studio packs/presets are stored locally. */
 const $ = (id) => document.getElementById(id);
 const SDK_URL = './vendor/megajs-1.3.10.mjs';
 const ROOT_NAME = 'PromptGallery';
@@ -11,7 +13,7 @@ function newId() { if (typeof crypto.randomUUID === 'function') return crypto.ra
 const state = {
   mode: 'demo', client: null, records: [], selection: [], activeRecord: null,
   objectUrls: new Map(), imageUrls: new Map(), busy: false, toastTimer: null,
-  generation: 0,
+  generation: 0, draftStudio: null,
 };
 
 function toast(message, error = false) {
@@ -214,6 +216,7 @@ async function switchClient(client, mode) {
   state.generation += 1;
   $('detailDialog').close();
   $('recordForm').reset();
+  state.draftStudio=null; studio?.reset(); $('draftStudioNotice').hidden=true;
   clearSelection();
   resetUrlCache();
   try { await state.client?.close(); } catch {}
@@ -325,7 +328,7 @@ function goto(view) {
   if(view === 'create') renderDraft();
   for(const el of document.querySelectorAll('.view')) el.classList.toggle('active-view',el.id===`view-${view}`);
   for(const el of document.querySelectorAll('[data-view]')) el.classList.toggle('active',el.dataset.view===view);
-  $('pageTitle').textContent = ({gallery:'My gallery',create:'Create & archive',about:'About & privacy'})[view] || '';
+  $('pageTitle').textContent = ({gallery:'My gallery',studio:'My atelier',create:'Create & archive',about:'About & privacy'})[view] || '';
   window.scrollTo({top:0,behavior:'instant'});
 }
 function clearSelection() { for(const item of state.selection) URL.revokeObjectURL(item.url);state.selection=[];$('fileInput').value='';renderSelection(); }
@@ -353,7 +356,7 @@ function addFiles(files) {
   }
   renderSelection();
 }
-function formMeta() { return {title:$('recordTitle').value.trim(),model:$('recordModel').value.trim(),tags:$('recordTags').value.split(/[,、，\n]/).map(x=>x.trim()).filter(Boolean).slice(0,20),prompt:$('recordPrompt').value.trim(),negative:$('recordNegative').value.trim(),notes:$('recordNotes').value.trim(),createdAt:new Date().toISOString()}; }
+function formMeta() { return {title:$('recordTitle').value.trim(),model:$('recordModel').value.trim(),tags:$('recordTags').value.split(/[,、，\n]/).map(x=>x.trim()).filter(Boolean).slice(0,20),prompt:$('recordPrompt').value.trim(),negative:$('recordNegative').value.trim(),notes:$('recordNotes').value.trim(),createdAt:new Date().toISOString(),...(state.draftStudio?{studioSettings:structuredClone(state.draftStudio)}:{})}; }
 async function saveRecord(event) {
   event.preventDefault();
   if(state.busy)return;
@@ -363,7 +366,7 @@ async function saveRecord(event) {
   busy('作品を保存しています','画像とプロンプトを処理中',1);
   try{
     await state.client.save(meta,state.selection.map(x=>x.file),(value,description)=>{ $('progressFill').style.width=`${value}%`; $('busyDescription').textContent=description; });
-    $('recordForm').reset();clearSelection();
+    $('recordForm').reset();state.draftStudio=null;$('draftStudioNotice').hidden=true;clearSelection();
     unbusy();
     const synced = await refresh();
     goto('gallery');toast(state.mode==='mega' ? (synced ? 'MEGAへの保存が完了しました' : '保存は完了しましたが、一覧の再取得に失敗しました。同期状況をご確認ください。') : 'デモに保存しました（端末間同期はされません）', !synced);
@@ -373,6 +376,7 @@ async function saveRecord(event) {
 async function openDetail(id) {
   const record=state.records.find(r=>r.id===id);if(!record)return;
   state.activeRecord=record;
+  $('restoreStudioBtn').hidden=!record.studioSettings;
   $('detailTitle').textContent=record.title;
   $('detailModel').textContent=record.model||'未指定';
   $('detailDate').textContent=formatDate(record.createdAt);
@@ -442,6 +446,15 @@ async function disconnect() {
 }
 async function initDemo(){state.client=makeDemoClient();state.mode='demo';setConnection();await refresh();}
 function setup(){
+  studio=mountStudio({copy:copyText,notify:toast,onUse:(prompt,snapshot)=>{
+    if($('recordPrompt').value.trim() && $('recordPrompt').value!==prompt && !confirm('登録欄のプロンプトを、今の制作プロンプトに置き換えますか？画像と他の入力は残します。'))return;
+    $('recordPrompt').value=prompt;state.draftStudio=snapshot;$('draftStudioNotice').hidden=false;goto('create');renderDraft();toast('プロンプトと制作設定を登録欄へ引き継ぎました。');
+  }});
+  $('restoreStudioBtn').addEventListener('click',()=>{
+    const r=state.activeRecord;if(!r?.studioSettings)return;
+    if(!confirm('今の制作設定を、この作品の設定に置き換えますか？'))return;
+    try{studio.restore(r.studioSettings);$('detailDialog').close();goto('studio');toast('制作設定を呼び戻しました。');}catch(e){toast('設定を読み込めません: '+e.message,true);}
+  });
   document.querySelectorAll('[data-view],[data-go]').forEach(el=>el.addEventListener('click',()=>goto(el.dataset.view||el.dataset.go)));
   document.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',()=>$(el.dataset.close).close()));
   $('connectBtn').addEventListener('click',()=>state.mode==='mega'?disconnect():$('connectDialog').showModal());
@@ -456,7 +469,7 @@ function setup(){
   $('copyDraftBtn').addEventListener('click',()=>copyText($('recordPrompt').value));
   $('templateBtn').addEventListener('click',()=>{if($('recordPrompt').value.trim()&&!confirm('プロンプト欄にテンプレートを追加しますか？'))return;$('recordPrompt').value+=($('recordPrompt').value?'\n\n':'')+'Subject: [被写体]\nScene: [背景・状況]\nMood: [雰囲気]\nLighting: [光の演出]\nComposition: [構図]\nStyle: [表現形式]';$('recordPrompt').focus();});
   $('detailCopyBtn').addEventListener('click',()=>{if(state.activeRecord)copyText(state.activeRecord.prompt);});
-  $('reuseBtn').addEventListener('click',()=>{const r=state.activeRecord;if(!r)return;$('recordTitle').value=r.title+' — variation';$('recordModel').value=r.model||'';$('recordTags').value=r.tags.join(', ');$('recordPrompt').value=r.prompt;$('recordNegative').value=r.negative||'';$('recordNotes').value=r.notes||'';clearSelection();$('detailDialog').close();goto('create');toast('プロンプトを編集欄に読み込みました');});
+  $('reuseBtn').addEventListener('click',()=>{const r=state.activeRecord;if(!r)return;state.draftStudio=r.studioSettings?structuredClone(r.studioSettings):null;$('draftStudioNotice').hidden=!state.draftStudio;$('recordTitle').value=r.title+' — variation';$('recordModel').value=r.model||'';$('recordTags').value=r.tags.join(', ');$('recordPrompt').value=r.prompt;$('recordNegative').value=r.negative||'';$('recordNotes').value=r.notes||'';clearSelection();$('detailDialog').close();goto('create');toast('プロンプトを編集欄に読み込みました');});
   $('deleteBtn').addEventListener('click',deleteRecord);
   $('fileInput').addEventListener('change',e=>addFiles(e.target.files));
   $('dropZone').addEventListener('click',()=>$('fileInput').click());

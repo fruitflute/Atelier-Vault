@@ -35,3 +35,12 @@ test('snapshots validate independently of installed packs and preserve all axis 
  const p=pack.items[0];const snapshot={schemaVersion:1,axes:{...defaults(),'AX-05':'メモ'},outfit:{id:'pack:removed:item',name:p.name,category:p.category,palette:p.palettes[0],detail:p.details[0]}};
  assert.deepEqual(validateSnapshot(snapshot),snapshot);assert.throws(()=>validateSnapshot({...snapshot,axes:{...snapshot.axes,'AX-23':'bad'}}));assert.throws(()=>validateSnapshot({...snapshot,schemaVersion:99}));
 });
+
+test('professional finish replaces default imperfections, preserves explicit choices and restores legacy defaults',()=>{
+ const normal=compile(defaults());assert.ok(normal.includes('実際のスマホ写真らしい不完全さ'));
+ for(const verbosity of ['light','standard','full']){
+ const output=compile({...defaults(),finish:'professional',verbosity,'AX-24':'film','AX-38':['shake']});
+ assert.ok(output.includes('プロフェッショナルな写真作品'));assert.ok(!output.includes('実際のスマホ写真らしい不完全さ'));assert.ok(output.includes('本人が撮影するセルフィーの視点'));assert.ok(output.includes('フィルム粒子'));assert.ok(output.includes('許容する不完全さ：手ブレ'));
+ }
+ const legacy=defaults();delete legacy.finish;assert.equal(validateSnapshot({schemaVersion:1,axes:legacy}).axes.finish,'selfie');assert.equal(validateSnapshot({schemaVersion:1,axes:{...defaults(),finish:'professional'}}).axes.finish,'professional');assert.throws(()=>validateSnapshot({schemaVersion:1,axes:{finish:'bad'}}));
+});

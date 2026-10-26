@@ -46,6 +46,8 @@ export function validateSnapshot(raw){
       if(!c.options.some(o=>o.value===v))throw Error(`設定 ${c.id} が不正です。`);axes[c.id]=v;
     } else {if(typeof v!=='string'||v.length>10000)throw Error(`設定 ${c.id} が不正です。`);axes[c.id]=v;}
   }
+  if(raw.axes.finish!==undefined&&!['selfie','professional'].includes(raw.axes.finish))throw Error('仕上がりの設定が不正です。');
+  axes.finish=raw.axes.finish||'selfie';
   axes.mode=raw.axes.mode==='advanced'?'advanced':'basic';
   axes.verbosity=['light','standard','full'].includes(raw.axes.verbosity)?raw.axes.verbosity:'standard';
   let outfit=null;

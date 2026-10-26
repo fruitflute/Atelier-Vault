@@ -188,6 +188,7 @@ const FIXED = {
 };
 
 const IMPERFECTION = '実際のスマホ写真らしい不完全さを入れる。わずかなセンサーノイズ、手持ちの傾き、浅い被写界深度、自然な肌のきめと産毛。美肌加工・CG感・過剰な対称性を避ける。手指は「自然にリラックスした指」として肯定形で描く。';
+const PROFESSIONAL = 'プロフェッショナルな写真作品として仕上げる。光の方向と明暗を丁寧に整え、狙った位置に正確なピントを合わせる。階調を豊かに保ち、色調とホワイトバランスを統一する。素材や肌の自然な質感を残した、精細で落ち着いた画質。意図しない手ブレ、傾き、センサーノイズを加えない。過度な美肌加工、CG感、過剰なシャープネスを避ける。本人が撮影するセルフィーの視点は維持する。別途指定したフィルム質感や意図的な不完全さは、その指定を優先する。';
 const PRINCIPLE = '人物の基本像・本人セルフィー・写実性を保ち、可変項目は具体的な指定を自動選択より優先する。未指定の部分だけを創造的に補い、複雑な物語を無理に足さず、一つの現実的な場面に統一する。';
 
 const V = {
@@ -319,7 +320,7 @@ function compile(state) {
   if (state['AX-25'] !== AUTO) tex.push('質感：' + vtext('AX-25', state['AX-25']));
   if (state['AX-12'].length) tex.push('演出：' + vlist('AX-12', state['AX-12']));
   if (state['AX-38'].length) tex.push('許容する不完全さ：' + vlist('AX-38', state['AX-38']));
-  add(1, '【質感と写実】\n' + IMPERFECTION + (tex.length ? '\n' + tex.join('\n') : ''));
+  add(1, '【質感と写実】\n' + (state.finish === 'professional' ? PROFESSIONAL : IMPERFECTION) + (tex.length ? '\n' + tex.join('\n') : ''));
   add(2, FIXED.standard[2]);
 
   if (state['AX-33'] === true) {
@@ -440,4 +441,4 @@ function lint(state, text) {
 }
 
 export {AXES,compile,lint};
-export function defaults(){return {...Object.fromEntries(AXES.flatMap(g=>g.controls.map(c=>[c.id,structuredClone(c.value)]))),mode:'basic',verbosity:'standard'};}
+export function defaults(){return {...Object.fromEntries(AXES.flatMap(g=>g.controls.map(c=>[c.id,structuredClone(c.value)]))),mode:'basic',verbosity:'standard',finish:'selfie'};}

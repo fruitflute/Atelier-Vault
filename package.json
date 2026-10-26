@@ -1,6 +1,6 @@
 {
   "name": "atelier-vault",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "GitHub Pagesなどの静的Webサーバー上で動く、画像生成プロンプトと生成作品のプライベート管理アプリです。",
   "scripts": {
     "start": "node scripts/serve.mjs",

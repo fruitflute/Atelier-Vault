@@ -174,3 +174,20 @@ test('artwork remains uncropped and small screens fit', async ({ page }) => {
     await page.locator('[data-view="gallery"]').filter({visible:true}).click();
   }
 });
+
+test('transient metadata failures recover without hiding saved work', async ({page}) => {
+  await archivedFixture(page, 'transient');
+  await expect(page.locator('.work-card')).toHaveCount(1);
+  await expect(page.locator('#syncNotice')).toContainText('JSON取得失敗 0件');
+  expect(await page.evaluate(() => window.mockStats.downloads.filter(n => n === 'record.json').length)).toBe(3);
+});
+
+test('successful upload missing from refreshed list is not reported as verified save',async({page})=>{
+ await mockMega(page);await page.goto('/');await login(page);
+ await expect(page.locator('#busyOverlay')).toBeHidden();
+ await fillWork(page,'Pending visibility');await page.evaluate(()=>{window.hideSavedWork=true;});
+ await page.locator('#saveBtn').click();
+ await expect(page.locator('#syncNotice')).toContainText('今保存した作品を一覧で確認できませんでした');
+ await expect(page.locator('#syncNotice')).toHaveClass(/warning/);
+ expect(await page.evaluate(()=>window.mockStats.uploads.at(-1))).toBe('record.json');
+});

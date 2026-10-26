@@ -54,3 +54,14 @@ test('finish switches, undoes and survives preset and work restore',async({page}
  await page.locator('#studioFinish').selectOption('professional');await page.locator('#studioPresets').click();await page.locator('#presetName').fill('プロ仕上げ');await page.locator('#presetSave').click();await page.locator('#presetDialog .close-icon').click();await page.reload();await page.locator('[data-view="studio"]').filter({visible:true}).click();await page.locator('#studioPresets').click();page.once('dialog',d=>d.accept());await page.locator('#presetList').getByRole('button',{name:'呼び出す'}).click();await expect(page.locator('#studioFinish')).toHaveValue('professional');
  await page.locator('#studioUse').click();await page.locator('#recordTitle').fill('仕上がりの記録');await page.locator('#fileInput').setInputFiles({name:'image.png',mimeType:'image/png',buffer:image});await page.locator('#saveBtn').click();await expect(page.locator('.work-card')).toHaveCount(3);await page.locator('#searchInput').fill('仕上がりの記録');await page.locator('.work-card').click();page.once('dialog',d=>d.accept());await page.locator('#restoreStudioBtn').click();await expect(page.locator('#studioFinish')).toHaveValue('professional');
 });
+
+test('copy remains within reach on portrait tablet and narrow desktop',async({page})=>{
+ for(const width of [390,768,1023,1440]){
+  await page.setViewportSize({width,height:900});await studio(page);
+  const copy=page.locator(width<=1023?'#studioDockCopy':'#studioCopy');
+  await expect(copy).toBeInViewport();
+  await page.locator('#studio-AX-11').fill('画面の途中からコピー');
+  await expect(copy).toBeInViewport();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ }
+});

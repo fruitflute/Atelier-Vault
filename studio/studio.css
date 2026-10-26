@@ -32,3 +32,13 @@
 .axis-controls>.axis-multi,.axis-controls>.field{grid-column:1/-1}
 .axis-controls>.field:has(select){grid-column:auto;min-width:0}
 }
+
+/* Keep completion in reach wherever the editor becomes a single column. */
+.preview-copy{margin:0 0 16px}.preview-copy .button{width:100%}
+@media(min-width:721px) and (max-width:1023px){
+.studio-dock{position:fixed;bottom:0;left:0;right:0;z-index:39;display:flex;justify-content:flex-end;gap:12px;padding:12px 32px calc(12px + env(safe-area-inset-bottom));background:var(--cream);border-top:1px solid var(--line)}
+body:has(#view-studio.active-view) .footer{padding-bottom:110px}
+#studioPreview{scroll-margin-block:24px 110px}
+}
+@media(max-width:1023px){.studio-settings :is(input,select,textarea,button){scroll-margin-block:24px 180px}}
+@media(max-width:720px){.studio-dock{padding-inline:12px;gap:8px}.studio-dock button{font-size:12px;padding-inline:10px}}

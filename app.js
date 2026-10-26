@@ -91,6 +91,17 @@ async function createMegaClient(email, password, secondFactorCode) {
     return await folder.upload({name, size: bytes.byteLength, forceHttps: true}, bytes).complete;
   }
   const download = node => node.downloadBuffer({forceHttps:true});
+  // A transient metadata failure must not silently remove a saved work.
+  // Retry reads only: never retry uploads or malformed JSON.
+  async function readMetadata(node) {
+    for (let attempt = 0; ; attempt++) {
+      try { return await download(node); }
+      catch (error) {
+        if (attempt === 2) throw error;
+        await new Promise(resolve => setTimeout(resolve, 400 * (attempt + 1)));
+      }
+    }
+  }
   const imageType = (info) => IMAGE_TYPES.has(info.type) ? info.type : ({png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',gif:'image/gif'})[String(info.file).split('.').pop().toLowerCase()];
   return {
     getSyncReport() { return syncReport; },
@@ -111,7 +122,7 @@ async function createMegaClient(email, password, secondFactorCode) {
               const metaFile = folder.children?.find(x => !x.directory && x.name === 'record.json');
               if (!metaFile) { syncReport.missingMetadata++; continue; }
               let text;
-              try { text = bytesToString(await download(metaFile)); }
+              try { text = bytesToString(await readMetadata(metaFile)); }
               catch { syncReport.unreadableMetadata++; continue; }
               let raw;
               try { raw = JSON.parse(text.replace(/^\uFEFF/, '')); }
@@ -168,7 +179,7 @@ async function createMegaClient(email, password, secondFactorCode) {
         onProgress?.(94, 'プロンプト情報を書き込み中');
         await uploadBytes(folder, 'record.json', JSON.stringify(manifest, null, 2));
         onProgress?.(100, '保存しました');
-        return true;
+        return {id:folder.nodeId};
       } catch (err) {
         try { await folder.delete(false); } catch {} // trash partial work, don't permanently erase
         throw err;
@@ -373,10 +384,20 @@ async function saveRecord(event) {
   if(!state.selection.length) {toast('画像を1枚以上選択してください',true);return;}
   busy('作品を保存しています','画像とプロンプトを処理中',1);
   try{
-    await state.client.save(meta,state.selection.map(x=>x.file),(value,description)=>{ $('progressFill').style.width=`${value}%`; $('busyDescription').textContent=description; });
+    const saved = await state.client.save(meta,state.selection.map(x=>x.file),(value,description)=>{ $('progressFill').style.width=`${value}%`; $('busyDescription').textContent=description; });
     $('recordForm').reset();state.draftStudio=null;$('draftStudioNotice').hidden=true;clearSelection();
     unbusy();
     const synced = await refresh();
+    if (synced && saved?.id && !state.records.some(record => record.id === saved.id)) {
+      goto('gallery');
+      const notice = $('syncNotice'); notice.hidden=false; notice.classList.add('warning');
+      const heading=notice.querySelector('strong'); if(heading) heading.textContent='今保存した作品の反映は未確認です';
+      const warning=document.createElement('p');
+      warning.textContent='MEGAへの書き込みは完了しましたが、今保存した作品を一覧で確認できませんでした。再保存せず、時間をおいて「更新」をお試しください。';
+      notice.append(warning);
+      toast('保存した作品の一覧への反映を確認できていません。同期状況をご確認ください。',true);
+      return;
+    }
     goto('gallery');toast(state.mode==='mega' ? (synced ? 'MEGAへの保存が完了しました' : '保存は完了しましたが、一覧の再取得に失敗しました。同期状況をご確認ください。') : 'デモに保存しました（端末間同期はされません）', !synced);
   }catch(e){toast(`保存できませんでした: ${e.message}`,true);}
   finally{unbusy();}

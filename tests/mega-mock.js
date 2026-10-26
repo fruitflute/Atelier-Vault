@@ -16,6 +16,7 @@ class Node {
   async downloadBuffer(options) {
     if (!options?.forceHttps) throw new Error('HTTPS required');
     stats.downloads.push(this.name);
+    if (this.transientFailures > 0) { this.transientFailures--; throw new Error('Temporary metadata failure'); }
     if ((window.failReads && this.name === 'record.json') || (window.failThumbs && this.name === 'thumb-01.jpg') || this.failRead) throw new Error('Simulated download failure');
     return this.data;
   }
@@ -40,6 +41,7 @@ function seedFixture(mode) {
   if (mode !== 'incomplete') {
     const json=child(work,'record.json',false,new TextEncoder().encode(mode === 'invalid' ? '{broken' : JSON.stringify(meta)));
     if (mode === 'unreadable') json.failRead=true;
+    if (mode === 'transient') json.transientFailures=2;
   }
   if (mode === 'partial') {
     const incomplete=child(records,'work-incomplete');child(incomplete,'image.png',false,png);
@@ -54,6 +56,6 @@ export class Storage {
     this.ready = options.password === 'fail' ? Promise.reject(new Error('Invalid credentials')) : Promise.resolve();
     window.mockStats = stats;
   }
-  async reload() {}
+  async reload() { if(window.hideSavedWork) for(const home of root.children) for(const records of home.children) records.children=records.children.filter(work=>!work.children.some(file=>file.name==='record.json' && stats.uploads.length)); }
   async close() { stats.closed++; }
 }

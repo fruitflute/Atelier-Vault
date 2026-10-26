@@ -23,12 +23,13 @@ function toast(message, error = false) {
 }
 function busy(message, detail = '', progress = 0) {
   state.busy = true;
+  document.querySelectorAll('#saveBtn, #createDock button').forEach(b => b.disabled = true);
   $('busyOverlay').hidden = false;
   $('busyTitle').textContent = message;
   $('busyDescription').textContent = detail;
   $('progressFill').style.width = `${Math.max(0, Math.min(100, progress))}%`;
 }
-function unbusy() { state.busy = false; $('busyOverlay').hidden = true; }
+function unbusy() { state.busy = false; document.querySelectorAll('#saveBtn, #createDock button').forEach(b => b.disabled = false); $('busyOverlay').hidden = true; }
 function bytesToString(buffer) { return decoder.decode(buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer)); }
 function filenameSafe(name) { return (name || 'image').replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 100); }
 function fileExtension(f) { const mime = f.type; return mime === 'image/jpeg' ? 'jpg' : mime === 'image/png' ? 'png' : mime === 'image/webp' ? 'webp' : 'gif'; }
@@ -238,12 +239,14 @@ function showSyncReport(report, failed = false) {
   const title = document.createElement('strong');
   title.textContent = failed ? '同期が完了していません' : hasIssues ? '一部の作品を読み込めませんでした' : `同期完了 · ${report?.loaded || 0}作品`;
   box.append(title);
+  if (!failed) { const time=document.createElement('span'); time.className='sync-time'; time.textContent=`最終確認 ${new Intl.DateTimeFormat('ja-JP',{hour:'2-digit',minute:'2-digit'}).format(new Date())} · 画像は順に表示されます`; box.append(time); }
   const message = document.createElement('p');
   message.textContent = failed ? '表示できていた作品は保持しています。接続・MEGAの転送制限を確認し、更新をお試しください。' :
     !report?.rootFolders ? 'MEGA直下に PromptGallery フォルダが見つかりません。同じアカウントと保存場所かをご確認ください。' :
     !report.recordFolders ? 'PromptGallery 内に records フォルダが見つかりません。' :
     hasIssues ? '作品データは変更していません。下の同期状況で読み込めない段階を確認できます。' : '保存済み作品を読み込みました。別端末での変更は「更新」で反映できます。';
-  box.append(message);
+  if (failed || hasIssues || !report?.loaded) box.append(message);
+  if (failed || hasIssues) { const retry=document.createElement('button'); retry.type='button'; retry.className='text-button'; retry.textContent='もう一度読み込む'; retry.addEventListener('click',refresh); box.append(retry); }
   if (report) {
     const details = document.createElement('details'); details.open = failed || !!hasIssues || !report.loaded;
     const summary = document.createElement('summary'); summary.textContent = '同期状況';
@@ -256,7 +259,7 @@ async function refresh() {
   if (!state.client || state.busy) return false;
   busy(state.mode==='mega'?'MEGAから同期中':'ギャラリーを準備中','作品情報を読み込んでいます',5);
   try {
-    const records = await state.client.list(p => { $('progressFill').style.width = `${p}%`; });
+    const records = await state.client.list(p => { $('progressFill').style.width = `${p}%`; $('busyDescription').textContent = `作品情報を確認しています · ${p}%`; });
     state.generation += 1;
     resetUrlCache();
     state.records = records;
@@ -279,6 +282,7 @@ function renderGallery() {
   grid.replaceChildren();
   $('totalLabel').textContent = `${list.length} items`;
   $('galleryCount').textContent = state.records.length;
+  document.querySelector('.hero').classList.toggle('has-works', state.records.length > 0);
   $('emptyState').hidden = list.length !== 0;
   $('emptyTitle').textContent = query ? '検索に一致する作品がありません' : state.mode === 'mega' ? '表示できる作品がありません' : '最初の作品を登録しましょう';
   $('emptyDescription').textContent = query ? '検索条件を変えてお試しください。' : state.mode === 'mega' ? '同期状況と、MEGAの保存場所をご確認ください。' : '画像とプロンプトをひと組にして保存できます。';
@@ -317,13 +321,25 @@ async function loadImage(img) {
   return url;
 }
 function goto(view) {
+  $('createDock').hidden = view !== 'create';
+  if(view === 'create') renderDraft();
   for(const el of document.querySelectorAll('.view')) el.classList.toggle('active-view',el.id===`view-${view}`);
   for(const el of document.querySelectorAll('[data-view]')) el.classList.toggle('active',el.dataset.view===view);
   $('pageTitle').textContent = ({gallery:'My gallery',create:'Create & archive',about:'About & privacy'})[view] || '';
   window.scrollTo({top:0,behavior:'instant'});
 }
 function clearSelection() { for(const item of state.selection) URL.revokeObjectURL(item.url);state.selection=[];$('fileInput').value='';renderSelection(); }
+function renderDraft() {
+  $('draftTitle').textContent = $('recordTitle').value.trim() || 'まだ名前のない作品';
+  const holder=$('draftImage'); holder.replaceChildren();
+  if(state.selection.length) { const img=document.createElement('img'); img.src=state.selection[0].url; img.alt=$('recordTitle').value.trim() || '保存前の作品'; holder.append(img); }
+  else { const hint=document.createElement('span'); hint.textContent='ここに、あなたの作品を ♡'; holder.append(hint); }
+  $('draftMeta').textContent = state.selection.length ? `${state.selection.length}枚を保存 · ${$('recordModel').value.trim() || 'モデル未指定'}` : '画像を選ぶと、ここで全体を確かめられます。';
+  $('draftTags').replaceChildren();
+  for(const tag of formMeta().tags.slice(0,3)) { const el=document.createElement('span'); el.className='tag'; el.textContent=tag; $('draftTags').append(el); }
+}
 function renderSelection() {
+  renderDraft();
   const box=$('uploadPreviews');box.replaceChildren();
   for(const item of state.selection){const container=document.createElement('div');container.className='upload-chip';const img=document.createElement('img');img.src=item.url;img.alt=item.file.name;const remove=document.createElement('button');remove.type='button';remove.className='remove-chip';remove.textContent='×';remove.title='この画像を外す';remove.addEventListener('click',()=>{state.selection=state.selection.filter(x=>x!==item);URL.revokeObjectURL(item.url);renderSelection();});container.append(img,remove);box.append(container);}
 }
@@ -435,6 +451,8 @@ function setup(){
   $('searchInput').addEventListener('input',renderGallery);
   $('sortSelect').addEventListener('change',renderGallery);
   $('recordForm').addEventListener('submit',saveRecord);
+  $('recordForm').addEventListener('input',renderDraft);
+  $('previewJump').addEventListener('click',()=>{ $('draftPreview').scrollIntoView({block:'start',behavior:'instant'}); $('draftPreview').focus({preventScroll:true}); });
   $('copyDraftBtn').addEventListener('click',()=>copyText($('recordPrompt').value));
   $('templateBtn').addEventListener('click',()=>{if($('recordPrompt').value.trim()&&!confirm('プロンプト欄にテンプレートを追加しますか？'))return;$('recordPrompt').value+=($('recordPrompt').value?'\n\n':'')+'Subject: [被写体]\nScene: [背景・状況]\nMood: [雰囲気]\nLighting: [光の演出]\nComposition: [構図]\nStyle: [表現形式]';$('recordPrompt').focus();});
   $('detailCopyBtn').addEventListener('click',()=>{if(state.activeRecord)copyText(state.activeRecord.prompt);});

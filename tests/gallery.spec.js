@@ -140,3 +140,37 @@ test('invalid metadata has a distinct persistent diagnostic', async ({ page }) =
   await expect(page.locator('#syncNotice')).toContainText('JSON形式不一致 1件');
   await expect(page.locator('#emptyTitle')).toHaveText('作品をまだ表示できません');
 });
+
+test('draft preview follows input, removal and saved state', async ({ page }) => {
+  await page.goto('/'); await fillWork(page, '<b>Rose notebook</b>');
+  await expect(page.locator('#draftTitle')).toHaveText('<b>Rose notebook</b>');
+  await expect(page.locator('#draftTitle b')).toHaveCount(0);
+  await expect(page.locator('#draftImage img')).toHaveCount(1);
+  await expect(page.locator('#draftTags .tag')).toHaveCount(2);
+  await page.locator('.remove-chip').click();
+  await expect(page.locator('#draftImage img')).toHaveCount(0);
+  await page.locator('#fileInput').setInputFiles({ name:'image.png',mimeType:'image/png',buffer:png });
+  if(await page.locator('#previewJump').isVisible()) {
+    await page.locator('#previewJump').click();
+    await expect(page.locator('#draftPreview')).toBeFocused();
+    await page.locator('#createDock button[type="submit"]').click();
+  } else await page.locator('#saveBtn').click();
+  await expect(page.locator('.work-card')).toHaveCount(3);
+  await expect(page.locator('#createDock')).toBeHidden();
+  await page.locator('.hero [data-go="create"]').click();
+  await expect(page.locator('#draftTitle')).toHaveText('まだ名前のない作品');
+  await expect(page.locator('#draftImage img')).toHaveCount(0);
+});
+
+test('artwork remains uncropped and small screens fit', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.work-card')).toHaveCount(2);
+  await expect(page.locator('.work-thumb img').first()).toHaveCSS('object-fit','contain');
+  for(const width of [320,390,1440]) {
+    await page.setViewportSize({width,height:900});
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.locator('.hero [data-go="create"]').click();
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.locator('[data-view="gallery"]').filter({visible:true}).click();
+  }
+});

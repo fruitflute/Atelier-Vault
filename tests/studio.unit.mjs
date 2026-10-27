@@ -7,7 +7,7 @@ const pack=JSON.parse(fs.readFileSync(new URL('../packs/example.json',import.met
 const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
 test('419 original entries and every option retain original text and order',()=>{
  assert.equal(catalog.length,419);const groups={};for(const c of catalog)(groups[c.category]??=[]).push([c.name,c.palettes,c.details]);
- assert.equal(hash(JSON.stringify(groups)),fixture.catalogSha256);assert.equal(hash(JSON.stringify(AXES)),fixture.axesSha256);
+ assert.equal(hash(JSON.stringify(groups)),fixture.catalogSha256);assert.equal(hash(JSON.stringify(AXES.map(g=>({...g,controls:g.controls.filter(c=>c.id!=='innocentPersona')})))),fixture.axesSha256);
 });
 test('645 original cases retain selected content outside reviewed prose revisions',()=>{
  const physics='【手と接触】\n見える手は誰の手かが明確で、腕・手首・指先が自然につながる。手指の本数と関節は自然な人体に沿い、物を持つ指は接触と握り方に合わせる。同じ手に同時に無理な役割を持たせない。隠れた部分を無理に見せず、ポーズや指の形は場面に合わせて自由にする。鏡に映る手は同じ手の反射として整合させる。';
@@ -76,4 +76,18 @@ test('selected expression and ambitious design survive every finish and verbosit
 test('selfie depth is optional while professional color need not be subdued',()=>{
  const selfie=compile(defaults());assert.ok(!selfie.includes('浅い被写界深度'));assert.ok(selfie.includes('肌のきめと産毛'));
  const pro=compile({...defaults(),finish:'professional'});assert.ok(pro.includes('鮮烈な表現にも繊細な表現にも応える'));assert.ok(!pro.includes('わずかなノイズ'));
+});
+
+
+test('optional original persona survives all verbosity levels and snapshot roundtrip',()=>{
+ const phrase='清楚な、まだ汚れを知らぬオトメ。';
+ assert.ok(!compile(defaults()).includes(phrase));
+ for(const verbosity of ['light','standard','full'])for(const finish of ['selfie','professional']){
+  const axes={...defaults(),innocentPersona:true,verbosity,finish};
+  assert.ok(compile(axes).includes(phrase));
+  assert.ok(compile(validateSnapshot({schemaVersion:1,axes}).axes).includes(phrase));
+ }
+ const legacy=defaults();delete legacy.innocentPersona;
+ assert.equal(validateSnapshot({schemaVersion:1,axes:legacy}).axes.innocentPersona,false);
+ assert.throws(()=>validateSnapshot({schemaVersion:1,axes:{innocentPersona:'true'}}));
 });

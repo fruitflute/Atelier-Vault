@@ -91,3 +91,17 @@ test('revised prose reaches preview and work form without muting user direction'
  await page.locator('#studioUse').click();
  await expect(page.locator('#recordPrompt')).toHaveValue(text);
 });
+
+test('original persona can be selected, undone, saved and restored',async({page})=>{
+ await studio(page);
+ const phrase='清楚な、まだ汚れを知らぬオトメ。';
+ const choice=page.getByRole('checkbox',{name:'人物像：汚れを知らぬ'});
+ await expect(choice).toBeVisible();await expect(choice).not.toBeChecked();
+ await choice.check();await expect(page.locator('#studioOutput')).toContainText(phrase);
+ await page.locator('#studioUndo').click();await expect(choice).not.toBeChecked();await expect(page.locator('#studioOutput')).not.toContainText(phrase);
+ await choice.check();await page.locator('#studioPresets').click();await page.locator('#presetName').fill('元の人物像');await page.locator('#presetSave').click();await page.locator('#presetDialog .close-icon').click();
+ await page.reload();await page.locator('[data-view="studio"]').filter({visible:true}).click();await page.locator('#studioPresets').click();
+ page.once('dialog',d=>d.accept());await page.locator('#presetList').getByRole('button',{name:'呼び出す'}).click();
+ await expect(choice).toBeChecked();await expect(page.locator('#studioOutput')).toContainText(phrase);
+ await choice.uncheck();await expect(page.locator('#studioOutput')).not.toContainText(phrase);
+});

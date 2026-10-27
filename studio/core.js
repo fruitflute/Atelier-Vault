@@ -35,6 +35,7 @@ const AXES = [
     {id: 'AX-11', label: 'デザインの補足', kind: 'textarea', optional: true, value: '', placeholder: '例：青緑のレースに小花の刺繍。'}
   ]},
   {id: 'G2', label: '情緒', collapsed: false, tier: 'basic', controls: [
+    {id: 'innocentPersona', label: '人物像：汚れを知らぬ', kind: 'toggle', value: false},
     {id: 'AX-05', label: '情緒', kind: 'textarea', optional: true, value: '', placeholder: '例：柔らかく温かい。少し照れつつ、装いを楽しんでいる。'},
     {id: 'AX-16', label: '温度感', kind: 'segmented', optional: true, autoValue: 'auto', value: 'auto', options: [
       {value: 'auto', label: 'おまかせ'}, {value: 'clear', label: '清楚'},
@@ -260,6 +261,7 @@ function compile(state) {
 
   add(1, '【被写体】\n' + FIXED.core[0] + '\n' + FIXED.core[1]);
   add(2, FIXED.standard[0]);
+  if(state.innocentPersona === true) add(0, '【人物像】\n清楚な、まだ汚れを知らぬオトメ。');
 
   const body = [];
   if (state['AX-13'] !== AUTO) body.push('体型：' + vtext('AX-13', state['AX-13']));

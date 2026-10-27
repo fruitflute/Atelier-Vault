@@ -77,3 +77,17 @@ test('clothing begins before management and detail order follows scene before ca
  await page.locator('#studioFinish').selectOption('professional');
  await expect(page.locator('#studioOutput')).toContainText('【手と接触】');
 });
+
+test('revised prose reaches preview and work form without muting user direction',async({page})=>{
+ await studio(page);
+ await page.locator('#studio-AX-05').fill('凛とした自信。祝祭のような鮮やかさ。');
+ await page.locator('#studio-AX-11').fill('大きな金属装飾と鮮烈な配色');
+ await page.locator('#studioFinish').selectOption('professional');
+ const output=page.locator('#studioOutput');
+ await expect(output).toContainText('鮮烈な表現にも繊細な表現にも応える');
+ await expect(output).toContainText('凛とした自信。祝祭のような鮮やかさ。');
+ await expect(output).not.toContainText('汚れを知らぬ');
+ const text=await output.innerText();
+ await page.locator('#studioUse').click();
+ await expect(page.locator('#recordPrompt')).toHaveValue(text);
+});

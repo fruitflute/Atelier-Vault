@@ -212,7 +212,8 @@ test('vendored browser SDK rebuilds moved nodes and child-first hierarchy',async
   const {reloadTree}=await import('/mega-tree.js');
   const storage=new Storage({autologin:false,keepalive:false});await storage.ready;
   let nodes=[{h:'root',t:2},{h:'trash',t:4},{h:'work',p:'root',t:1}];
-  storage.api.request=(_cmd,cb)=>queueMicrotask(()=>cb(null,{ok:[],f:structuredClone(nodes)}));
+  storage.api.request=(_cmd,cb)=>queueMicrotask(()=>cb(null,{ok:[],f:structuredClone(nodes),sn:'base'}));
+  storage.api.fetch=async()=>({ok:true,json:async()=>({w:'https://unused.invalid'})});
   await storage.reload();
   nodes=[{h:'child',p:'parent',t:1},{h:'parent',p:'root',t:1},{h:'work',p:'trash',t:1},{h:'trash',t:4},{h:'root',t:2}];
   await reloadTree(storage);await reloadTree(storage);
@@ -249,4 +250,19 @@ test('rate limit records its code without rapid retry or exposing raw errors',as
  expect(await page.locator('#syncDiagnostic').textContent()).not.toContain('secret-account');
  await page.locator('#refreshBtn').click();await expect(page.locator('#busyOverlay')).toBeHidden();
  expect(await page.evaluate(()=>window.mockStats.downloads.filter(n=>n==='record.json').length)).toBe(1);
+});
+
+test('cached tree cannot show rubbish gallery instead of current home gallery',async({page})=>{
+ await page.addInitScript(()=>{window.splitRoots=true;});await archivedFixture(page,'normal');
+ await expect(page.locator('.work-card')).toHaveCount(1);
+ await expect(page.locator('.work-card')).toContainText('Home work');
+ await expect(page.locator('#syncDiagnostic')).toContainText('"caughtUp": true');
+ await page.locator('#refreshBtn').click();await expect(page.locator('#busyOverlay')).toBeHidden();
+ await expect(page.locator('.work-card')).toHaveCount(1);await expect(page.locator('.work-card')).toContainText('Home work');
+ await page.locator('.work-card').click();page.once('dialog',d=>d.accept());await page.locator('#deleteBtn').click();
+ await expect(page.locator('.work-card')).toHaveCount(0);
+ await fillWork(page,'New home upload');await page.locator('#saveBtn').click();
+ await expect(page.locator('.work-card')).toHaveCount(1);await expect(page.locator('.work-card')).toContainText('New home upload');
+ await page.locator('#refreshBtn').click();await expect(page.locator('#busyOverlay')).toBeHidden();
+ await expect(page.locator('.work-card')).toHaveCount(1);await expect(page.locator('.work-card')).toContainText('New home upload');
 });

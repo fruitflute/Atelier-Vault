@@ -1,5 +1,5 @@
 import {classifySyncError,traceSavedWork,treeCounts} from './sync-diagnostics.js';
-import {reloadTree} from './mega-tree.js';
+import {reloadTree,inCloudDrive} from './mega-tree.js';
 import {mountStudio} from './studio/ui.js';
 import {createViewer} from './viewer.js';
 let studio,viewer;
@@ -95,7 +95,7 @@ async function createMegaClient(email, password, secondFactorCode) {
       error.cooldown=true;throw error;
     }
   }
-  const directFolders = (parent, name) => (parent?.children || []).filter(x => x.directory && x.name === name);
+  const directFolders = (parent, name) => (parent?.children || []).filter(x => x.directory && x.name === name && inCloudDrive(storage,x));
   async function getFolder() {
     // MEGA allows duplicate names. Prefer an existing records directory for writes.
     const roots = directFolders(storage.root, ROOT_NAME);
@@ -129,7 +129,7 @@ async function createMegaClient(email, password, secondFactorCode) {
     async list(onProgress) {
       syncReport = {rootFolders:0,recordFolders:0,folders:0,loaded:0,missingMetadata:0,invalidMetadata:0,unreadableMetadata:0,missingImages:0,deferredMetadata:0,failed:false,errors:[],pending:[],cooldownUntil};
       try {
-        try {checkCooldown();await reloadTree(storage);}
+        try {checkCooldown();syncReport.treeSync=await reloadTree(storage);}
         catch(error){
           if(error.cooldown)syncReport.errors.push({stage:'一覧',code:cooldownCode,kind:'pause',count:1});
           else recordError(error,'一覧');
@@ -137,7 +137,7 @@ async function createMegaClient(email, password, secondFactorCode) {
         }
         const roots = directFolders(storage.root, ROOT_NAME);
         const parents = roots.flatMap(root => directFolders(root, 'records'));
-        const folders = [...new Map(parents.flatMap(parent => (parent.children || []).filter(x => x.directory)).map(folder => [folder.nodeId, folder])).values()];
+        const folders = [...new Map(parents.flatMap(parent => (parent.children || []).filter(x => x.directory && inCloudDrive(storage,x))).map(folder => [folder.nodeId, folder])).values()];
         Object.assign(syncReport,{rootFolders:roots.length,recordFolders:parents.length,folders:folders.length,tree:treeCounts(storage,folders)});
         const items = [];
         let next = 0, completed = 0;
@@ -228,7 +228,7 @@ async function createMegaClient(email, password, secondFactorCode) {
       return URL.createObjectURL(new Blob([await download(img.file)],{type:img.type}));
     },
     async image(img) { if (!img.file) return null; const data=await download(img.file); return URL.createObjectURL(new Blob([data],{type:img.type})); },
-    async remove(record) { checkCooldown();await record.folder.delete(false); pendingWrites.delete(record.id); },
+    async remove(record) { checkCooldown();if(!inCloudDrive(storage,record.folder))throw new Error('この作品はホーム内にありません。一覧を更新してください。');await record.folder.delete(false); pendingWrites.delete(record.id); },
     async close() { try { await storage.close(); } catch {} },
   };
 }
@@ -303,6 +303,7 @@ function showSyncReport(report, failed = false) {
     const counts = document.createElement('p');
     counts.textContent = `保存先 ${report.rootFolders}件 / records ${report.recordFolders}件 / 作品フォルダ ${report.folders}件 / 表示 ${report.loaded}件 / JSONなし ${report.missingMetadata}件 / JSON取得失敗 ${report.unreadableMetadata}件 / JSON形式不一致 ${report.invalidMetadata}件 / 画像未検出 ${report.missingImages}件`;
     details.append(summary,counts);
+    if(report.treeSync?.caughtUp){const progress=document.createElement('p');progress.textContent=`変更履歴を最新まで確認 · ${report.treeSync.changes}件反映`;details.append(progress);}
     if(report.tree){const tree=document.createElement('p');tree.textContent=`取得ノード ${report.tree.nodes}件 / 名前未取得 ${report.tree.unnamed}件 / 親未接続 ${report.tree.unattached}件 / クラウド内のrecord.json ${report.tree.metadataInCloud}件 / 探索範囲外 ${report.tree.metadataOutsideScan}件`;details.append(tree);}
     for(const [index,status] of (report.pending||[]).entries()){
       const line=document.createElement('p');line.textContent=`保存済み・反映未確認 ${index+1}：${status}`;details.append(line);
@@ -313,7 +314,7 @@ function showSyncReport(report, failed = false) {
       const line=document.createElement('p');line.textContent=`通信を休止しています。${new Date(report.cooldownUntil).toLocaleTimeString('ja-JP')}以降に更新してください。この時刻はアプリの待機時間で、MEGA側の制限解除を保証するものではありません。`;details.append(line);
     }
     const diagnostic=document.createElement('pre');diagnostic.id='syncDiagnostic';diagnostic.style.whiteSpace='pre-wrap';diagnostic.style.overflowWrap='anywhere';
-    diagnostic.textContent=JSON.stringify({version:'0.8.1',counts:{roots:report.rootFolders,records:report.recordFolders,folders:report.folders,loaded:report.loaded,missingJSON:report.missingMetadata,unreadableJSON:report.unreadableMetadata,invalidJSON:report.invalidMetadata,missingImages:report.missingImages,deferred:report.deferredMetadata},tree:report.tree,pending:report.pending,errors:report.errors,failed:report.failed},null,2);
+    diagnostic.textContent=JSON.stringify({version:'0.8.2',counts:{roots:report.rootFolders,records:report.recordFolders,folders:report.folders,loaded:report.loaded,missingJSON:report.missingMetadata,unreadableJSON:report.unreadableMetadata,invalidJSON:report.invalidMetadata,missingImages:report.missingImages,deferred:report.deferredMetadata},tree:report.tree,treeSync:report.treeSync,pending:report.pending,errors:report.errors,failed:report.failed},null,2);
     const copy=document.createElement('button');copy.type='button';copy.className='text-button';copy.textContent='診断情報をコピー';copy.onclick=async()=>{try{await navigator.clipboard.writeText(diagnostic.textContent);toast('診断情報をコピーしました');}catch{toast('コピーできません。下の診断情報を選択してコピーしてください。',true);}};
     const diagnosticDetails=document.createElement('details');const diagnosticSummary=document.createElement('summary');diagnosticSummary.textContent='診断情報（作品名・認証情報は含みません）';diagnosticDetails.append(diagnosticSummary,diagnostic);
     details.append(copy,diagnosticDetails);box.append(details);

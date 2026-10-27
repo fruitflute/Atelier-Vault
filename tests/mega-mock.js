@@ -33,7 +33,7 @@ class Node {
   }
 }
 const root = new Node('root'), trash=new Node('trash');
-let seeded = false;
+let seeded = false,split=false;
 function seedFixture(mode) {
   const child = (parent,name,directory=true,data=null) => { const node=new Node(name,directory,parent,data);parent.children.push(node);return node; };
   if (mode === 'duplicate') child(root,'PromptGallery');
@@ -61,6 +61,20 @@ export class Storage {
     this.files={};
     const listeners=[];
     this.api={listeners:()=>[...listeners],removeListener:(_name,fn)=>{const i=listeners.indexOf(fn);if(i>=0)listeners.splice(i,1);},on:(_name,fn)=>listeners.push(fn)};
+    this.api.gateway='https://mock.invalid/';this.api.sid='mock';
+    this.api.fetch=async()=>({ok:true,json:async()=>({w:'https://unused.invalid'})});
+    if(window.splitRoots&&!split){
+      split=true;
+      const oldRows=this.rows();
+      const oldHome=root.children[0];root.children=root.children.filter(n=>n!==oldHome);oldHome.parent=trash;trash.children.push(oldHome);
+      seedFixture('new');
+      const newHome=root.children[0];
+      const meta=newHome.children[0].children[0].children.find(n=>n.name==='record.json');
+      const raw=JSON.parse(new TextDecoder().decode(meta.data));raw.title='Home work';meta.data=new TextEncoder().encode(JSON.stringify(raw));
+      this.cachedRows=oldRows;
+      this.api.fetch=async()=>({ok:true,json:async()=>({w:'https://unused.invalid',a:[{a:'d',n:oldHome.nodeId},{a:'t',t:{f:this.rows()}}]})});
+    }
+    this.api.request=async(_command,callback)=>callback(null,{sn:'mock',f:this.cachedRows||this.rows()});
     this.ready = options.password === 'fail' ? Promise.reject(new Error('Invalid credentials')) : this.reload();
     window.mockStats = stats;
     window.mockTrashWork=async()=>{const work=root.children.flatMap(h=>h.children).flatMap(r=>r.children)[0];await work.delete(false);};
@@ -68,7 +82,7 @@ export class Storage {
   }
   _importFile(raw){
     if(!this.files[raw.h]){
-      const remote=raw.remote,node=new Node(remote.name,remote.directory);node.nodeId=raw.h;node.remote=remote;
+      const remote=raw.remote,node=new Node(remote.name,remote.directory);node.nodeId=raw.h;node.type=raw.t;node.remote=remote;
       this.files[raw.h]=node;
       if(raw.t===2)this.root=node;
       if(raw.t===4)this.trash=node;
@@ -79,12 +93,14 @@ export class Storage {
   async reload() {
     if(window.failTree)throw new Error('Tree offline');
     if(window.hideSavedWork) for(const home of root.children) for(const records of home.children) records.children=records.children.filter(work=>!work.children.some(file=>file.name==='record.json' && stats.uploads.length));
+    await this.api.request({a:'f',c:1},(_error,response)=>{for(const row of response.f)this._importFile(row);});
+    this.api.on('sc',()=>{});
+  }
+  rows(){
     const rows=[];
     const visit=(node,t)=>{rows.push({h:node.nodeId,p:node.parent?.nodeId,t,remote:node});for(const child of node.children)visit(child,child.directory?1:0);};
     visit(root,2);visit(trash,4);
-    if(window.unorderedTree)rows.reverse();
-    for(const row of rows)this._importFile(row);
-    this.api.on('sc',()=>{});
+    if(window.unorderedTree)rows.reverse();return rows;
   }
   async close() { stats.closed++; }
 }

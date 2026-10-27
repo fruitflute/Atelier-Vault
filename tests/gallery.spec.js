@@ -228,3 +228,25 @@ test('trash acknowledgment without reflected move shows an explicit warning',asy
  await expect(page.locator('#syncNotice')).toContainText('ごみ箱移動の反映は未確認です');
  await expect(page.locator('.work-card')).toHaveCount(1);
 });
+
+test('missing uploaded work remains a warning on subsequent manual refresh',async({page})=>{
+ await mockMega(page);await page.goto('/');await login(page);await expect(page.locator('#busyOverlay')).toBeHidden();
+ await fillWork(page,'Private saved title');await page.evaluate(()=>{window.hideSavedWork=true;});await page.locator('#saveBtn').click();
+ await expect(page.locator('#syncNotice')).toContainText('一覧に作品フォルダなし');
+ await page.locator('#refreshBtn').click();await expect(page.locator('#busyOverlay')).toBeHidden();
+ await expect(page.locator('#syncNotice')).toHaveClass(/warning/);
+ await expect(page.locator('#syncNotice')).toContainText('一覧に作品フォルダなし');
+ const diagnostic=JSON.parse(await page.locator('#syncDiagnostic').textContent());
+ expect(diagnostic.pending).toEqual(['一覧に作品フォルダなし']);
+ expect(JSON.stringify(diagnostic)).not.toContain('Private saved title');
+});
+test('rate limit records its code without rapid retry or exposing raw errors',async({page})=>{
+ await page.addInitScript(()=>{window.metadataError='ERATELIMIT (-4): secret-account https://private.example';});
+ await archivedFixture(page,'duplicate');
+ await expect(page.locator('#syncNotice')).toContainText('エラー -4');
+ await expect(page.locator('#syncNotice')).toContainText('通信を休止');
+ expect(await page.evaluate(()=>window.mockStats.downloads.filter(n=>n==='record.json').length)).toBe(1);
+ expect(await page.locator('#syncDiagnostic').textContent()).not.toContain('secret-account');
+ await page.locator('#refreshBtn').click();await expect(page.locator('#busyOverlay')).toBeHidden();
+ expect(await page.evaluate(()=>window.mockStats.downloads.filter(n=>n==='record.json').length)).toBe(1);
+});

@@ -1,3 +1,4 @@
+import {classifySyncError,traceSavedWork,treeCounts} from './sync-diagnostics.js';
 import {reloadTree} from './mega-tree.js';
 import {mountStudio} from './studio/ui.js';
 import {createViewer} from './viewer.js';
@@ -76,6 +77,24 @@ async function createMegaClient(email, password, secondFactorCode) {
   try { storage = new mod.Storage(opts); await storage.ready; }
   catch (e) { try { await storage?.close(); } catch {} throw new Error(`MEGAログインに失敗しました: ${e?.message || '認証・通信を確認してください'}`); }
   let syncReport = null;
+  const pendingWrites=new Map();
+  let cooldownUntil=0,cooldownCode='UNKNOWN';
+  function recordError(error,stage){
+    const info=classifySyncError(error);
+    if(info.pauseMs){cooldownUntil=Math.max(cooldownUntil,Date.now()+info.pauseMs);cooldownCode=info.code;}
+    if(syncReport){
+      const found=syncReport.errors.find(item=>item.stage===stage&&item.code===info.code);
+      if(found)found.count++;else syncReport.errors.push({stage,code:info.code,kind:info.kind,count:1});
+      syncReport.cooldownUntil=cooldownUntil;
+    }
+    return info;
+  }
+  function checkCooldown(){
+    if(Date.now()<cooldownUntil){
+      const error=new Error('通信を休止中です。同期状況に表示した時刻以降に更新してください。');
+      error.cooldown=true;throw error;
+    }
+  }
   const directFolders = (parent, name) => (parent?.children || []).filter(x => x.directory && x.name === name);
   async function getFolder() {
     // MEGA allows duplicate names. Prefer an existing records directory for writes.
@@ -91,14 +110,15 @@ async function createMegaClient(email, password, secondFactorCode) {
     const bytes = typeof data === 'string' ? encoder.encode(data) : new Uint8Array(data);
     return await folder.upload({name, size: bytes.byteLength, forceHttps: true}, bytes).complete;
   }
-  const download = node => node.downloadBuffer({forceHttps:true});
+  const download = node => {checkCooldown();return node.downloadBuffer({forceHttps:true});};
   // A transient metadata failure must not silently remove a saved work.
   // Retry reads only: never retry uploads or malformed JSON.
   async function readMetadata(node) {
     for (let attempt = 0; ; attempt++) {
       try { return await download(node); }
       catch (error) {
-        if (attempt === 2) throw error;
+        const info=classifySyncError(error);
+        if (error.cooldown || info.pauseMs || info.kind==='session' || info.code===-3 || attempt === 2) throw error;
         await new Promise(resolve => setTimeout(resolve, 400 * (attempt + 1)));
       }
     }
@@ -107,24 +127,30 @@ async function createMegaClient(email, password, secondFactorCode) {
   return {
     getSyncReport() { return syncReport; },
     async list(onProgress) {
-      syncReport = {rootFolders:0,recordFolders:0,folders:0,loaded:0,missingMetadata:0,invalidMetadata:0,unreadableMetadata:0,missingImages:0,failed:false};
+      syncReport = {rootFolders:0,recordFolders:0,folders:0,loaded:0,missingMetadata:0,invalidMetadata:0,unreadableMetadata:0,missingImages:0,deferredMetadata:0,failed:false,errors:[],pending:[],cooldownUntil};
       try {
-        await reloadTree(storage);
+        try {checkCooldown();await reloadTree(storage);}
+        catch(error){
+          if(error.cooldown)syncReport.errors.push({stage:'一覧',code:cooldownCode,kind:'pause',count:1});
+          else recordError(error,'一覧');
+          throw error;
+        }
         const roots = directFolders(storage.root, ROOT_NAME);
         const parents = roots.flatMap(root => directFolders(root, 'records'));
         const folders = [...new Map(parents.flatMap(parent => (parent.children || []).filter(x => x.directory)).map(folder => [folder.nodeId, folder])).values()];
-        Object.assign(syncReport,{rootFolders:roots.length,recordFolders:parents.length,folders:folders.length});
+        Object.assign(syncReport,{rootFolders:roots.length,recordFolders:parents.length,folders:folders.length,tree:treeCounts(storage,folders)});
         const items = [];
         let next = 0, completed = 0;
         const runners = Array.from({length:Math.min(4, folders.length)}, async () => {
           while (next < folders.length) {
             const folder = folders[next++];
             try {
+              if(Date.now()<cooldownUntil){syncReport.deferredMetadata++;continue;}
               const metaFile = folder.children?.find(x => !x.directory && x.name === 'record.json');
               if (!metaFile) { syncReport.missingMetadata++; continue; }
               let text;
               try { text = bytesToString(await readMetadata(metaFile)); }
-              catch { syncReport.unreadableMetadata++; continue; }
+              catch(error) { syncReport.unreadableMetadata++; if(!error.cooldown)recordError(error,'作品情報'); continue; }
               let raw;
               try { raw = JSON.parse(text.replace(/^\uFEFF/, '')); }
               catch { syncReport.invalidMetadata++; continue; }
@@ -148,6 +174,11 @@ async function createMegaClient(email, password, secondFactorCode) {
         });
         await Promise.all(runners);
         syncReport.loaded = items.length;
+        for(const [id,receipt] of pendingWrites){
+          const status=traceSavedWork(receipt,storage,folders,items);
+          if(status==='表示確認済み')pendingWrites.delete(id);
+          else syncReport.pending.push(status);
+        }
         if (!items.length && (syncReport.unreadableMetadata || syncReport.invalidMetadata)) {
           throw new Error('保存済み作品の情報を読み込めませんでした。同期状況を確認し、時間をおいて更新してください。');
         }
@@ -155,6 +186,7 @@ async function createMegaClient(email, password, secondFactorCode) {
       } catch (error) { syncReport.failed = true; throw error; }
     },
     async save(meta, files, onProgress) {
+      checkCooldown();
       const parent = await getFolder();
       const name = `work-${Date.now()}-${newId().slice(0,8)}`;
       const folder = await parent.mkdir(name);
@@ -178,7 +210,8 @@ async function createMegaClient(email, password, secondFactorCode) {
         // Commit marker is uploaded last. Other devices won't see half-uploaded works.
         const manifest = {...meta, schemaVersion:1, images:imageEntries};
         onProgress?.(94, 'プロンプト情報を書き込み中');
-        await uploadBytes(folder, 'record.json', JSON.stringify(manifest, null, 2));
+        const metadata=await uploadBytes(folder, 'record.json', JSON.stringify(manifest, null, 2));
+        pendingWrites.set(folder.nodeId,{id:folder.nodeId,parentId:parent.nodeId,metadataId:metadata.nodeId});
         onProgress?.(100, '保存しました');
         return {id:folder.nodeId};
       } catch (err) {
@@ -195,7 +228,7 @@ async function createMegaClient(email, password, secondFactorCode) {
       return URL.createObjectURL(new Blob([await download(img.file)],{type:img.type}));
     },
     async image(img) { if (!img.file) return null; const data=await download(img.file); return URL.createObjectURL(new Blob([data],{type:img.type})); },
-    async remove(record) { await record.folder.delete(false); },
+    async remove(record) { checkCooldown();await record.folder.delete(false); pendingWrites.delete(record.id); },
     async close() { try { await storage.close(); } catch {} },
   };
 }
@@ -251,7 +284,7 @@ function showSyncReport(report, failed = false) {
   const box = $('syncNotice'); box.replaceChildren();
   if (state.mode !== 'mega') { box.hidden = true; return; }
   box.hidden = false;
-  const hasIssues = report && (report.missingMetadata || report.invalidMetadata || report.unreadableMetadata || report.missingImages);
+  const hasIssues = report && (report.missingMetadata || report.invalidMetadata || report.unreadableMetadata || report.missingImages || report.deferredMetadata || report.pending?.length);
   box.className = `sync-notice${failed ? ' error' : hasIssues ? ' warning' : ''}`;
   const title = document.createElement('strong');
   title.textContent = failed ? '同期が完了していません' : hasIssues ? '一部の作品を読み込めませんでした' : `同期完了 · ${report?.loaded || 0}作品`;
@@ -269,7 +302,21 @@ function showSyncReport(report, failed = false) {
     const summary = document.createElement('summary'); summary.textContent = '同期状況';
     const counts = document.createElement('p');
     counts.textContent = `保存先 ${report.rootFolders}件 / records ${report.recordFolders}件 / 作品フォルダ ${report.folders}件 / 表示 ${report.loaded}件 / JSONなし ${report.missingMetadata}件 / JSON取得失敗 ${report.unreadableMetadata}件 / JSON形式不一致 ${report.invalidMetadata}件 / 画像未検出 ${report.missingImages}件`;
-    details.append(summary,counts);box.append(details);
+    details.append(summary,counts);
+    if(report.tree){const tree=document.createElement('p');tree.textContent=`取得ノード ${report.tree.nodes}件 / 名前未取得 ${report.tree.unnamed}件 / 親未接続 ${report.tree.unattached}件 / クラウド内のrecord.json ${report.tree.metadataInCloud}件 / 探索範囲外 ${report.tree.metadataOutsideScan}件`;details.append(tree);}
+    for(const [index,status] of (report.pending||[]).entries()){
+      const line=document.createElement('p');line.textContent=`保存済み・反映未確認 ${index+1}：${status}`;details.append(line);
+    }
+    for(const issue of report.errors||[]){const line=document.createElement('p');line.textContent=`${issue.stage}：エラー ${issue.code}（${issue.kind}） ${issue.count}件`;details.append(line);}
+    if(report.deferredMetadata){const line=document.createElement('p');line.textContent=`制限のため取得を保留：${report.deferredMetadata}件`;details.append(line);}
+    if(report.cooldownUntil>Date.now()){
+      const line=document.createElement('p');line.textContent=`通信を休止しています。${new Date(report.cooldownUntil).toLocaleTimeString('ja-JP')}以降に更新してください。この時刻はアプリの待機時間で、MEGA側の制限解除を保証するものではありません。`;details.append(line);
+    }
+    const diagnostic=document.createElement('pre');diagnostic.id='syncDiagnostic';diagnostic.style.whiteSpace='pre-wrap';diagnostic.style.overflowWrap='anywhere';
+    diagnostic.textContent=JSON.stringify({version:'0.8.1',counts:{roots:report.rootFolders,records:report.recordFolders,folders:report.folders,loaded:report.loaded,missingJSON:report.missingMetadata,unreadableJSON:report.unreadableMetadata,invalidJSON:report.invalidMetadata,missingImages:report.missingImages,deferred:report.deferredMetadata},tree:report.tree,pending:report.pending,errors:report.errors,failed:report.failed},null,2);
+    const copy=document.createElement('button');copy.type='button';copy.className='text-button';copy.textContent='診断情報をコピー';copy.onclick=async()=>{try{await navigator.clipboard.writeText(diagnostic.textContent);toast('診断情報をコピーしました');}catch{toast('コピーできません。下の診断情報を選択してコピーしてください。',true);}};
+    const diagnosticDetails=document.createElement('details');const diagnosticSummary=document.createElement('summary');diagnosticSummary.textContent='診断情報（作品名・認証情報は含みません）';diagnosticDetails.append(diagnosticSummary,diagnostic);
+    details.append(copy,diagnosticDetails);box.append(details);
   }
 }
 async function refresh() {

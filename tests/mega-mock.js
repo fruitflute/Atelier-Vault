@@ -18,6 +18,7 @@ class Node {
     if(this.remote)return this.remote.downloadBuffer(options);
     if (!options?.forceHttps) throw new Error('HTTPS required');
     stats.downloads.push(this.name);
+    if(window.metadataError&&this.name==='record.json')throw new Error(window.metadataError);
     if (this.transientFailures > 0) { this.transientFailures--; throw new Error('Temporary metadata failure'); }
     if ((window.failReads && this.name === 'record.json') || (window.failThumbs && this.name === 'thumb-01.jpg') || this.failRead) throw new Error('Simulated download failure');
     return this.data;
